@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<hotelsearch clientid="AAAAAAAAAA" searchnumber="00000000">
+	<paxnationality>AA</paxnationality>
+	<checkindate>00000000</checkindate>
+	<checkoutdate>00000000</checkoutdate>
+	<searchcitycode>AAAA</searchcitycode>
+	<searchhotelcode>AAAA</searchhotelcode>
+	<searchhotelname>AAAA</searchhotelname>
+	<searchhotelcategory>AA</searchhotelcategory>
+	<hotels hotelsreturned="1">
+		<hotel hotelcode="123" hotelname="My Hotel">
+			<citycode>12345</citycode>
+			<hotelcategory>1</hotelcategory>
+			<location>Sampa</location>
+			<roominfo>
+				<room type="SGL" roomcode="2" numberrequired="1">
+					<tariff fromdate="00000000" todate="00000000">
+						<pricecurrency>AAA</pricecurrency>
+						<price>000000000000.00</price>
+					</tariff>
+					<mealplancode>AAA</mealplancode>
+					<services>
+						<servicecode>000</servicecode>
+					</services>
+				</room>
+			</roominfo>
+			<restrictioninfo>
+				<restriction fromdate="20080623" todate="20080810">
+					<nights>2</nights>
+					<block>1</block>
+					<dayweek>5</dayweek>
+				</restriction>
+			</restrictioninfo>
+
+		</hotel>
+	</hotels>
+</hotelsearch>

@@ -1,0 +1,241 @@
+.dataTable {
+	background-color: #999999;
+	border-spacing: 0px;
+	text-align:left;
+	border-collapse:collapse;
+	border: 1px solid #999999;
+	font-size:11px;
+	width: 100%;
+}
+
+.dataTable th {
+	border: 1px solid #999999;
+	padding-left: 2px;
+	padding-right: 12px;
+	font-family: Verdana, Arial;
+	font-weight: bold;
+	color: #000000;
+	background-color: #CCCCCC;
+	margin-right: 10px;
+	white-space: nowrap;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+.dataTable  td {
+	font-family: Verdana, Arial;
+	padding: 2px;
+	border: 1px solid #999999;
+}
+
+.dataTable tr.total td {
+	white-space: nowrap;
+	vertical-align: top;
+	font-weight: bold;
+	border-top: 1px solid black;
+	padding-bottom: 10px;
+}
+
+.dataTable tr.total td.customer {
+	visibility: hidden;
+}
+
+.dataTable td.hidden {
+	display: none;
+}
+
+.dataTable th.hidden {
+	display: none;
+}
+
+.dataTable th.r {
+	text-align: right;
+	padding-right: 10px;
+}
+
+.dataTable th.c {
+	text-align: center;
+}
+
+.dataTable td.r {
+	border: 1px solid #999999;
+	padding: 2px;
+}
+
+.dataTable td.c {
+	text-align: center;
+}
+
+.dataTable  tr.odd {
+	background-color: white;
+}
+
+.dataTable tr.even {
+	background-color: #E9E9E9;
+}
+
+.dataTable th a   ,.dataTable th a:visited {
+	text-align: left;
+	color: white;
+}
+
+.dataTable th a:hover {
+	color: #ffcc00;
+	background-color: transparent;
+}
+
+.dataTable .order1 {
+	background-position: right;
+	background-image: url(../images/arrow_up.gif);
+	background-repeat: no-repeat;
+}
+
+.dataTable .order2 {
+	background-position: right;
+	background-image: url(../images/arrow_down.gif);
+	background-repeat: no-repeat;
+}
+
+.pagelinks {
+	font-family: Verdana, Arial;
+	font-size: 11px;
+	color: black;
+}
+
+.pagelinks img {
+	vertical-align: middle;
+}
+
+.pagebanner {
+	font-family: Verdana, Arial;
+	font-size: 11px;
+	color: black;
+	padding: 5px;
+}
+	
+span.export {
+	padding: 0 4px 1px 20px;
+	font-size: x-small;
+	text-align: center;
+}
+
+span.excel {
+	background-image: url(../images/ico_file_excel.png);
+	background-repeat: no-repeat;
+	width: 16px;
+}
+
+span.csv {
+	background-image: url(../images/ico_file_csv.png);
+	background-repeat: no-repeat;
+	width: 16px;
+}
+
+span.xml {
+	background-image: url(../images/ico_file_xml.png);
+	background-repeat: no-repeat;
+	width: 16px;
+}
+
+span.pdf {
+	background-image: url(../images/ico_file_pdf.png);
+	background-repeat: no-repeat;
+	width: 16px;
+}
+
+span.rtf {
+	background-image: url(../images/ico_file_rtf.png);
+	background-repeat: no-repeat;
+	width: 16px;
+}
+
+.dataTable tr.rowMouseOver {
+	background-image: url(../images/selected.gif);
+	background-repeat: repeat-x;
+	background-color: #ffff99;
+}
+
+.pageHeader {
+	height: 60px;
+	background-image: url(../images/header.gif);
+	background-repeat: repeat-x;
+}
+
+.pageHeaderText {
+	font-size: 30px;
+	margin-left: 5px;
+	color: whitesmoke;
+	font-family: "century gothic", verdana, arial, helvetica, sans-serif;
+	font-weight: bold;
+	text-align: left;
+	display:inline;
+	white-space: nowrap;
+}
+
+.leftMenu {
+	white-space: nowrap;
+	height: 100%;
+	background-color: #d6cfe6;
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+.content {
+	width: 100%;
+	padding: 10px;
+}
+
+.rightColumn {
+	width: 3px;
+}
+
+.customer {
+	width: 20%;
+	text-align: left;
+}
+
+.orderNumber {
+	width: 10%;
+	text-align: left;
+}
+
+.orderDate {
+	text-align: center;
+	width: 10%;
+}
+
+.productName {
+	width: 25%;
+}
+
+.quantity {
+	text-align: center;
+	width: 10%;
+}
+
+.lineItemTotal {
+	text-align: right;
+	width: 15%;
+	padding-right:10px;
+}
+
+.logo {
+	border-top: 1px solid #000066;
+	border-left: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	display:inline;
+	text-align: right;
+}
+
+.code {
+	font-family: verdana, arial, helvetica, "courier new", monospace;
+	font-size: 9pt;
+}
+
+.borderedInline {
+	display: inline;
+	border: 1px solid black;
+}
+
+img {
+	border: 0px;
+}
