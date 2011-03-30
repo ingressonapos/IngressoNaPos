@@ -10,6 +10,8 @@ import modelo.Usuario;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import seguranca.Criptografia;
+
 public class UsuarioDAO {
 	private Session session;
 	public UsuarioDAO (Session s) {
@@ -28,6 +30,14 @@ public class UsuarioDAO {
 	}
 	
 	public List<Usuario> procura(String login, String senha) {
+		Query query = this.session.createQuery("from Usuario where login = :login and senha=:senha"); 
+		query.setString("login", login);
+		query.setString("senha", senha);
+		return query.list();
+	}	
+	
+	public List<Usuario> Login(String login, String senha) {
+		senha = Criptografia.md5(senha);
 		Query query = this.session.createQuery("from Usuario where login = :login and senha=:senha"); 
 		query.setString("login", login);
 		query.setString("senha", senha);
