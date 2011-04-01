@@ -9,19 +9,13 @@ import javax.persistence.Entity;
 @Entity
 public class Telefone {
 
-	private String residencial;
-	private String comercial;
-	
-	public String getResidencial() {
-		return residencial;
+	private String telefone;
+
+	public String getTelefone() {
+		return telefone;
 	}
-	public void setResidencial(String residencial) {
-		this.residencial = residencial;
-	}
-	public String getComercial() {
-		return comercial;
-	}
-	public void setComercial(String comercial) {
-		this.comercial = comercial;
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 }
