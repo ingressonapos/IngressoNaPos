@@ -26,14 +26,31 @@
 									  <input type="radio" name="cadastroUsuario.estadoCivil" value="C"/>Casado
 									  <input type="radio" name="cadastroUsuario.estadoCivil" value="D"/>Divorciado
 									  <input type="radio" name="cadastroUsuario.estadoCivil" value="V"/>Vi&uacute;vo<br />
-						<input type="radio" name="cadastroUsuario.tipoID" value="RG" />RG: 
-						<input type="radio" name="cadastroUsuario.tipoID" value="RNE" />RNE:
+						<input type="radio" name="cadastroUsuario.tipoID" value="RG" />RG ou 
+						<input type="radio" name="cadastroUsuario.tipoID" value="RNE" />RNE
 						<input type="text" name="cadastroUsuario.numeroID"> 
-						CPF: <input type="String" name="cadastroUsuario.cpf" /><br />
-						Nacionalidade: <input type="String" name="cadastroUsuario.nacionalidade" /><br />
+						CPF: <input type="text" name="cadastroUsuario.cpf" /><br />
+						Nacionalidade: <input type="text" name="cadastroUsuario.nacionalidade" /><br />
 						<br />
 						<h2>2. Endereços</h2>
 						<h3>Endereço Permanente</h3><br />
+						Logradouro: <input type="text" name="cadastroUsuario.endereco.logradouro" />
+						N&uacute;mero: <input type="text" name="cadastroUsuario.endereco.numero" /><br />
+						Complemento: <input type="text" name="cadastroUsuario.endereco.complemento" /><br />
+						CEP: <input type="text" name="cadastroUsuario.cep.regiao" size=5 />
+							 <input type="text" name="cadastroUsuario.cep.sufixo" size=3 /><br />
+						Cidade: <input type="text" name="cadastroUsuario.endereco.cidade" />
+						Estado: <input type="text" name="cadastroUsuario.endereco.estado" /><br />
+						Telefone: <input type="text" name="cadastroUsuario.endereco.telefone" /><br />
+						<h3>Endereço para Correspondência</h3><br />
+						Logradouro: <input type="text" name="cadastroUsuario.endereco2.logradouro" />
+						N&uacute;mero: <input type="text" name="cadastroUsuario.endereco2.numero" /><br />
+						Complemento: <input type="text" name="cadastroUsuario.endereco2.complemento" /><br />
+						CEP: <input type="text" name="cadastroUsuario.cep.regiao" size=5 />
+							 <input type="text" name="cadastroUsuario.cep.sufixo" size=3 /><br />
+						Cidade: <input type="text" name="cadastroUsuario.endereco2.cidade" />
+						Estado: <input type="text" name="cadastroUsuario.endereco2.estado" /><br />
+						Telefone: <input type="text" name="cadastroUsuario.endereco2.telefone" /><br />
 						<input type="submit" value="Acessar" />
 					</form>
 				</div>
