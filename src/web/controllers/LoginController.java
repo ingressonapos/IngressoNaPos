@@ -37,7 +37,7 @@ public class LoginController {
 		Session s = new HibernateUtil().getSession();		
 		try {
 			UsuarioDAO usuarioDAO = new UsuarioDAO(s);
-			List<Usuario> usuarios = usuarioDAO.procura(usuario.getLogin(), usuario.getSenha());
+			List<Usuario> usuarios = usuarioDAO.Login(usuario.getLogin(), usuario.getSenha());
 			s.close();
 			if(!usuarios.isEmpty()){
 				usuarioSessao.setUsuario(usuarios.get(0));
