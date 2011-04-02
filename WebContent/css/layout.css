@@ -11,6 +11,20 @@ body {
 	position: relative;
 }
 
+.fundo_topo{
+	background: url("../images/fundo_topo.gif") top left repeat-x; 
+	height: 18px;
+}
+
+.espacador{
+	background-color: #b31b1b; 
+	height: 1px;
+}
+.texto {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
 #principal {
 	background-color: #FFFFFF;
 	padding: 10px;
@@ -75,176 +89,56 @@ fieldset td {
 	*position: relative;
 }
 
-a.cab {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #666666;
-	font-weight: bold;
+
+#content{
+    padding: 20px;
+    font-family: geneva, arial;
+    font-size: 14px;
 }
 
-a.cab2 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #ffffff;
-	font-weight: bold;
+#content table tr td{
+    vertical-align: top;
+    font-size: 14px;
 }
 
-.txt {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #000000;
+#content table input, #content table textarea{
+    border: 1px solid #000;
 }
 
-.txt2 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #000000;
-	font-weight: bold;
+div.fieldWithErrors input, div.fieldWithErrors textarea{
+    background-color: #f6d6f6;
 }
 
-.txte {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #888888;
-	background-color: #CCCCCC;
-	font-weight: bold;
-	text-align: left;	
+a{
+    color:#c00000;
+
 }
 
-.txth {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #ffffff;
-	background-color: #777777;
-	font-weight: bold;
-	text-align: center;	
+table#subscriptions td, table#subscriptions th, table#teachers td, table#teachers th{
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #000;
+    margin: 0;
 }
 
-.txth2 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #ffffff;
-	background-color: #99aa99;
-	font-weight: bold;
-	text-align: center;	
+table#subscriptions, table#teachers{
+    border-collapse: collapse;
 }
 
-
-
-.txth_narrow {
-	font-family: Arial Narrow, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #ffffff;
-	background-color: #999999;
-	font-weight: bold;
-	text-align: center;	
+h2{
+    font-size: 14px;
 }
 
-.txtc {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #ffffff;
+h1 {
+    font-size:18px;
 }
 
-.txts {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 8px;
-	color: #000000;
+#login, #login a{
+    font-family: geneva, arial;
 }
 
-.txt_narrow {
-	font-family: Arial Narrow, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #000000;
-}
+.errorExplanation { color: red }
 
-.txterr {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #cc0000;
-}
-
-.txtok {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	color: #00aa00;
-}
-
-.tbox {
-	font-family: Arial, Helvetica, sans-serif; 
-	font-size: 11px;
-}
-
-.titulo {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
-	font-weight: bold; 	
-	color: #000099;
-}
-
-.titulo2 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
-	font-weight: bold; 	
-	color: #999999;
-	text-decoration:underline;
-}
-
-.titulo3 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	font-weight: bold; 	
-	color: #999999;
-}
-
-.divisoria {
-	background-color: #cccccc;
-	padding-left: 1px;
-	padding-right: 0px;
-}
-
-.btn {
-	border-right: #999999 1px solid; 
-	border-top: #ececec 1px solid; 
-	border-left: #ececec 1px solid; 
-	border-bottom: #999999 1px solid; 
-	background-color: #cccccc; /*aqui vc define a cor da face do botão*/	
-	font-size: 11px; 
-	font-weight: bold; 
-	color: #000099; 
-	font-family: Arial, Helvetica, sans-serif; 
-	text-align: center; 
-	padding-right: 0px; 
-	margin-right: 0px;
-	cursor: hand;
-}
-
-.btn2 {
-	border-right: #000000 1px solid; 
-	border-top: #ececec 1px solid; 
-	border-left: #ececec 1px solid; 
-	border-bottom: #000000 1px solid; 
-	background-color: #999999; /*aqui vc define a cor da face do botão*/
-	font-size: 11px; 
-	font-weight: bold; 
-	color: #cccccc; 
-	font-family: Arial, Helvetica, sans-serif; 
-	text-align: center; 
-	padding-right: 0px; 
-	margin-right: 0px;
-	cursor: hand;
-}
-
-.tbl {
-	border: 0px; 
-	background-color: #cccccc;
-}
-
-.linha {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-	background-color: #f3f3f3;
-}
 
 /*#########################################*/ 
 /* GRID*/
