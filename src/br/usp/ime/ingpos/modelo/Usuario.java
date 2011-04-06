@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Usuario
@@ -26,6 +27,10 @@ public class Usuario
     private String senha;
     @ManyToOne
     Perfil perfil;
+    @OneToOne
+    private Curriculo curriculo;
+    @OneToOne
+    private DadosPessoais dadosPessoais;
 
     public Long getUsuarioID()
     {
@@ -81,5 +86,25 @@ public class Usuario
     {
         this.perfil = perfil;
     }
+
+	public Curriculo getCurriculo() {
+		return curriculo;
+	}
+
+	public void setCurriculo(Curriculo curriculo) {
+		this.curriculo = curriculo;
+	}
+
+	public DadosPessoais getDadosPessoais() {
+		return dadosPessoais;
+	}
+
+	public void setDadosPessoais(DadosPessoais dadosPessoais) {
+		this.dadosPessoais = dadosPessoais;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 }
