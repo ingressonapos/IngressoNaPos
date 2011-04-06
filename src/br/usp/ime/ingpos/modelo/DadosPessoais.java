@@ -18,12 +18,6 @@ public class DadosPessoais {
 	@GeneratedValue
 	@Id
 	private Long dadosPessoaisID;
-	public Long getDadosPessoaisID() {
-		return dadosPessoaisID;
-	}
-	public void setDadosPessoaisID(Long dadosPessoaisID) {
-		this.dadosPessoaisID = dadosPessoaisID;
-	}
 	@Column(length = 50)
 	private String nomeCompleto;
 	@Column
@@ -95,5 +89,11 @@ public class DadosPessoais {
 	}
 	public void setDataDeNascimento(Date dataDeNascimento) {
 		this.dataDeNascimento = dataDeNascimento;
+	}
+	public Long getDadosPessoaisID() {
+		return dadosPessoaisID;
+	}
+	public void setDadosPessoaisID(Long dadosPessoaisID) {
+		this.dadosPessoaisID = dadosPessoaisID;
 	}
 }
