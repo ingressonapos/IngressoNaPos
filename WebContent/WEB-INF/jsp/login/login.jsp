@@ -21,16 +21,11 @@
 <div id="login" style="width: 400px; margin: 0 auto;">
 
 
-<h1>Bem-Vindo ao Sistema de Inscrição na Pós-Graduação do IME/USP</h1>
+<h1><fmt:message key="welcome_message" /></h1>
 
 <form action="<c:url value='/login'/>" method="post">
 
 <table>
-	<tr>
-		<td><b>Login:</b><br />
-		<br />
-		</td>
-	</tr>
 	<tr>
 		<td><fmt:message key="login_user" /></td>
 		<td><input id="login" name="usuario.login" type="text"
@@ -47,12 +42,12 @@
 	</tr>
 	<tr>
 		<td></td>
-		<td>Esqueci minha senha</td>
+		<td><fmt:message key="password_forgot" /></td>
 	</tr>
 </table>
 </form>
 <br />
-<p><b>Novo usuário?</b> <a href="<c:url value='/cadastro/registro'/>">Cadastre-se</a></p>
+<p><b><fmt:message key="new_user" /></b> <a href="<c:url value='/cadastro/registro'/>"><fmt:message key="register" /></a></p>
 
 
 </div>

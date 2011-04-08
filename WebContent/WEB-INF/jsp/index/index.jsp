@@ -79,6 +79,8 @@ $.ajaxSetup ({
 			</div>
 			<div class="portlet-content">
 				<div id="tarefasPendentes" style="overflow:auto; height: 150px">
+					<p><a href="<c:url value='/cadastro/dadosCurriculo'/>">Cadastre o seu Curr&iacute;culo</a></p><br />
+					<p><a href="<c:url value='/cadastro/dadosUsuario'/>">Cadastre seus Dados Pessoais</a></p>
 				</div>
 			</div>
 		</div>
