@@ -1,10 +1,13 @@
 package br.usp.ime.ingpos.modelo;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-
+@Entity
 public class IniciacaoCientifica {
 	@Id
 	@GeneratedValue
@@ -15,14 +18,16 @@ public class IniciacaoCientifica {
 	private String nomeInstituicao;
 	@Column(length=50)
 	private String temaProjeto;
-	private BolsaObtidaAnteriormente bolsa;
 	
-	
-	public BolsaObtidaAnteriormente getBolsa() {
-		return bolsa;
+	@ManyToOne
+	@JoinColumn(name = "curriculoID")
+	private Curriculo curriculo;
+
+	public Curriculo getCurriculo() {
+		return curriculo;
 	}
-	public void setBolsa(BolsaObtidaAnteriormente bolsa) {
-		this.bolsa = bolsa;
+	public void setCurriculo(Curriculo curriculo) {
+		this.curriculo = curriculo;
 	}
 	public long getIniciacaocientificaId() {
 		return iniciacaocientificaId;
