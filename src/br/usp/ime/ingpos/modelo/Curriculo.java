@@ -7,9 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Curriculo {
@@ -22,8 +21,25 @@ public class Curriculo {
 	private Set<FormacaoAcademica> formacaoAcademica = new HashSet<FormacaoAcademica>();
 	@OneToMany
 	@JoinColumn(referencedColumnName = "curriculoID")
-	private Set<BolsaObtidaAnteriormente> bolsaAnterior = new HashSet<BolsaObtidaAnteriormente>();
+	private Set<Bolsa> bolsas = new HashSet<Bolsa>();
+	@ManyToOne
+	private PosComp posComp;
+	@OneToMany
+	@JoinColumn(referencedColumnName = "curriculoID")
+	private Set<IniciacaoCientifica> iniciacaoCientifica = new HashSet<IniciacaoCientifica>();
 
+	public Set<IniciacaoCientifica> getIniciacaoCientifica() {
+		return iniciacaoCientifica;
+	}
+	public void setIniciacaoCientifica(Set<IniciacaoCientifica> iniciacaoCientifica) {
+		this.iniciacaoCientifica = iniciacaoCientifica;
+	}
+	public PosComp getPosComp() {
+		return posComp;
+	}
+	public void setPosComp(PosComp posComp) {
+		this.posComp = posComp;
+	}
 	public Long getCurriculoID() {
 		return curriculoID;
 	}
@@ -36,10 +52,10 @@ public class Curriculo {
 	public void setFormacaoAcademica(Set<FormacaoAcademica> formacaoAcademica) {
 		this.formacaoAcademica = formacaoAcademica;
 	}
-	public Set<BolsaObtidaAnteriormente> getBolsaAnterior() {
-		return bolsaAnterior;
+	public Set<Bolsa> getBolsas() {
+		return bolsas;
 	}
-	public void setBolsaAnterior(Set<BolsaObtidaAnteriormente> bolsaAnterior) {
-		this.bolsaAnterior = bolsaAnterior;
+	public void setBolsas(Set<Bolsa> bolsas) {
+		this.bolsas = bolsas;
 	}
 }
