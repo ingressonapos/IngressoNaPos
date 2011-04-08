@@ -1,5 +1,7 @@
 package br.usp.ime.ingpos.modelo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,16 +10,15 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-
 public class Curriculo {
 
 	@Id
 	@GeneratedValue
 	private Long curriculoID;
 	@OneToOne
-	private FormacaoAcademica formacaoAcad;
+	private List<FormacaoAcademica> formacaoAcademica;
 	@OneToOne
-	private BolsaObtidaAnteriormente bolsaAnt;
+	private List<BolsaObtidaAnteriormente> bolsaAnterior;
 	
 	
 	public Long getCurriculoID() {
@@ -26,17 +27,16 @@ public class Curriculo {
 	public void setCurriculoID(Long curriculoID) {
 		this.curriculoID = curriculoID;
 	}
-	public FormacaoAcademica getFormacaoAcad() {
-		return formacaoAcad;
+	public List<FormacaoAcademica> getFormacaoAcademica() {
+		return formacaoAcademica;
 	}
-	public void setFormacaoAcad(FormacaoAcademica formacaoAcad) {
-		this.formacaoAcad = formacaoAcad;
+	public void setFormacaoAcademica(List<FormacaoAcademica> formacaoAcademica) {
+		this.formacaoAcademica = formacaoAcademica;
 	}
-	public BolsaObtidaAnteriormente getBolsaAnt() {
-		return bolsaAnt;
+	public List<BolsaObtidaAnteriormente> getBolsaAnterior() {
+		return bolsaAnterior;
 	}
-	public void setBolsaAnt(BolsaObtidaAnteriormente bolsaAnt) {
-		this.bolsaAnt = bolsaAnt;
-	}
-	
+	public void setBolsaAnterior(List<BolsaObtidaAnteriormente> bolsaAnterior) {
+		this.bolsaAnterior = bolsaAnterior;
+	}	
 }
