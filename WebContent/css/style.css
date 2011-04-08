@@ -30,7 +30,7 @@ body {
 /* set a nice big heading */
 #headnote h1{
 	color: #444;
-	font-size: 36px;
+	font-size: 50px;
 	font-weight: 100;
 }
 
@@ -112,3 +112,25 @@ hr {
 	width: 640px;
 	height: 82px;
 }
+
+div.row {
+  clear: both;
+  padding-top: 5px;
+}
+
+div.row span.label {
+  float: left;
+  width: 150px;
+  text-align: left;
+}
+
+div.row span.formw {
+  float: right;
+  width: 250px;
+  text-align: left;
+} 
+  
+div.spacer {
+  clear: both;
+}
+  

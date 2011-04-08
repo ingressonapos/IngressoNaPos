@@ -52,7 +52,7 @@
 </table>
 </form>
 <br />
-<p><b>Novo usuário?</b> <a href="<c:url value='/cadastro/registro'/>">Cadastrar-se</a></p>
+<p><b>Novo usuário?</b> <a href="<c:url value='/cadastro/registro'/>">Cadastre-se</a></p>
 
 
 </div>
