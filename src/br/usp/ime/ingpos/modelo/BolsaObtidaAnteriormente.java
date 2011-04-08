@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class BolsaObtidaAnteriormente {
@@ -20,6 +22,17 @@ public class BolsaObtidaAnteriormente {
 	private String nomeOrientador;
 	@Column(length=50)
 	private String nomeProjeto;
+	
+	@ManyToOne
+	@JoinColumn(name = "curriculoID")
+	private Curriculo curriculo;
+	
+	public Curriculo getCurriculo() {
+		return curriculo;
+	}
+	public void setCurriculo(Curriculo curriculo) {
+		this.curriculo = curriculo;
+	}	
 	public long getBolsaId() {
 		return bolsaId;
 	}

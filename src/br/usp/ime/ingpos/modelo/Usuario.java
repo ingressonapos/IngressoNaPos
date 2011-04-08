@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Usuario
@@ -27,9 +26,9 @@ public class Usuario
     private String senha;
     @ManyToOne
     Perfil perfil;
-    @OneToOne
+    @ManyToOne
     private Curriculo curriculo;
-    @OneToOne
+    @ManyToOne
     private DadosPessoais dadosPessoais;
 
     public Long getUsuarioID()

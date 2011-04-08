@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class FormacaoAcademica {
@@ -23,6 +25,16 @@ public class FormacaoAcademica {
 	@Column(length=50)
 	private String tituloDissert;
 	
+	@ManyToOne
+	@JoinColumn(name = "curriculoID")
+	private Curriculo curriculo;
+	
+	public Curriculo getCurriculo() {
+		return curriculo;
+	}
+	public void setCurriculo(Curriculo curriculo) {
+		this.curriculo = curriculo;
+	}
 	public Long getFormacaoAcademicaId() {
 		return formacaoAcademicaId;
 	}

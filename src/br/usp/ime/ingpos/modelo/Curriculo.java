@@ -1,13 +1,15 @@
 package br.usp.ime.ingpos.modelo;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Curriculo {
@@ -15,28 +17,29 @@ public class Curriculo {
 	@Id
 	@GeneratedValue
 	private Long curriculoID;
-	@OneToOne
-	private List<FormacaoAcademica> formacaoAcademica;
-	@OneToOne
-	private List<BolsaObtidaAnteriormente> bolsaAnterior;
-	
-	
+	@OneToMany
+	@JoinColumn(referencedColumnName = "curriculoID")
+	private Set<FormacaoAcademica> formacaoAcademica = new HashSet<FormacaoAcademica>();
+	@OneToMany
+	@JoinColumn(referencedColumnName = "curriculoID")
+	private Set<BolsaObtidaAnteriormente> bolsaAnterior = new HashSet<BolsaObtidaAnteriormente>();
+
 	public Long getCurriculoID() {
 		return curriculoID;
 	}
 	public void setCurriculoID(Long curriculoID) {
 		this.curriculoID = curriculoID;
 	}
-	public List<FormacaoAcademica> getFormacaoAcademica() {
+	public Set<FormacaoAcademica> getFormacaoAcademica() {
 		return formacaoAcademica;
 	}
-	public void setFormacaoAcademica(List<FormacaoAcademica> formacaoAcademica) {
+	public void setFormacaoAcademica(Set<FormacaoAcademica> formacaoAcademica) {
 		this.formacaoAcademica = formacaoAcademica;
 	}
-	public List<BolsaObtidaAnteriormente> getBolsaAnterior() {
+	public Set<BolsaObtidaAnteriormente> getBolsaAnterior() {
 		return bolsaAnterior;
 	}
-	public void setBolsaAnterior(List<BolsaObtidaAnteriormente> bolsaAnterior) {
+	public void setBolsaAnterior(Set<BolsaObtidaAnteriormente> bolsaAnterior) {
 		this.bolsaAnterior = bolsaAnterior;
-	}	
+	}
 }
