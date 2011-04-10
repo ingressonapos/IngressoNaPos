@@ -6,14 +6,12 @@ import java.util.List;
 import org.hibernate.criterion.Criterion;
 
 /**
- * Representa a base para opera��es de acesso � dados.
+ * Representa a base para operacoes de acesso a dados.
  * 
  * @param <ID> identificador da entidade.
  * @param <T> entidade a ser acessada.
  */
 public interface BasicDao<ID extends Serializable, T>
-    extends
-        Serializable
 {
 
     void save(
@@ -22,7 +20,7 @@ public interface BasicDao<ID extends Serializable, T>
     void delete(
         T... ts );
 
-    void update(
+    void saveOrUpdate(
         T... ts );
 
     T findById(

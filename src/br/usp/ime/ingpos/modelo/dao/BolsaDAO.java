@@ -25,7 +25,7 @@ public class BolsaDAO extends AbstractDaoImpl<Integer, Bolsa>{
 	}
 
 	public void atualizarBolsa(Bolsa bolsa) {
-		update(bolsa);
+		saveOrUpdate(bolsa);
 	}
 
 	public List<Bolsa> procurarTodasBolsas() {

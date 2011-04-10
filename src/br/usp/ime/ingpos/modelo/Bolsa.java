@@ -1,79 +1,110 @@
 package br.usp.ime.ingpos.modelo;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Bolsa {
-	@Id
-	@GeneratedValue
-	private Long bolsaId;
-	@Column(length=50)
-	private String tipoBolsa;
-	@Column(length=50)
-	private String nomeInstituicao; //Instituicao que concedeu a bolsa
-	private Integer duracao;
-	@Column(length=50)
-	private String nomeOrientador;
-	@Column(length=50)
-	private String nomeProjeto;
-	
-	@ManyToOne
-	@JoinColumn(name = "curriculoID")
-	private Curriculo curriculo;
+public class Bolsa
+{
+    @Id
+    @GeneratedValue
+    private Long bolsaId;
 
-	public Long getBolsaId() {
-		return bolsaId;
-	}
+    @Column( length = 50 )
+    private String tipoBolsa;
 
-	public void setBolsaId(Long bolsaId) {
-		this.bolsaId = bolsaId;
-	}
+    @Column( length = 50 )
+    private String nomeInstituicao; // Instituicao que concedeu a bolsa
 
-	public String getTipoBolsa() {
-		return tipoBolsa;
-	}
+    @Column
+    private Integer duracao;
 
-	public void setTipoBolsa(String tipoBolsa) {
-		this.tipoBolsa = tipoBolsa;
-	}
+    @Column( length = 50 )
+    private String nomeOrientador;
 
-	public String getNomeInstituicao() {
-		return nomeInstituicao;
-	}
+    @Column( length = 50 )
+    private String nomeProjeto;
 
-	public void setNomeInstituicao(String nomeInstituicao) {
-		this.nomeInstituicao = nomeInstituicao;
-	}
+    @ManyToOne
+    @JoinColumn( name = "curriculoID" )
+    private Curriculo curriculo;
 
-	public Integer getDuracao() {
-		return duracao;
-	}
+    public Bolsa()
+    {
+    }
 
-	public void setDuracao(Integer duracao) {
-		this.duracao = duracao;
-	}
+    public Long getBolsaId()
+    {
+        return bolsaId;
+    }
 
-	public String getNomeOrientador() {
-		return nomeOrientador;
-	}
+    public String getTipoBolsa()
+    {
+        return tipoBolsa;
+    }
 
-	public void setNomeOrientador(String nomeOrientador) {
-		this.nomeOrientador = nomeOrientador;
-	}
+    public void setTipoBolsa(
+        String tipoBolsa )
+    {
+        this.tipoBolsa = tipoBolsa;
+    }
 
-	public String getNomeProjeto() {
-		return nomeProjeto;
-	}
+    public String getNomeInstituicao()
+    {
+        return nomeInstituicao;
+    }
 
-	public void setNomeProjeto(String nomeProjeto) {
-		this.nomeProjeto = nomeProjeto;
-	}
+    public void setNomeInstituicao(
+        String nomeInstituicao )
+    {
+        this.nomeInstituicao = nomeInstituicao;
+    }
 
-	public Curriculo getCurriculo() {
-		return curriculo;
-	}
+    public Integer getDuracao()
+    {
+        return duracao;
+    }
 
-	public void setCurriculo(Curriculo curriculo) {
-		this.curriculo = curriculo;
-	}
+    public void setDuracao(
+        Integer duracao )
+    {
+        this.duracao = duracao;
+    }
+
+    public String getNomeOrientador()
+    {
+        return nomeOrientador;
+    }
+
+    public void setNomeOrientador(
+        String nomeOrientador )
+    {
+        this.nomeOrientador = nomeOrientador;
+    }
+
+    public String getNomeProjeto()
+    {
+        return nomeProjeto;
+    }
+
+    public void setNomeProjeto(
+        String nomeProjeto )
+    {
+        this.nomeProjeto = nomeProjeto;
+    }
+
+    public Curriculo getCurriculo()
+    {
+        return curriculo;
+    }
+
+    public void setCurriculo(
+        Curriculo curriculo )
+    {
+        this.curriculo = curriculo;
+    }
 }

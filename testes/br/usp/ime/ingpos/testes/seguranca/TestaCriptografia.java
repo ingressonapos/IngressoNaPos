@@ -1,26 +1,19 @@
 package br.usp.ime.ingpos.testes.seguranca;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import br.usp.ime.ingpos.seguranca.Criptografia;
+import br.usp.ime.ingpos.testes.IngPosTestCase;
 
 public class TestaCriptografia
+    extends
+        IngPosTestCase
 {
-
-    @Before
-    public void setUp()
-        throws Exception
+    public TestaCriptografia(
+        String name )
     {
-    }
-
-    @After
-    public void tearDown()
-        throws Exception
-    {
-
+        super( name );
     }
 
     @Test

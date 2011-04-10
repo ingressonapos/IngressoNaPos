@@ -15,26 +15,22 @@ public class UsuarioDao
     extends
         AbstractDaoImpl<Integer,Usuario>
 {
-    /**
-     * 
-     */
-    private static final long serialVersionUID = - 6800278642830717614L;
-
     public UsuarioDao(
         final SessionCreator sessionCreator )
     {
         super( sessionCreator );
     }
 
-    public Usuario findByLoginAndPassword(
-        final String login,
+    public Usuario findByEmailAndPassword(
+        final String email,
         final String senha )
     {
         final List<Usuario> usuarios = findByCriteria( Restrictions.and(
-            Restrictions.eq( "login", login ), Restrictions.eq( "senha", senha ) ) );
+            Restrictions.eq( "dadosPessoais.email", email ),
+            Restrictions.eq( "dadosPessoais.senha", senha ) ) );
 
         if( usuarios.size() > 1 ) {
-            throw new IllegalStateException( "User within same login and password exists" );
+            throw new IllegalStateException( "User within same email and password exists" );
         }
 
         if( usuarios.isEmpty() ) {

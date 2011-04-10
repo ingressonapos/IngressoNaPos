@@ -39,10 +39,10 @@ public class LoginController
     @Path( "/login" )
     @Transactional
     public void login(
-        br.usp.ime.ingpos.modelo.Usuario usuario )
+        br.usp.ime.ingpos.modelo.DadosPessoais usuario )
     {
         try {
-            final boolean success = usuarioService.autenticar( usuario.getLogin(),
+            final boolean success = usuarioService.autenticar( usuario.getEmail(),
                 usuario.getSenha() );
 
             if( success ) {

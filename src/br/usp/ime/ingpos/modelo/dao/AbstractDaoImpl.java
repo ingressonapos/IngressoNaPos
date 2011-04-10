@@ -17,8 +17,6 @@ public abstract class AbstractDaoImpl<ID extends Serializable, T>
         BasicDao<ID,T>
 {
 
-    private static final long serialVersionUID = - 3754516961946464509L;
-
     private final SessionCreator sessionCreator;
 
     private final Class<T> clazzEntity;
@@ -67,7 +65,7 @@ public abstract class AbstractDaoImpl<ID extends Serializable, T>
             getSession().delete( t );
     }
 
-    public void update(
+    public void saveOrUpdate(
         final T... ts )
     {
         for( T t : ts )

@@ -8,107 +8,136 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 
 @Entity
-public class Endereco 
-implements
-Serializable
+public class Endereco
+    implements
+        Serializable
 {
-	private static final long serialVersionUID = 5653550355165213879L;
+    private static final long serialVersionUID = 5653550355165213879L;
 
-	@Id
-	@GeneratedValue
-	private Long enderecoID;
-	@Column
-	private String logadouro;
-	@Column
-	private String numero;
-	@Column
-	private String complemento;
-	@Column
-	private String cidade;
-	@Column
-	private String estado;
-	@Column
-	private String pais;
-	@OneToOne
-	private CEP cep;
+    @Id
+    @GeneratedValue
+    private Long enderecoID;
 
-	@Embedded
-	private Telefone telefones;
+    @Column
+    private String logadouro;
 
-	
-	public Long getEnderecoID() {
-		return enderecoID;
-	}
+    @Column
+    private String numero;
 
-	public void setEnderecoID(Long enderecoID) {
-		this.enderecoID = enderecoID;
-	}
+    @Column
+    private String complemento;
 
-	public String getLogadouro() {
-		return logadouro;
-	}
+    @Column
+    private String cidade;
 
-	public void setLogadouro(String logadouro) {
-		this.logadouro = logadouro;
-	}
+    @Column
+    private String estado;
 
-	public String getNumero() {
-		return numero;
-	}
+    @Column
+    private String pais;
 
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
+    @OneToOne
+    private CEP cep;
 
-	public String getComplemento() {
-		return complemento;
-	}
+    @Embedded
+    private Telefone telefone;
 
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
+    public Endereco()
+    {
+    }
 
-	public String getCidade() {
-		return cidade;
-	}
+    public Long getEnderecoID()
+    {
+        return enderecoID;
+    }
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
+    public String getLogadouro()
+    {
+        return logadouro;
+    }
 
-	public String getEstado() {
-		return estado;
-	}
+    public void setLogadouro(
+        String logadouro )
+    {
+        this.logadouro = logadouro;
+    }
 
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+    public String getNumero()
+    {
+        return numero;
+    }
 
-	public String getPais() {
-		return pais;
-	}
+    public void setNumero(
+        String numero )
+    {
+        this.numero = numero;
+    }
 
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
+    public String getComplemento()
+    {
+        return complemento;
+    }
 
-	public CEP getCep() {
-		return cep;
-	}
+    public void setComplemento(
+        String complemento )
+    {
+        this.complemento = complemento;
+    }
 
-	public void setCep(CEP cep) {
-		this.cep = cep;
-	}
+    public String getCidade()
+    {
+        return cidade;
+    }
 
-	public Telefone getTelefones() {
-		return telefones;
-	}
+    public void setCidade(
+        String cidade )
+    {
+        this.cidade = cidade;
+    }
 
-	public void setTelefones(Telefone telefones) {
-		this.telefones = telefones;
-	}
+    public String getEstado()
+    {
+        return estado;
+    }
+
+    public void setEstado(
+        String estado )
+    {
+        this.estado = estado;
+    }
+
+    public String getPais()
+    {
+        return pais;
+    }
+
+    public void setPais(
+        String pais )
+    {
+        this.pais = pais;
+    }
+
+    public CEP getCep()
+    {
+        return cep;
+    }
+
+    public void setCep(
+        CEP cep )
+    {
+        this.cep = cep;
+    }
+
+    public Telefone getTelefone()
+    {
+        return telefone;
+    }
+
+    public void setTelefone(
+        Telefone telefone )
+    {
+        this.telefone = telefone;
+    }
 }

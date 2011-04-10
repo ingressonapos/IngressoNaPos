@@ -1,5 +1,21 @@
 package br.usp.ime.ingpos.modelo;
 
+public enum CedulaDeIdentidade
+{
+    RG( "", "" ),
+    RNE( "", "" ),
+    PASSAPORTE( "", "" );
+
+    private String numero;
+    private String digito;
+
+    CedulaDeIdentidade(
+        String numero,
+        String digito )
+    {
+        this.numero = numero;
+        this.digito = digito;
+    }
 
 
 
