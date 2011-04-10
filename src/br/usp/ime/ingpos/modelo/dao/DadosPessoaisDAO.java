@@ -10,7 +10,7 @@ import br.usp.ime.ingpos.modelo.DadosPessoais;
 
 public class DadosPessoaisDAO
     extends
-        AbstractDaoImpl<Integer,DadosPessoais>
+        AbstractDaoImpl<Long,DadosPessoais>
 {
 
     public DadosPessoaisDAO(

@@ -5,31 +5,40 @@ import java.util.List;
 import br.com.caelum.vraptor.util.hibernate.SessionCreator;
 import br.usp.ime.ingpos.modelo.Bolsa;
 
-public class BolsaDAO extends AbstractDaoImpl<Integer, Bolsa>{
+public class BolsaDAO
+    extends
+        AbstractDaoImpl<Long,Bolsa>
+{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	protected BolsaDAO(SessionCreator sessionCreator) {
-		super(sessionCreator);
-	}
-	
-	public void inserirBolsa(Bolsa bolsa) {
-		save(bolsa);
-	}
+    protected BolsaDAO(
+        SessionCreator sessionCreator )
+    {
+        super( sessionCreator );
+    }
 
-	public void deletarBolsa(Bolsa bolsa) {
-		delete(bolsa);
-	}
+    public void inserirBolsa(
+        Bolsa bolsa )
+    {
+        save( bolsa );
+    }
 
-	public void atualizarBolsa(Bolsa bolsa) {
-		saveOrUpdate(bolsa);
-	}
+    public void deletarBolsa(
+        Bolsa bolsa )
+    {
+        delete( bolsa );
+    }
 
-	public List<Bolsa> procurarTodasBolsas() {
-		return findAll();
-	}
+    public void atualizarBolsa(
+        Bolsa bolsa )
+    {
+        saveOrUpdate( bolsa );
+    }
+
+    public List<Bolsa> procurarTodasBolsas()
+    {
+        return findAll();
+    }
 
 }

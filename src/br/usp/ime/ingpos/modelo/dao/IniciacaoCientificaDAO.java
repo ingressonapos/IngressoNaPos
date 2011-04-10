@@ -7,7 +7,7 @@ import br.usp.ime.ingpos.modelo.IniciacaoCientifica;
 
 public class IniciacaoCientificaDAO
     extends
-        AbstractDaoImpl<Integer,IniciacaoCientifica>
+        AbstractDaoImpl<Long,IniciacaoCientifica>
 {
 
     public IniciacaoCientificaDAO(

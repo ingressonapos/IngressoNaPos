@@ -7,7 +7,7 @@ import br.usp.ime.ingpos.modelo.FormacaoAcademica;
 
 public class FormacaoAcademicaDAO
     extends
-        AbstractDaoImpl<Integer,FormacaoAcademica>
+        AbstractDaoImpl<Long,FormacaoAcademica>
 {
 
     public FormacaoAcademicaDAO(

@@ -13,7 +13,7 @@ import br.usp.ime.ingpos.modelo.Perfil;
 @Component
 public class PerfilDao
     extends
-        AbstractDaoImpl<Integer,Perfil>
+        AbstractDaoImpl<Long,Perfil>
 {
     public PerfilDao(
         final SessionCreator sessionCreator )

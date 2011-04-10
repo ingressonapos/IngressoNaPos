@@ -32,20 +32,24 @@
 
 							<div class="row">
 								<span class="label">  <fmt:message key="cadastro_cpf"/>  </span>
-								<span class="formw"><input type="text" name="dadosPessoais.cpf" maxlength=50 /></span><br/>
+								<span class="formw">
+									<input type="text" maxlength=50 name="registroNovoUsuario.cpf" value="${registroNovoUsuario.cpf}"  />
+								</span><br/>
 							</div>
 							<div class="row">
 								<span class="label"> <fmt:message key="login_email"/> </span>
-								<span class="formw"><input type="text" name="dadosPessoais.email" maxlength=50 /></span><br/>
+								<span class="formw">
+									<input type="text"  maxlength=50 name="registroNovoUsuario.email" value="${registroNovoUsuario.email}"/>
+								</span><br/>
 							</div>
 							<div class="row">
 								<span class="label"> <fmt:message key="login_senha"/>  </span>
-								<span class="formw"><input type="text" name="dadosPessoais.senha"/></span><br/>
+								<span class="formw"><input id="senha" type="password" name="registroNovoUsuario.senha"/> </span><br/>
 							</div>
 							
 							<div class="row">
 								<span class="label"> <fmt:message key="login_confirmacao_senha"/> </span>
-								<span class="formw"> <input type="text" name="confirmacaoSenha"/> </span><br/>
+								<span class="formw"> <input id="senha" type="password" name="registroNovoUsuario.confirmacaoSenha"/> </span><br/>
 							</div>
 							<br/>
 							<br/>

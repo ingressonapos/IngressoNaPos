@@ -2,12 +2,14 @@ package br.usp.ime.ingpos.modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Usuario
@@ -29,7 +31,7 @@ public class Usuario
     @ManyToOne( optional = false )
     private Perfil perfil;
 
-    @ManyToOne
+    @OneToOne( cascade = CascadeType.ALL )
     private Curriculo curriculo;
 
     public Usuario()

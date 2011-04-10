@@ -8,73 +8,120 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.Validations;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
+import br.usp.ime.ingpos.modelo.RegistroNovoUsuario;
+import br.usp.ime.ingpos.services.RegistroNovoUsuarioService;
+import br.usp.ime.ingpos.services.RegistroNovoUsuarioService.RegistroResultado;
+import br.usp.ime.ingpos.web.interceptors.Transactional;
 
 @Resource
 public class RegistroController
 {
-    public static final String NOME_METODO_REGISTRO = "registro";
+    public static final String[] METODOS_ACESSO_IRRESTRITO = {
+        "registro", "ativacao"
+    };
     private static final int SENHA_MINIMO_CARACTERES = 6;
-    
+
+    private final Result resultado;
     private final Validator validador;
+    private final RegistroNovoUsuarioService registroNovoUsuarioService;
+
+    private RegistroNovoUsuario registroNovoUsuarioRequisicao;
 
     public RegistroController(
         final Result resultado,
-        final Validator validador )
+        final Validator validador,
+        final RegistroNovoUsuarioService registroNovoUsuarioService )
     {
+        this.resultado = resultado;
         this.validador = validador;
+        this.registroNovoUsuarioService = registroNovoUsuarioService;
     }
 
     @Get
     @Path( "/registro" )
     public void registro()
     {
-
+        if( registroNovoUsuarioRequisicao != null ) {
+            registroNovoUsuarioRequisicao.setSenha( "" );
+            registroNovoUsuarioRequisicao.setConfirmacaoSenha( "" );
+            resultado.include( "registroNovoUsuario", registroNovoUsuarioRequisicao );
+        }
     }
 
     @Post
     @Path( "/registro" )
+    @Transactional
     public void registro(
-        final DadosPessoais dadosPessoais,
-        final String confirmacaoSenha )
+        final RegistroNovoUsuario registroNovoUsuario )
     {
         validador.checking( new Validations() {
             {
-                if( dadosPessoais != null ) {
-                    that( DadosPessoais.isValidoCpf( dadosPessoais.getCpf() ), "erro_tipo_cpf",
-                        "erro_cpf_invalido" );
+                if( registroNovoUsuario != null ) {
+                    that( DadosPessoais.isValidoCpf( registroNovoUsuario.getCpf() ),
+                        "erro_tipo_cpf", "erro_cpf_invalido" );
 
-                    that( dadosPessoais.getSenha().length() >= SENHA_MINIMO_CARACTERES,
+                    that( registroNovoUsuario.getSenha().length() >= SENHA_MINIMO_CARACTERES,
                         "erro_tipo_senha", "erro_senha_tamanho_invalido", SENHA_MINIMO_CARACTERES );
 
-                    that( confirmacaoSenha != null
-                        && confirmacaoSenha.length() >= SENHA_MINIMO_CARACTERES,
+                    that(
+                        registroNovoUsuario.getConfirmacaoSenha().length() >= SENHA_MINIMO_CARACTERES,
                         "erro_tipo_confirmacao_senha", "erro_senha_confirmacao_tamanho_invalido",
                         SENHA_MINIMO_CARACTERES );
                     that(
-                        confirmacaoSenha != null
-                            && confirmacaoSenha.equals( dadosPessoais.getSenha() ),
+                        registroNovoUsuario.getSenha().equals(
+                            registroNovoUsuario.getConfirmacaoSenha() ),
                         "erro_tipo_confirmacao_senha", "erro_confirmacao_senha_divergente" );
                 }
             }
         } );
-        validador.onErrorForwardTo( RegistroController.class ).registro();
 
-        // TODO Gerar URL "criptografada"
-        // TODO Envio de E-mail
-        // TODO Serviço de Ativação por recebimento da URL (cadastro/ativação)
-        // TODO alterar o modelo Usuario/DadosPesoais com a data/hora
+        registroNovoUsuarioRequisicao = registroNovoUsuario;
+        validador.onErrorForwardTo( getClass() ).registro();
 
+        final RegistroResultado registroResultado = registroNovoUsuarioService.registrar( registroNovoUsuario );
+
+        switch( registroResultado ) {
+            case SUCESSO:
+                resultado.include( "messages", "registro_sucesso" );
+                resultado.redirectTo( LoginController.class ).login();
+                break;
+            case CPF_OU_EMAIL_JA_EXISTENTEM:
+                validador.checking( new Validations() {
+                    {
+                        that( false, "registro_titulo", "registro_cpf_ou_email_ja_existem" );
+                    }
+                } );
+                validador.onErrorUsePageOf( getClass() ).registro();
+
+                break;
+            default:
+                throw new IllegalStateException( "Resultado nao esperado: " + registroResultado );
+        }
     }
 
-    @Post
-    @Path( "/registro/ativacao" )
+    @Get
+    @Path( "/registro/ativacao/{chaveAtivacao}" )
+    @Transactional
     public void ativacao(
-        String hashAtivacao )
+        String chaveAtivacao )
     {
-        // O hash será encriptado e enviado com o ID user. Ao receber o link,
-        // busca o ID,
-        // e encripta as infos e verifica a igualdade
+        final RegistroResultado registroResultado = registroNovoUsuarioService.ativar( chaveAtivacao );
 
+        switch( registroResultado ) {
+            case SUCESSO:
+                resultado.include( "messages", "registro_ativacao_sucesso" );
+                break;
+            case USUARIO_JA_ATIVADO:
+                resultado.include( "messages", "registro_ativacao_usuario_ja_ativado" );
+                break;
+            case CHAVE_ATIVACAO_NAO_EXISTE:
+                resultado.include( "messages", "registro_ativacao_chave_ativacao_inexistente" );
+                break;
+            default:
+                throw new IllegalStateException( "Resultado nao esperado: " + registroResultado );
+
+        }
+        resultado.redirectTo( LoginController.class ).login();
     }
 
 }

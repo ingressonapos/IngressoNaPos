@@ -9,6 +9,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 
+import org.springframework.util.StringUtils;
+
 @Embeddable
 public class DadosPessoais
     implements
@@ -19,13 +21,13 @@ public class DadosPessoais
     @Column( length = 50 )
     private String nomeCompleto;
 
-    @Column
+    @Column( unique = true )
     private String email;
 
     @Column( length = 32 )
     private String senha;
 
-    @Column( length = 11 )
+    @Column( length = 11, unique = true )
     private String cpf;
 
     @Column
@@ -161,7 +163,7 @@ public class DadosPessoais
         final String cpf )
     {
         // TODO: Efetuar a validacao de CPF
-        return false;
+        return StringUtils.hasText( cpf );
     }
 
 }

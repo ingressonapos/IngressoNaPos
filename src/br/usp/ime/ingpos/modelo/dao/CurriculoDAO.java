@@ -7,7 +7,7 @@ import br.usp.ime.ingpos.modelo.Curriculo;
 
 public class CurriculoDAO
     extends
-        AbstractDaoImpl<Integer,Curriculo>
+        AbstractDaoImpl<Long,Curriculo>
 {
 
     public CurriculoDAO(

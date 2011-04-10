@@ -14,11 +14,13 @@ public class Perfil
 {
     private static final long serialVersionUID = 5653550355165213879L;
 
+    public static final String DESCRICAO_CANDIDATO = "Candidato";
+
     @Id
     @GeneratedValue
     private Long perfilID;
 
-    @Column
+    @Column( unique = true )
     private String descricao;
 
     public Perfil()

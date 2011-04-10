@@ -22,7 +22,19 @@
 			<div id="corpo">	
 				
 				<div id="login" style="width: 800px; margin: 0 auto; text-align: center;">
-					<h1><fmt:message key="login_mensagem_bem_vindo" /></h1>
+					<h1><fmt:message key="login_mensagem_bem_vindo" />  </h1>
+					
+					<c:if test="${not empty messages}">
+						<div id="messages">
+							<ul>
+								<c:forEach items="${messages}" var="message">
+									<li> 
+										<fmt:message key="${message}" />		
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
+					</c:if>
 				</div>
 				
 				<div id="login" style="width: 250px; margin: 0 auto;">

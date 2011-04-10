@@ -16,6 +16,7 @@ import br.usp.ime.ingpos.modelo.FormacaoAcademica;
 import br.usp.ime.ingpos.modelo.IniciacaoCientifica;
 import br.usp.ime.ingpos.modelo.Perfil;
 import br.usp.ime.ingpos.modelo.PosComp;
+import br.usp.ime.ingpos.modelo.RegistroNovoUsuario;
 import br.usp.ime.ingpos.modelo.Usuario;
 
 @ApplicationScoped
@@ -43,6 +44,7 @@ public class AnnotationSessionFactoryCreator
         cfg.addAnnotatedClass( FormacaoAcademica.class );
         cfg.addAnnotatedClass( PosComp.class );
         cfg.addAnnotatedClass( IniciacaoCientifica.class );
+        cfg.addAnnotatedClass( RegistroNovoUsuario.class );
 
         factory = cfg.buildSessionFactory();
 

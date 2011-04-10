@@ -26,5 +26,14 @@ public class UsuarioServiceTeste
 
         assertTrue( usuarioService.autenticar( "teste", "12345" ) );
     }
+    
+    @Test
+    public void testRegistrar()
+    {
+        final UsuarioService usuarioService = new UsuarioService( new UsuarioDao(
+            getSessionCreator() ), new UsuarioSessao() );
+
+        assertTrue( usuarioService.autenticar( "teste", "12345" ) );
+    }
 
 }

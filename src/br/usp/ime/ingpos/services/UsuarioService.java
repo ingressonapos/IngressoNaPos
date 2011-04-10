@@ -30,6 +30,12 @@ public class UsuarioService
         usuarioDAO.save( usuario );
     }
 
+    public Usuario procurarPorEmail(
+        String email )
+    {
+        return usuarioDAO.procurarPorEmail( email );
+    }
+
     public boolean autenticar(
         final String userName,
         String senha )

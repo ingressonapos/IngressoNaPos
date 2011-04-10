@@ -7,7 +7,7 @@ import br.usp.ime.ingpos.modelo.PosComp;
 
 public class PosCompDAO
     extends
-        AbstractDaoImpl<Integer,PosComp>
+        AbstractDaoImpl<Long,PosComp>
 {
 
     public PosCompDAO(

@@ -1,6 +1,8 @@
 package br.usp.ime.ingpos.web.interceptors;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;
@@ -20,12 +22,15 @@ public class LoginInterceptor
         Interceptor
 {
 
-    private Result result;
-    private UsuarioSessao usuarioSessao;
+    private final Result result;
+    private final UsuarioSessao usuarioSessao;
+
+    private final Set<String> metodosIrrestritosRegistro = new HashSet<String>(
+        Arrays.<String> asList( RegistroController.METODOS_ACESSO_IRRESTRITO ) );
 
     public LoginInterceptor(
-        Result result,
-        UsuarioSessao usuarioSessao )
+        final Result result,
+        final UsuarioSessao usuarioSessao )
     {
         this.result = result;
         this.usuarioSessao = usuarioSessao;
@@ -58,7 +63,7 @@ public class LoginInterceptor
         try {
             final boolean resultado;
 
-            if( RegistroController.NOME_METODO_REGISTRO.equals( method.getMethod().getName() ) ) {
+            if( metodosIrrestritosRegistro.contains( method.getMethod().getName() ) ) {
                 resultado = true;
             } else {
                 resultado = false;
