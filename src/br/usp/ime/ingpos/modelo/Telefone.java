@@ -20,19 +20,17 @@ public class Telefone
      */
     @Embeddable
     public static class NumeroTel
+        implements
+            Serializable
     {
+        private static final long serialVersionUID = - 8637336971669125617L;
+
         private String codPais;
         private String codDDD;
         private String codTelefone;
 
-        public NumeroTel(
-            String codPais,
-            String codDDD,
-            String codTelefone )
+        public NumeroTel()
         {
-            this.codPais = codPais;
-            this.codDDD = codDDD;
-            this.codTelefone = codTelefone;
         }
 
         public String getCodPais()

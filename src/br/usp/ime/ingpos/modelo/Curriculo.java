@@ -1,5 +1,6 @@
 package br.usp.ime.ingpos.modelo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +13,12 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Curriculo
+    implements
+        Serializable
 {
+
+    private static final long serialVersionUID = 6231896863306406349L;
+
     @Id
     @GeneratedValue
     private Long curriculoID;

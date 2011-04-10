@@ -1,20 +1,32 @@
 package br.usp.ime.ingpos.modelo;
 
-public enum CedulaDeIdentidade
-{
-    RG( "", "" ),
-    RNE( "", "" ),
-    PASSAPORTE( "", "" );
+import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+@Embeddable
+public class CedulaDeIdentidade
+    implements
+        Serializable
+{
+
+    private static final long serialVersionUID = - 7870494291067177168L;
+
+    @Column( name = "identidade_numero" )
     private String numero;
+
+    @Column( name = "identidade_digito" )
     private String digito;
 
-    CedulaDeIdentidade(
-        String numero,
-        String digito )
+    @Column( name = "identidade_tipo" )
+    @Enumerated( EnumType.STRING )
+    private TipoCedulaDeIdentidade tipo;
+
+    public CedulaDeIdentidade()
     {
-        this.numero = numero;
-        this.digito = digito;
     }
 
     public String getNumero()
@@ -38,4 +50,16 @@ public enum CedulaDeIdentidade
     {
         this.digito = digito;
     }
+
+    public TipoCedulaDeIdentidade getTipo()
+    {
+        return tipo;
+    }
+
+    public void setTipo(
+        TipoCedulaDeIdentidade tipo )
+    {
+        this.tipo = tipo;
+    }
+
 }

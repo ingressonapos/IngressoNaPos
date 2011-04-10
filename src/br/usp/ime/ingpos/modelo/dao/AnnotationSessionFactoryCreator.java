@@ -10,7 +10,6 @@ import br.com.caelum.vraptor.ioc.ApplicationScoped;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.ComponentFactory;
 import br.usp.ime.ingpos.modelo.Bolsa;
-import br.usp.ime.ingpos.modelo.CEP;
 import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.Endereco;
 import br.usp.ime.ingpos.modelo.FormacaoAcademica;
@@ -35,7 +34,7 @@ public class AnnotationSessionFactoryCreator
     public void create()
     {
         final AnnotationConfiguration cfg = new AnnotationConfiguration();
-        cfg.addAnnotatedClass( CEP.class );
+
         cfg.addAnnotatedClass( Endereco.class );
         cfg.addAnnotatedClass( Perfil.class );
         cfg.addAnnotatedClass( Usuario.class );

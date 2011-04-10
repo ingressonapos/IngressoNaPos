@@ -21,7 +21,7 @@ public class AllTests
         for( Class<?> suiteClass : testConf.getAllTests() ) {
             try {
                 final Constructor<?> constructor = suiteClass.getConstructor( String.class );
-                final BancoDeDadosTestCase testCase = (BancoDeDadosTestCase) constructor.newInstance( suiteClass.getName() );
+                final IngPosTestCase testCase = (IngPosTestCase) constructor.newInstance( suiteClass.getName() );
                 suite.addTest( testCase.getRuntimeSuite() );
             } catch( IllegalArgumentException e ) {
                 e.printStackTrace();

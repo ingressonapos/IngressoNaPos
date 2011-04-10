@@ -27,7 +27,7 @@ public class Usuario
     private boolean ativo;
 
     @ManyToOne( optional = false )
-    Perfil perfil;
+    private Perfil perfil;
 
     @ManyToOne
     private Curriculo curriculo;

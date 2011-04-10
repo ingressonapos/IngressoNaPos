@@ -8,8 +8,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Cadastro de Curr&iacute;culo</title>
-		<link href="css/layout.css" rel="stylesheet" type="text/css" />
-		<link href="css/menu.css" rel="stylesheet" type="text/css" />
+		<link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css" />
+		<link href="<c:url value='/css/layout.css'/>" rel="stylesheet" type="text/css" />
+		<link href="<c:url value='/css/menu.css'/>" rel="stylesheet" type="text/css" />
+	
 	</head>
 
 	<body>

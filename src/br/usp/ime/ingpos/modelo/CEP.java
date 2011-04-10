@@ -3,20 +3,14 @@ package br.usp.ime.ingpos.modelo;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.Embeddable;
 
-@Entity
+@Embeddable
 public class CEP
     implements
         Serializable
 {
     private static final long serialVersionUID = 5653550355165213879L;
-
-    @Id
-    @GeneratedValue
-    private Long cepID;
 
     @Column( length = 5 )
     private String regiao;
@@ -26,11 +20,6 @@ public class CEP
 
     public CEP()
     {
-    }
-
-    public Long getCepID()
-    {
-        return cepID;
     }
 
     public String getRegiao()

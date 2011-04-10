@@ -1,5 +1,7 @@
 package br.usp.ime.ingpos.modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,12 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Bolsa
+    implements
+        Serializable
 {
+
+    private static final long serialVersionUID = - 7231171812688553305L;
+
     @Id
     @GeneratedValue
     private Long bolsaId;

@@ -32,7 +32,7 @@
 			style="width: 100px" /></td>
 	</tr>
 	<tr>
-		<td><fmt:message key="login_password" /></td>
+		<td><fmt:message key="login_senha" /></td>
 		<td><input id="senha" name="usuario.senha" type="password"
 			maxlength="10" style="width: 100px" /></td>
 	</tr>

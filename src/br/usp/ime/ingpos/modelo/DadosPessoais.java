@@ -1,15 +1,21 @@
 package br.usp.ime.ingpos.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.ManyToMany;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
 
 @Embeddable
 public class DadosPessoais
+    implements
+        Serializable
 {
+    private static final long serialVersionUID = - 476234519172680388L;
+
     @Column( length = 50 )
     private String nomeCompleto;
 
@@ -19,9 +25,6 @@ public class DadosPessoais
     @Column
     private String senha;
 
-    @Column
-    private String estadoCivil;
-
     @Column( length = 11 )
     private String cpf;
 
@@ -29,13 +32,20 @@ public class DadosPessoais
     private String nacionalidade;
 
     @Column
-    private CedulaDeIdentidade cedulaDeIdentidade;
-
-    @ManyToMany
-    private List<Endereco> endereco;
+    private Date dataDeNascimento;
 
     @Column
-    private Date dataDeNascimento;
+    @Enumerated( EnumType.STRING )
+    private TipoEstadoCivil estadoCivil;
+
+    @Column
+    private CedulaDeIdentidade cedulaDeIdentidade;
+
+    @OneToOne
+    private Endereco enderecoPermanente;
+
+    @OneToOne
+    private Endereco enderecoCorrespondencia;
 
     public String getNomeCompleto()
     {
@@ -70,13 +80,13 @@ public class DadosPessoais
         this.senha = senha;
     }
 
-    public String getEstadoCivil()
+    public TipoEstadoCivil getEstadoCivil()
     {
         return estadoCivil;
     }
 
     public void setEstadoCivil(
-        String estadoCivil )
+        TipoEstadoCivil estadoCivil )
     {
         this.estadoCivil = estadoCivil;
     }
@@ -125,14 +135,26 @@ public class DadosPessoais
         this.dataDeNascimento = dataDeNascimento;
     }
 
-    public List<Endereco> getEndereco()
+    public Endereco getEnderecoPermanente()
     {
-        return endereco;
+        return enderecoPermanente;
     }
 
-    public void setEndereco(
-        List<Endereco> endereco )
+    public void setEnderecoPermanente(
+        Endereco enderecoPermanente )
     {
-        this.endereco = endereco;
+        this.enderecoPermanente = enderecoPermanente;
     }
+
+    public Endereco getEnderecoCorrespondencia()
+    {
+        return enderecoCorrespondencia;
+    }
+
+    public void setEnderecoCorrespondencia(
+        Endereco enderecoCorrespondencia )
+    {
+        this.enderecoCorrespondencia = enderecoCorrespondencia;
+    }
+
 }

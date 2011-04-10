@@ -7,7 +7,6 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Endereco
@@ -30,15 +29,15 @@ public class Endereco
     private String complemento;
 
     @Column
-    private String cidade;
+    private String pais;
 
     @Column
     private String estado;
 
     @Column
-    private String pais;
+    private String cidade;
 
-    @OneToOne
+    @Embedded
     private CEP cep;
 
     @Embedded
@@ -140,4 +139,5 @@ public class Endereco
     {
         this.telefone = telefone;
     }
+
 }

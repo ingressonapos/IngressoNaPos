@@ -1,6 +1,5 @@
 package br.usp.ime.ingpos.web.interceptors;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 
 import br.com.caelum.vraptor.Intercepts;
@@ -57,18 +56,18 @@ public class LoginInterceptor
         final ResourceMethod method )
     {
         try {
-            final Method metodoRegistro = CadastroController.class.getMethod( CadastroController.NOME_METODO_REGISTRO );
             final boolean resultado;
-            if( metodoRegistro.equals( method.getMethod() ) ) {
+
+            if( CadastroController.NOME_METODO_REGISTRO.equals( method.getMethod().getName() ) ) {
                 resultado = true;
             } else {
                 resultado = false;
             }
             return resultado;
         } catch( SecurityException e ) {
-            throw new IllegalStateException( "" );
-        } catch( NoSuchMethodException e ) {
-            throw new IllegalStateException( "" );
+            throw new IllegalStateException(
+                "Invalid method name " + method.getMethod().getName(),
+                e );
         }
 
     }
