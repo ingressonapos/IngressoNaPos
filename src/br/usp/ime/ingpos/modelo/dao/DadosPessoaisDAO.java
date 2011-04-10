@@ -55,6 +55,20 @@ public class DadosPessoaisDAO
         }
     }
 
+    public DadosPessoais procurarDadosPessoaisPorFraseSenha(
+        String fraseSenha )
+    {
+
+        final List<DadosPessoais> dadosPessoais = findByCriteria( Restrictions.eq( "fraseSenha",
+            fraseSenha ) );
+
+        if( dadosPessoais.isEmpty() ) {
+            return null;
+        } else {
+            return dadosPessoais.get( 0 );
+        }
+    }
+
     public DadosPessoais procurarDadosPessoaisPorCpf(
         String cpf )
     {
