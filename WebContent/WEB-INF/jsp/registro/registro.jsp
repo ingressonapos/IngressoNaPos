@@ -25,7 +25,7 @@
 				<center><h1> <fmt:message key="registro_solicitacao_inscricao" /> </h1></center>
 												
 				<div id="form" style="width: 445px; margin: 10px auto;">
-					<form action="<c:url value='/cadastro/registro'/>" method="post">
+					<form action="<c:url value='/registro'/>" method="post">
 						
 						<fieldset>
 							<legend><b> <fmt:message key="registro_nova_inscricao" /> </b></legend>

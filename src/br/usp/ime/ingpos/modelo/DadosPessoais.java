@@ -22,7 +22,7 @@ public class DadosPessoais
     @Column
     private String email;
 
-    @Column
+    @Column( length = 32 )
     private String senha;
 
     @Column( length = 11 )
@@ -155,6 +155,13 @@ public class DadosPessoais
         Endereco enderecoCorrespondencia )
     {
         this.enderecoCorrespondencia = enderecoCorrespondencia;
+    }
+
+    public static boolean isValidoCpf(
+        final String cpf )
+    {
+        // TODO: Efetuar a validacao de CPF
+        return false;
     }
 
 }

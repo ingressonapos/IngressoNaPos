@@ -88,7 +88,13 @@ $.ajaxSetup ({
 	<div class="column" style="width: 230px; float: left;">
 		<div class="portlet">
 			<div class="portlet-header">Usuário</div>
-			<div class="portlet-content">${usuarioSessao.nome}</div>
+			<div class="portlet-content">
+				<center>
+					<p> ${usuarioSessao.nome} - 
+						<a href="<c:url value='/logout'/>"> <fmt:message key="login_logout" /> </a>
+					</p>
+				</center>
+			</div>		
 		</div>
 		<div class="portlet">
 			<div class="portlet-header">Calendário</div>

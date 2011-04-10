@@ -13,51 +13,52 @@
 </head>
 
 <body>
-<center>
-<div id="principal">
-<div id="menu"><%@ include file="../menu.jsp"%></div>
-<div id="corpo">
-
-<div id="login" style="width: 400px; margin: 0 auto;">
-
-
-<h1><fmt:message key="welcome_message" /></h1>
-
-<form action="<c:url value='/login'/>" method="post">
-
-<table>
-	<tr>
-		<td><fmt:message key="login_email" /></td>
-		<td><input id="login" name="usuario.email" type="text"
-			style="width: 100px" /></td>
-	</tr>
-	<tr>
-		<td><fmt:message key="login_senha" /></td>
-		<td><input id="senha" name="usuario.senha" type="password"
-			maxlength="10" style="width: 100px" /></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td><input id="submit" name="submit" type="submit" value="Entrar" /></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td><fmt:message key="password_forgot" /></td>
-	</tr>
-</table>
-</form>
-<br />
-<p><b><fmt:message key="new_user" /></b> <a href="<c:url value='/cadastro/registro'/>"><fmt:message key="register" /></a></p>
-
-
-</div>
-
-
-
-</div>
-<div id="menu"><%@ include file="../rodape.jsp"%></div>
-</div>
-
-</center>
-
+	<center>
+		<div id="principal">
+			<div id="menu">
+				<%@ include file="../menu.jsp"%>
+			</div>
+			
+			<div id="corpo">	
+				
+				<div id="login" style="width: 800px; margin: 0 auto; text-align: center;">
+					<h1><fmt:message key="login_mensagem_bem_vindo" /></h1>
+				</div>
+				
+				<div id="login" style="width: 250px; margin: 0 auto;">
+					<form action="<c:url value='/login'/>" method="post">
+						<fieldset>
+							<legend><b> <fmt:message key="login_autenticacao" /> </b></legend>							
+							<table>
+								<tr>
+									<td><fmt:message key="login_email" /></td>
+									<td><input id="login" name="usuario.email" type="text"
+										style="width: 150px" /></td>
+								</tr>
+								<tr>
+									<td><fmt:message key="login_senha" /></td>
+									<td><input id="senha" name="usuario.senha" type="password"
+										maxlength="10" style="width: 150px" /></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input id="submit" name="submit" type="submit" value="<fmt:message key='login_acessar' />" /></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><fmt:message key="login_esqueci_minha_senha" /></td>
+								</tr>
+							</table>
+						</fieldset>
+					</form>
+					<br />
+					<p><b><fmt:message key="login_novo_usuario" /></b> <a href="<c:url value='/registro'/>"><fmt:message key="login_registro" /></a></p>					
+				</div>
+			</div>
+			
+			<div id="rodape">
+				<%@ include file="../rodape.jsp"%>
+			</div>
+		</div>	
+	</center>
 </body>

@@ -9,8 +9,8 @@ import br.com.caelum.vraptor.interceptor.Interceptor;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.resource.ResourceMethod;
 import br.com.caelum.vraptor.view.Results;
-import br.usp.ime.ingpos.web.controllers.CadastroController;
 import br.usp.ime.ingpos.web.controllers.LoginController;
+import br.usp.ime.ingpos.web.controllers.RegistroController;
 import br.usp.ime.ingpos.web.controllers.UsuarioSessao;
 
 @Intercepts
@@ -58,7 +58,7 @@ public class LoginInterceptor
         try {
             final boolean resultado;
 
-            if( CadastroController.NOME_METODO_REGISTRO.equals( method.getMethod().getName() ) ) {
+            if( RegistroController.NOME_METODO_REGISTRO.equals( method.getMethod().getName() ) ) {
                 resultado = true;
             } else {
                 resultado = false;
