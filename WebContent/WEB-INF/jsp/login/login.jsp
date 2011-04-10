@@ -27,8 +27,8 @@
 
 <table>
 	<tr>
-		<td><fmt:message key="login_user" /></td>
-		<td><input id="login" name="usuario.login" type="text"
+		<td><fmt:message key="login_email" /></td>
+		<td><input id="login" name="usuario.email" type="text"
 			style="width: 100px" /></td>
 	</tr>
 	<tr>

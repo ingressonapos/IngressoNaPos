@@ -30,7 +30,12 @@ public class UsuarioSessao
 
     public String getNome()
     {
-        return usuario.getNome();
+        return usuario.getDadosPessoais().getNomeCompleto();
+    }
+
+    public boolean isUsuarioAutenticado()
+    {
+        return ( usuario != null && usuario.isAtivo() );
     }
 
 }

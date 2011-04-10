@@ -3,6 +3,7 @@ package br.usp.ime.ingpos.modelo;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,61 +19,27 @@ public class Usuario
     @Id
     @GeneratedValue
     private Long usuarioID;
-    @Column( length = 50 )
-    private String nome;
-    @Column( length = 50 )
-    private String login;
-    @Column( length = 50 )
-    private String senha;
-    @ManyToOne
+
+    @Embedded
+    private DadosPessoais dadosPessoais;
+
+    @Column( columnDefinition = "BOOLEAN" )
+    private boolean ativo;
+
+    @ManyToOne( optional = false )
     Perfil perfil;
+
     @ManyToOne
     private Curriculo curriculo;
-    @ManyToOne
-    private DadosPessoais dadosPessoais;
+
+    public Usuario()
+    {
+        this.dadosPessoais = new DadosPessoais();
+    }
 
     public Long getUsuarioID()
     {
         return usuarioID;
-    }
-
-    public void setUsuarioID(
-        Long usuarioID )
-    {
-        this.usuarioID = usuarioID;
-    }
-
-    public String getNome()
-    {
-        return nome;
-    }
-
-    public void setNome(
-        String nome )
-    {
-        this.nome = nome;
-    }
-
-    public String getLogin()
-    {
-        return login;
-    }
-
-    public void setLogin(
-        String login )
-    {
-        this.login = login;
-    }
-
-    public String getSenha()
-    {
-        return senha;
-    }
-
-    public void setSenha(
-        String senha )
-    {
-        this.senha = senha;
     }
 
     public Perfil getPerfil()
@@ -86,24 +53,37 @@ public class Usuario
         this.perfil = perfil;
     }
 
-	public Curriculo getCurriculo() {
-		return curriculo;
-	}
+    public Curriculo getCurriculo()
+    {
+        return curriculo;
+    }
 
-	public void setCurriculo(Curriculo curriculo) {
-		this.curriculo = curriculo;
-	}
+    public void setCurriculo(
+        Curriculo curriculo )
+    {
+        this.curriculo = curriculo;
+    }
 
-	public DadosPessoais getDadosPessoais() {
-		return dadosPessoais;
-	}
+    public DadosPessoais getDadosPessoais()
+    {
+        return dadosPessoais;
+    }
 
-	public void setDadosPessoais(DadosPessoais dadosPessoais) {
-		this.dadosPessoais = dadosPessoais;
-	}
+    protected void setDadosPessoais(
+        DadosPessoais dadosPessoais )
+    {
+        this.dadosPessoais = dadosPessoais;
+    }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+    public void setAtivo(
+        boolean ativo )
+    {
+        this.ativo = ativo;
+    }
+
+    public boolean isAtivo()
+    {
+        return ativo;
+    }
 
 }

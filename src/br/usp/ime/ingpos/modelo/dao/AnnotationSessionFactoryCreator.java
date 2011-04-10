@@ -12,7 +12,6 @@ import br.com.caelum.vraptor.ioc.ComponentFactory;
 import br.usp.ime.ingpos.modelo.Bolsa;
 import br.usp.ime.ingpos.modelo.CEP;
 import br.usp.ime.ingpos.modelo.Curriculo;
-import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.Endereco;
 import br.usp.ime.ingpos.modelo.FormacaoAcademica;
 import br.usp.ime.ingpos.modelo.IniciacaoCientifica;
@@ -35,19 +34,16 @@ public class AnnotationSessionFactoryCreator
     @PostConstruct
     public void create()
     {
-
         final AnnotationConfiguration cfg = new AnnotationConfiguration();
         cfg.addAnnotatedClass( CEP.class );
         cfg.addAnnotatedClass( Endereco.class );
         cfg.addAnnotatedClass( Perfil.class );
         cfg.addAnnotatedClass( Usuario.class );
         cfg.addAnnotatedClass( Curriculo.class );
-        cfg.addAnnotatedClass( DadosPessoais.class );
         cfg.addAnnotatedClass( Bolsa.class );
         cfg.addAnnotatedClass( FormacaoAcademica.class );
         cfg.addAnnotatedClass( PosComp.class );
         cfg.addAnnotatedClass( IniciacaoCientifica.class );
-
 
         factory = cfg.buildSessionFactory();
 

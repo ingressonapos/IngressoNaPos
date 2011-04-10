@@ -5,31 +5,38 @@ import java.util.List;
 import br.com.caelum.vraptor.util.hibernate.SessionCreator;
 import br.usp.ime.ingpos.modelo.IniciacaoCientifica;
 
-public class IniciacaoCientificaDAO extends AbstractDaoImpl<Integer, IniciacaoCientifica>{
+public class IniciacaoCientificaDAO
+    extends
+        AbstractDaoImpl<Integer,IniciacaoCientifica>
+{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    public IniciacaoCientificaDAO(
+        final SessionCreator session )
+    {
+        super( session );
+    }
 
-	public IniciacaoCientificaDAO(final SessionCreator session) {
-		super(session);
-	}
+    public void inserirIniciacaoCientifica(
+        IniciacaoCientifica iniciacaoCientifica )
+    {
+        save( iniciacaoCientifica );
+    }
 
-	public void inserirIniciacaoCientifica(IniciacaoCientifica iniciacaoCientifica) {
-		save(iniciacaoCientifica);
-	}
+    public void deletarIniciacaoCientifica(
+        IniciacaoCientifica iniciacaoCientifica )
+    {
+        delete( iniciacaoCientifica );
+    }
 
-	public void deletarIniciacaoCientifica(IniciacaoCientifica iniciacaoCientifica) {
-		delete(iniciacaoCientifica);
-	}
+    public void atualizarIniciacaoCientifica(
+        IniciacaoCientifica iniciacaoCientifica )
+    {
+        saveOrUpdate( iniciacaoCientifica );
+    }
 
-	public void atualizarIniciacaoCientifica(IniciacaoCientifica iniciacaoCientifica) {
-		update(iniciacaoCientifica);
-	}
-
-	public List<IniciacaoCientifica> procurarTodosIniciacaoCientifica() {
-		return findAll();
-	}
+    public List<IniciacaoCientifica> procurarTodosIniciacaoCientifica()
+    {
+        return findAll();
+    }
 
 }
