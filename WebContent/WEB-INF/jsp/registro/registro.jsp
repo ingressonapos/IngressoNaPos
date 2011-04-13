@@ -54,7 +54,8 @@
 							<br/>
 							<br/>
 							<div class="row">
-								<input type="submit" value="<fmt:message key='registro_confirmar'/>" />								 
+								<input type="submit" value="<fmt:message key='registro_confirmar'/>" />
+								<a href="<c:url value='/login'/>"><button><fmt:message key="voltar"/></button></a>						 
 							</div>
 						</fieldset>
 						
