@@ -129,7 +129,6 @@ public class DadosPessoais implements Serializable {
 	}
 
 	public static boolean isValidoCpf(String cpf) {
-		// TODO: IMPEDIR NÚMEROS REPETIDOS COMO 000.000.000-00
 
 		if(cpf == null)
 			return false;
