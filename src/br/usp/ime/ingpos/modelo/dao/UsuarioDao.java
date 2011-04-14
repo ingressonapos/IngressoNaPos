@@ -28,7 +28,7 @@ public class UsuarioDao
             email ) );
 
         if( usuarios.size() > 1 ) {
-            throw new IllegalStateException( "Existem dois ou mais usu·rios com mesmo email" );
+            throw new IllegalStateException( "Existem dois ou mais usuÔøΩrios com mesmo email" );
         }
 
         if( usuarios.isEmpty() ) {
@@ -48,7 +48,7 @@ public class UsuarioDao
 
         if( usuarios.size() > 1 ) {
             throw new IllegalStateException(
-                "Existem dois ou mais usu·rios com mesmo email e senha." );
+                "Existem dois ou mais usu√°rios com mesmo email e senha." );
         }
 
         if( usuarios.isEmpty() ) {
