@@ -1,5 +1,8 @@
 package br.usp.ime.ingpos.web.controllers;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -52,7 +55,7 @@ public class RegistroController
     @Path( "/registro" )
     @Transactional
     public void registro(
-        final RegistroNovoUsuario registroNovoUsuario )
+        final RegistroNovoUsuario registroNovoUsuario ) throws AddressException, MessagingException
     {
         validador.checking( new Validations() {
             {
