@@ -36,6 +36,7 @@ public class Usuario
 
     public Usuario()
     {
+        System.out.println("Teste william");
         this.dadosPessoais = new DadosPessoais();
     }
 
