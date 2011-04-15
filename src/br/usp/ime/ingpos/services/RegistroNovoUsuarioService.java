@@ -20,7 +20,7 @@ public class RegistroNovoUsuarioService
     public static enum RegistroResultado
     {
         SUCESSO,
-        CPF_OU_EMAIL_JA_EXISTENTEM,
+        CPF_OU_EMAIL_JA_EXISTENTE,
         CHAVE_ATIVACAO_NAO_EXISTE,
         USUARIO_JA_ATIVADO
     }
@@ -48,7 +48,7 @@ public class RegistroNovoUsuarioService
             registroNovoUsuario.getEmail(), registroNovoUsuario.getCpf() );
 
         if( registroNovoUsuarioExistente != null ) {
-            resultado = RegistroResultado.CPF_OU_EMAIL_JA_EXISTENTEM;
+            resultado = RegistroResultado.CPF_OU_EMAIL_JA_EXISTENTE;
         } else {
             registroNovoUsuario.setDataHoraRegistro( new Date() );
             registroNovoUsuario.definirChaveAtivacao();

@@ -85,7 +85,7 @@ public class RegistroController
                 resultado.include( "messages", "registro_sucesso" );
                 resultado.redirectTo( LoginController.class ).login();
                 break;
-            case CPF_OU_EMAIL_JA_EXISTENTEM:
+            case CPF_OU_EMAIL_JA_EXISTENTE:
                 validador.checking( new Validations() {
                     {
                         that( false, "registro_titulo", "registro_cpf_ou_email_ja_existem" );
