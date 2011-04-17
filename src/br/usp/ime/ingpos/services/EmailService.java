@@ -14,6 +14,15 @@ import javax.mail.internet.MimeMessage;
 
 import br.usp.ime.ingpos.modelo.Email;
 
+/*temos e-mail para usar:
+ * login: ingressoNaPosXP@gmail.com
+ * senha: @b@c@xix
+ * porta: 587
+ * hostname: smtp.gmail.com
+ * usuario: ingressoNaPosXP
+ */
+
+
 public class EmailService
 {
     private Properties props;

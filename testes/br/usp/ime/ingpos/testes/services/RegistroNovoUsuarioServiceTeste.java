@@ -43,7 +43,7 @@ public class RegistroNovoUsuarioServiceTeste
         RegistroResultado resultado = registroNovoUsuarioService.registrar( registroNovoUsuario );
 
         assertTrue( resultado == RegistroResultado.SUCESSO
-            || resultado == RegistroResultado.CPF_OU_EMAIL_JA_EXISTENTEM );
+            || resultado == RegistroResultado.CPF_OU_EMAIL_JA_EXISTENTE );
 
     }
 
@@ -71,7 +71,8 @@ public class RegistroNovoUsuarioServiceTeste
         }
 
         assertTrue( resultado == RegistroResultado.SUCESSO
-            || resultado == RegistroResultado.CHAVE_ATIVACAO_NAO_EXISTE );
+            || resultado == RegistroResultado.CHAVE_ATIVACAO_NAO_EXISTE
+            || resultado == RegistroResultado.USUARIO_JA_ATIVADO);
 
     }
 }

@@ -1,6 +1,7 @@
 package br.usp.ime.ingpos.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class FormacaoAcademica
@@ -24,17 +27,11 @@ public class FormacaoAcademica
     @Column( length = 50 )
     private String Instituicao;
 
-    @Column( length = 50 )
-    private Integer ingressoAno;
+    @Temporal( TemporalType.DATE )
+    private Date ingressoData;
 
-    @Column
-    private Integer ingressoMes;
-
-    @Column
-    private Integer terminoAno;
-
-    @Column
-    private Integer terminoMes;
+    @Temporal( TemporalType.DATE )
+    private Date terminoData;
 
     @Column
     private String Titulo;
@@ -69,48 +66,26 @@ public class FormacaoAcademica
         Instituicao = instituicao;
     }
 
-    public Integer getIngressoAno()
+    public Date getIngressoData()
     {
-        return ingressoAno;
+        return ingressoData;
     }
 
-    public void setIngressoAno(
-        Integer ingressoAno )
+    public void setIngressoData(
+        Date ingressoData )
     {
-        this.ingressoAno = ingressoAno;
+        this.ingressoData = ingressoData;
     }
 
-    public Integer getIngressoMes()
+    public Date getTerminoData()
     {
-        return ingressoMes;
+        return terminoData;
     }
 
-    public void setIngressoMes(
-        Integer ingressoMes )
+    public void setTerminoData(
+        Date terminoData )
     {
-        this.ingressoMes = ingressoMes;
-    }
-
-    public Integer getTerminoAno()
-    {
-        return terminoAno;
-    }
-
-    public void setTerminoAno(
-        Integer terminoAno )
-    {
-        this.terminoAno = terminoAno;
-    }
-
-    public Integer getTerminoMes()
-    {
-        return terminoMes;
-    }
-
-    public void setTerminoMes(
-        Integer terminoMes )
-    {
-        this.terminoMes = terminoMes;
+        this.terminoData = terminoData;
     }
 
     public String getTitulo()
