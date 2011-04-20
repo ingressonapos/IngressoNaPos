@@ -1,5 +1,7 @@
 package br.usp.ime.ingpos.services;
 
+import java.util.List;
+
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
@@ -27,9 +29,13 @@ public class UsuarioService {
 		usuarioDAO.save(usuario);
 	}
 
-	public Usuario procurarPorEmail(String email) {
-		return usuarioDAO.procurarPorEmail(email);
-	}
+    public Usuario procurarPorEmail(String email) {
+        return usuarioDAO.procurarPorEmail(email);
+    }
+
+    public List<Usuario> listaTodos() {
+        return usuarioDAO.findAll();
+    }
 
 	public boolean autenticar(final String userName, String senha) {
 		senha = Criptografia.md5(senha);
