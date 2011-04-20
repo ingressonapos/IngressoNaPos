@@ -19,6 +19,7 @@
 	<script type="text/javascript">
 	jQuery(function($){
 		   $("input.data").mask("99/9999",{placeholder:""});
+	});
 	</script>
 					
 	<center>		
