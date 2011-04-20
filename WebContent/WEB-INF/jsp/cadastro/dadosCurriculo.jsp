@@ -11,10 +11,16 @@
 		<link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css" />
 		<link href="<c:url value='/css/layout.css'/>" rel="stylesheet" type="text/css" />
 		<link href="<c:url value='/css/menu.css'/>" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="<c:url value='/'/>/js/jquery.js"></script>
+		<script type="text/javascript" src="<c:url value='/'/>/js/jquery.maskedinput.js"></script>
+		<script type="text/javascript">
+		jQuery(function($){
+			$("input.data").mask("99/9999",{placeholder:""});
+		});
+		</script>
 	</head>
 
 	<body>
-					
 	<center>		
 		<div id="principal">
 		<div id="menu"><%@ include file="../menu.jsp"%></div>
@@ -26,85 +32,85 @@
 					
 						<fieldset>
 							<legend><b>Formação Acadêmica</b></legend>
-							<h3>Graduação</h3><br />
-							
+							<h3>Graduação</h3>
+					
 							<div class="row">
-								<span class="label">Instituição</span>
-								<span class="formw"><input type="text" name="dadosPessoais.nomeCompleto" maxlength=100 /></span><br/>
+								<div class="label">Instituição</div>
+								<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Instituicao" maxlength=100 /></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Data de In&iacute;cio</span>
-								<span class="formw"><input type="text" name="dadosPessoais.dataDeNascimento"/></span><br/>
+								<div class="label">Data de In&iacute;cio(mm/aaaa)</div>
+								<span class="formw"><input class=data type="text" name="curriculo.formacaoAcademica.ingressoData"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Data de T&eacute;rmino</span>
-								<span class="formw"><input type="text" name="dadosPessoais.dataDeNascimento"/></span><br/>
+								<div class="label">Data de T&eacute;rmino</div>
+								<span class="formw"><input class=data type="text" name="curriculo.formacaoAcademica.terminoData"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">T&iacute;tulo Obtido</span>
-								<span class="formw"><input type="text" name="dadosPessoais.dataDeNascimento"/></span><br/>
+								<div class="label">T&iacute;tulo Obtido</div>
+								<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Titulo"/></span>
 							</div>
 							
-						<h3>P&oacute;s-Graduação</h3><br />
+						<h3>P&oacute;s-Graduação</h3>
 						<div class="row">
-								<span class="label">Instituição</span>
-								<span class="formw"><input type="text" name="dadosPessoais.nomeCompleto" maxlength=100 /></span><br/>
+								<div class="label">Instituição</div>
+								<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Instituicao" maxlength=100 /></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Data de In&iacute;cio</span>
-								<span class="formw"><input type="text" name="dadosPessoais.dataDeNascimento"/></span><br/>
+								<div class="label">Data de In&iacute;cio</div>
+								<span class="formw"><input type="text" class=data name="curriculo.formacaoAcademica.ingressoData"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Data de T&eacute;rmino</span>
-								<span class="formw"><input type="text" name="dadosPessoais.dataDeNascimento"/></span><br/>
+								<div class="label">Data de T&eacute;rmino</div>
+								<span class="formw"><input type="text" class=data name="curriculo.formacaoAcademica.terminoData"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">T&iacute;tulo Obtido</span>
-								<span class="formw"><input type="text" name="dadosPessoais.dataDeNascimento"/></span><br/>
+								<div class="label">T&iacute;tulo Obtido</div>
+								<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Titulo"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">T&iacute;tulo da Dissertação</span>
-								<span class="formw"><input type="text" name="dadosPessoais.dataDeNascimento"/></span><br/>
+								<div class="label">T&iacute;tulo da Dissertação</div>
+								<span class="formw"><input type="text" name="curriculo.formacaoAcademica.tituloDissert"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Nome do Orientador</span>
-								<span class="formw"><input type="text" name="dadosPessoais.dataDeNascimento"/></span><br/>
+								<div class="label">Nome do Orientador</div>
+								<span class="formw"><input type="text" name="curriculo.formacaoAcademica.nomeOrientador"/></span>
 							</div>
 								
 						</fieldset>
 						
-						<br>
+
 	   				
 						<fieldset>
 							<legend><b>Iniciação Científica</b></legend>							
 							
 							<div class="row">
-								<span class="label">Realizou Iniciação Cient&iacute;fica? <br />Sim</span>
-								<span class="formw"><input type="radio" name="dadosPessoais.enderecoPermanente.logradouro"/></span>
-								Não<span class="formw"><input type="radio" name="dadosPessoais.enderecoPermanente.logradouro"/></span><br />
+								<div class="label">Realizou Iniciação Cient&iacute;fica? </div>
+								<span class="formw">Sim<input type="radio" name="curriculo.iniciacaoCientifica"/></span>
+								<span class="formw">Não<input type="radio" name="curriculo.iniciacaoCientifica"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Instituição</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=100/></span><br />
+								<div class="label">Instituição</div>
+								<span class="formw"><input type="text" name="curriculo.iniciacaoCientifica.nomeInstituicao" maxlength=100/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Tema do Projeto</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.numero" maxlength=100/></span><br />
+								<div class="label">Tema do Projeto</div>
+								<span class="formw"><input type="text" name="curriculo.iniciacaoCientifica.temaProjeto" maxlength=100/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Nome do Orientador</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.complemento" maxlength=50/></span><br />
+								<div class="label">Nome do Orientador</div>
+								<span class="formw"><input type="text" name="curriculo.iniciacaoCientifica.nomeOrientador" maxlength=50/></span>
 							</div>
 													
 						</fieldset>
@@ -113,28 +119,29 @@
 							<legend><b>Outras Atividades Acadêmicas</b></legend>
 							
 							<div class="row">
-								<span class="label">Descrição</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro"/></span><br />
+								<div class="label">Descrição</div>
+								<span class="formw"><input type="text" name=""/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Instituição</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=100/></span><br />
+								<div class="label">Instituição</div>
+								<span class="formw"><input type="text" name="" maxlength=100/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Data de In&iacute;cio</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.numero" maxlength=100/></span><br />
+								<div class="label">Data de In&iacute;cio</div>
+								<span class="formw"><input type="text" class="data" name="curriculo.enderecoPermanente.numero" maxlength=100/></span>
+								
 							</div>
 							
 							<div class="row">
-								<span class="label">Data de T&eacute;rmino</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.complemento" maxlength=50/></span><br />
+								<div class="label">Data de T&eacute;rmino</div>
+								<span class="formw"><input type="text" class=data name="curriculo.enderecoPermanente.complemento" maxlength=50/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">T&iacute;tulo Obtido</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.complemento" maxlength=50/></span><br />
+								<div class="label">T&iacute;tulo Obtido</div>
+								<span class="formw"><input type="text" name="curriculo.enderecoPermanente.complemento" maxlength=50/></span>
 							</div>
 							
 						</fieldset>
@@ -143,34 +150,34 @@
 							<legend><b>POSCOMP</b></legend>							
 							
 							<div class="row">
-								<span class="label">Realizou POSCOMP? <br />Sim</span>
-								<span class="formw"><input type="radio" name="dadosPessoais.enderecoPermanente.logradouro"/></span>
-								Não<span class="formw"><input type="radio" name="dadosPessoais.enderecoPermanente.logradouro"/></span><br />
+								<div class="label">Realizou POSCOMP?</div>
+								Sim<span class="formw"><input type="radio" name=""/></span>
+								Não<span class="formw"><input type="radio" name=""/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Ano</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=4/></span><br />
+								<div class="label">Ano</div>
+								<span class="formw"><input type="text" name="curriculo.posComp.ano" maxlength=4/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Acertos em L&oacute;gica</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=2/></span><br />
+								<div class="label">Acertos em L&oacute;gica</div>
+								<span class="formw"><input type="text" name="curriculo.posComp.notaLogica" maxlength=2/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Acertos em Matem&aacute;tica</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=2/></span><br />
+								<div class="label">Acertos em Matem&aacute;tica</div>
+								<span class="formw"><input type="text" name="curriculo.posComp.notaMatematica" maxlength=2/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Acertos em Tecnologia</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=2/></span><br />
+								<div class="label">Acertos em Tecnologia</div>
+								<span class="formw"><input type="text" name="curriculo.posComp.notaTecnologia" maxlength=2/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Comprovante</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=2/></span><br />
+								<div class="label">Comprovante</div>
+								<span class="formw"><input type="text" name="curriculo.posComp.arquivoPosComp" maxlength=2/></span>
 							</div>
 													
 						</fieldset>
@@ -179,13 +186,13 @@
 							<legend><b>Cartas de Recomendação</b></legend>							
 							
 							<div class="row">
-								<span class="label">Nome do Professor</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=50/></span><br />
+								<div class="label">Nome do Professor</div>
+								<span class="formw"><input type="text" name="" maxlength=50/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Instituição</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=100/></span><br />
+								<div class="label">Instituição</div>
+								<span class="formw"><input type="text" name="" maxlength=100/></span>
 							</div>
 													
 						</fieldset>
@@ -194,30 +201,31 @@
 							<legend><b>Aluno Especial</b></legend>							
 							
 							<div class="row">
-								<span class="label">Foi aluno especial no IME? <br />Sim</span>
-								<span class="formw"><input type="radio" name="dadosPessoais.enderecoPermanente.logradouro"/></span>
-								Não<span class="formw"><input type="radio" name="dadosPessoais.enderecoPermanente.logradouro"/></span><br />
+								<div class="label">Foi aluno especial no IME?</div>
+								Sim<span class="formw"><input type="radio" name=""/></span>
+								Não<span class="formw"><input type="radio" name=""/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Disciplina</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=50/></span><br />
+								<div class="label">Disciplina</div>
+								<span class="formw"><input type="text" name="" maxlength=50/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Ano</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=4/></span><br />
+								<div class="label">Ano</div>
+								<span class="formw"><input type="text" name="" maxlength=4/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Conceito Obtido</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=2/></span><br />
+								<div class="label">Conceito Obtido</div>
+								<span class="formw"><input type="text" name="" maxlength=2/></span>
 							</div>
 													
 						</fieldset>
 						
 						<div>
 							<input type="submit" value="Enviar">
+							<a href="<c:url value='/index'/>"><button><fmt:message key="voltar"/></button></a>
 						</div>
 					
 					</form>

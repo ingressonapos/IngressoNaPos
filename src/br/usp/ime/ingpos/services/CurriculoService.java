@@ -1,9 +1,13 @@
 package br.usp.ime.ingpos.services;
 
+import br.com.caelum.vraptor.ioc.Component;
+import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.dao.CurriculoDAO;
 import br.usp.ime.ingpos.web.controllers.UsuarioSessao;
 
+@RequestScoped
+@Component
 public class CurriculoService
 {
     private CurriculoDAO curriculoDAO;
