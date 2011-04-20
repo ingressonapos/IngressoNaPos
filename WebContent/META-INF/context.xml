@@ -1,2 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/CANAL_PREMIUM"/>
+
+<Context antiJARLocking="true" path="/ingressonapos">
+    
+    
+    <Resource name="mail/Session"
+     auth="Container"
+     type="javax.mail.Session"
+     mail.transport.protocol="smtp"
+     mail.smtp.host="smtp.gmail.com"
+     mail.smtp.port="465"
+     mail.smtp.auth="true"
+     mail.smtp.user="ingressonaposxp@gmail.com"
+     password="@b@c@xix"
+     mail.smtp.starttls.enable="true"
+     mail.smtp.socketFactory.class="javax.net.ssl.SSLSocketFactory"
+    />
+    
+</Context>

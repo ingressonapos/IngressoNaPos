@@ -2,6 +2,7 @@ package br.usp.ime.ingpos.web.controllers;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+import javax.naming.NamingException;
 
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -57,7 +58,10 @@ public class RegistroController
     @Path( "/registro" )
     @Transactional
     public void registro(
-        final RegistroNovoUsuario registroNovoUsuario ) throws AddressException, MessagingException
+        final RegistroNovoUsuario registroNovoUsuario )
+        throws AddressException,
+            MessagingException,
+            NamingException
     {
         validador.checking( new Validations() {
             {
@@ -97,19 +101,15 @@ public class RegistroController
             default:
                 throw new IllegalStateException( "Resultado nao esperado: " + registroResultado );
         }
-        
+
         Email email = new Email();
+        email.setEmailRemetente( "ingressonaposxp@gmail.com" );
         email.setAssunto( "Confirmação" );
-        email.setConteudo( "Por favor, clique no link para confirmar.<br /><br /><a href= 'http://localhost:8080/Ingresso-na-Pos/registro/ativacao/"+registroNovoUsuario.getChaveAtivacao()+"'>clique aqui</a>");
+        email.setConteudo( "Por favor, clique no link para confirmar.<br /><br /><a href= 'http://localhost:8080/Ingresso-na-Pos/registro/ativacao/"
+            + registroNovoUsuario.getChaveAtivacao() + "'>clique aqui</a>" );
         email.setEmailDestinatario( registroNovoUsuario.getEmail() );
-        email.setEmailRemetente( "ingressoNaPosXP@gmail.com" );
-        email.setPorta( "587" );
-        email.setSenha( "@b@c@xix" );
-        email.setHostNome( "smtp.gmail.com" );
-        email.setUsuario( "ingressoNaPosXP" );
-        
         EmailService eService = new EmailService( email );
-		eService.enviarEmail();
+        eService.enviarEmail();
     }
 
     @Get
