@@ -164,4 +164,10 @@ span.formw {
 div.spacer {
   clear: both;
 }
-  
+
+input.numero_com_digito{
+	width: 242px;
+}
+input.digito{
+	width: 50px;
+}

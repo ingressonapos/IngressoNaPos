@@ -12,35 +12,19 @@ public class CEP
 {
     private static final long serialVersionUID = 5653550355165213879L;
 
-    @Column( length = 5 )
-    private String regiao;
+    @Column( length = 9 )
+    private String cep;
 
-    @Column( length = 3 )
-    private String sufixo;
-
-    public CEP()
+	public CEP()
     {
     }
+	
+    public String getCep() {
+		return cep;
+	}
 
-    public String getRegiao()
-    {
-        return regiao;
-    }
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
 
-    public void setRegiao(
-        String regiao )
-    {
-        this.regiao = regiao;
-    }
-
-    public String getSufixo()
-    {
-        return sufixo;
-    }
-
-    public void setSufixo(
-        String sufixo )
-    {
-        this.sufixo = sufixo;
-    }
 }

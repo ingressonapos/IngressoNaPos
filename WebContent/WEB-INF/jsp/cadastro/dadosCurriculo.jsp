@@ -13,15 +13,14 @@
 		<link href="<c:url value='/css/menu.css'/>" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="<c:url value='/'/>/js/jquery.js"></script>
 		<script type="text/javascript" src="<c:url value='/'/>/js/jquery.maskedinput.js"></script>
+		<script type="text/javascript">
+		jQuery(function($){
+			$("input.data").mask("99/9999",{placeholder:""});
+		});
+		</script>
 	</head>
 
 	<body>
-	<script type="text/javascript">
-	jQuery(function($){
-		   $("input.data").mask("99/9999",{placeholder:""});
-	});
-	</script>
-					
 	<center>		
 		<div id="principal">
 		<div id="menu"><%@ include file="../menu.jsp"%></div>

@@ -11,6 +11,14 @@
 		<link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css" />
 		<link href="<c:url value='/css/layout.css'/>" rel="stylesheet" type="text/css" />
 		<link href="<c:url value='/css/menu.css'/>" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="<c:url value='/'/>/js/jquery.js"></script>
+		<script type="text/javascript" src="<c:url value='/'/>/js/jquery.maskedinput.js"></script>
+		<script type="text/javascript">
+		jQuery(function($){
+			$("input.data").mask("99/99/9999",{placeholder:""});
+	   		$("input[name$='cep']").mask("99999-999",{placeholder:""});
+	   		$("input[name$='cpf']").mask("999.999.999-99",{placeholder:""});
+});</script>
 	</head>
 
 	<body>
@@ -28,54 +36,51 @@
 							<legend><b>Dados Pessoais</b></legend>
 							
 							<div class="row">
-								<span class="label">Nome Completo</span>
-								<span class="formw"><input type="text" name="dadosPessoais.nomeCompleto" maxlength=50 /></span><br/>
+								<div class="label">Nome Completo</div>
+								<span class="formw"><input type="text" name="dadosPessoais.nomeCompleto" maxlength=50 /></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Data de Nascimento</span>
-								<span class="formw"><input type="text" name="dadosPessoais.dataDeNascimento"/></span><br/>
+								<div class="label">Data de Nascimento</div>
+								<span class="formw"><input class=data type="text" name="dadosPessoais.dataDeNascimento"/></span>
 							</div>
 							<div class="row">
-								<span class = "label"> Estado Civil</span>
-								<span class = "formw">
+								<div class="label"> Estado Civil</div>
+								<span class="formw">
 									<select name="dadosPessoais.estadoCivil" id="selectMultiple">
 										<c:forEach var="tipo" items="${tiposEstadoCivil}"  >
 											<option value="${tipo}" >  <fmt:message key="${tipo.msgKey}" />  </option>
 										</c:forEach>										
 									</select>
-									<br /> 
 								</span>
 							</div>
 							
 							<div class="row">
-								<span class = "label"> Documento</span>
-								<span class = "formw"> 
+								<div class="label"> Documento</div>
+								<span class="formw"> 
 									<select name="dadosPessoais.cedulaDeIdentidade.tipo" id="selectMultiple">
 										<c:forEach var="tipo" items="${tiposCedulaIdentidade}"  >
 											<option value="${tipo}" >  <fmt:message key="${tipo.msgKey}" />  </option>
 										</c:forEach>
-									</select>
-									<br /> 
+									</select> 
 								</span>
 							</div>
 							
 							<div class="row">
-								<span class="label">N&uacute;mero</span>
+								<div class="label">N&uacute;mero</div>
 								<span class="formw">
-									<input type="text" name="dadosPessoais.cedulaDeIdentidade.numero" />
-									<input type="text" name="dadosPessoais.cedulaDeIdentidade.digito" size=1 maxlength=1/>
+									<input type="text" class="numero_com_digito" name="dadosPessoais.cedulaDeIdentidade.numero" />
+									<input type="text" class="digito" name="dadosPessoais.cedulaDeIdentidade.digito"/>
 								</span>
-								<br/>
 							</div>
 							
 							<div class="row">
-								<span class="label">CPF</span>
-								<span class="formw"><input type="text" name="dadosPessoais.cpf" maxlength=50 /></span><br/>
+								<div class="label">CPF</div>
+								<span class="formw"><input type="text" name="dadosPessoais.cpf" /></span>
 							</div>
 							<div class="row">
-								<span class="label">Nacionalidade</span>
-								<span class="formw"><input type="text" name="dadosPessoais.nacionalidade" maxlength=100 /></span><br/>
+								<div class="label">Nacionalidade</div>
+								<span class="formw"><input type="text" name="dadosPessoais.nacionalidade" /></span>
 							</div>
 								
 						</fieldset>
@@ -83,81 +88,78 @@
 	   				
 						<fieldset>
 							<legend><b>Endereços</b></legend>							
-							<h3>Endereço Permanente</h3><br />
+							<h3>Endereço Permanente</h3>
 							
 							<div class="row">
-								<span class="label">Logradouro</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" maxlength=50/></span><br />
+								<div class="label">Logradouro</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">N&uacute;mero</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.numero" maxlength=50/></span><br />
+								<div class="label">N&uacute;mero</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.numero"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Complemento</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.complemento" maxlength=50/></span><br />
+								<div class="label">Complemento</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.complemento"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">CEP:</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.cep.regiao" size=5 maxlength=5/>
-								 <input type="text" name="dadosPessoais.cep.sufixo" size=3 maxlength=3 /></span><br />
+								<div class="label">CEP:</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.cep.cep"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Cidade</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.cidade" maxlength=100 /></span><br />
+								<div class="label">Cidade</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.cidade"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Estado</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.estado" maxlength=100/></span><br />
+								<div class="label">Estado</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.estado"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Telefone Residencial:</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.telefone.residencial.codTelefone" maxlength=100 /></span><br />
+								<div class="label">Telefone Residencial:</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.telefone.residencial.codTelefone" /></span>
 							</div>
-							<br />
 							
 							<h3>Endereço para Correspondência</h3>
 							<br />
 							<div class="row">
-								<span class="label">Logradouro</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.logradouro" maxlength=100 /></span><br />
+								<div class="label">Logradouro</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.logradouro"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">N&uacute;mero</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.numero" maxlength=50 /></span><br />
+								<div class="label">N&uacute;mero</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.numero" /></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Complemento</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.complemento" maxlength=50/></span><br />
+								<div class="label">Complemento</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.complemento"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">CEP:</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.cep.regiao" size=5 maxlength=5 />
-								 <input type="text" name="dadosPessoais.cep.sufixo" size=3 maxlength=3 /></span><br />
+								<div class="label">CEP:</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.cep.cep"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Cidade</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.cidade"  maxlength=15 /></span><br />
+								<div class="label">Cidade</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.cidade"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Estado</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.estado" size=2 maxlength=2 /></span><br />
+								<div class="label">Estado</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.estado"/></span>
 							</div>
 							
 							<div class="row">
-								<span class="label">Telefone:</span>
-								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.residencial.telefone"  maxlength=20 /></span><br />
+								<div class="label">Telefone:</div>
+								<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.residencial.telefone"/></span>
 							</div>						
 													
 						</fieldset>
