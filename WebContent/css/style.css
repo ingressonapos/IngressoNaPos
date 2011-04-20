@@ -1,5 +1,5 @@
 /* reset some stuff */
-h1,h2,hr,ul,ins{margin:0px;padding:0px;border: 0px;text-decoration:none;}
+h1,h2,h3,hr,ul,ins{margin:0px;padding:0px;border: 0px;text-decoration:none;}
 
 html { overflow-y: scroll; }
 
@@ -12,6 +12,36 @@ body {
 	font-family: 'Helvetica Neue',Helvetica,'Lucida Grande',Arial,Verdana,Sans-Serif;
 	color: #333;
 	cursor: default;
+}
+
+
+
+h3{
+	margin: 10px 5px 10px 5px;
+	font-size: 15px;
+}
+
+fieldset{
+	margin: 15px 0px 15px 0px;
+}
+
+input[type=text]{
+	width: 300px;
+}
+
+input.data{
+	width: 100px;
+}
+
+input[type=radio]{
+	width: 15px;
+}
+
+
+
+/* CRIE UMA DIV DESSA CLASSE TODA VEZ QUE USAR UM FLOAT:LEFT DENTRO DE UMA DIV */
+.clear{
+	clear: both;
 }
 
 /* set some wrapper values */
@@ -41,6 +71,9 @@ body {
 	margin-top: -5px;
 	color: #9F14AC;
 }
+
+
+
 
 #headnote h3{
 	font-size: 14px;
@@ -118,14 +151,12 @@ div.row {
   padding-top: 5px;
 }
 
-div.row span.label {
-  float: left;
-  width: 150px;
+div.label {
+  width: 100%;
   text-align: left;
 }
 
-div.row span.formw {
-  float: right;
+span.formw {
   width: 250px;
   text-align: left;
 } 
