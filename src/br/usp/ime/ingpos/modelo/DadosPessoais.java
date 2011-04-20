@@ -9,10 +9,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 
-import org.springframework.util.StringUtils;
-
-import com.sun.org.apache.xpath.internal.operations.Equals;
-
 @Embeddable
 public class DadosPessoais implements Serializable {
 	private static final long serialVersionUID = -476234519172680388L;

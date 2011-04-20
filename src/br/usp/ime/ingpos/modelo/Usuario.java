@@ -71,7 +71,7 @@ public class Usuario
         return dadosPessoais;
     }
 
-    protected void setDadosPessoais(
+    public void setDadosPessoais(
         DadosPessoais dadosPessoais )
     {
         this.dadosPessoais = dadosPessoais;

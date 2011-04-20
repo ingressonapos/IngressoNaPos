@@ -14,13 +14,16 @@ public class CadastroController
 {
     private static final String TIPOS_ESTADO_CIVIL = "tiposEstadoCivil";
     private static final String TIPOS_CEDULA_IDENTIDADE = "tiposCedulaIdentidade";
+    private final UsuarioSessao usuarioSessao;
 
     private final Result result;
 
     public CadastroController(
-        final Result result )
+        final Result result,
+        final UsuarioSessao usuarioSessao)
     {
         this.result = result;
+        this.usuarioSessao = usuarioSessao;
     }
 
     private void configurarResultDadosUsuario()
@@ -42,6 +45,8 @@ public class CadastroController
         DadosPessoais dadosPessoais )
     {
         configurarResultDadosUsuario();
+        
+        
     }
 
     @Get
