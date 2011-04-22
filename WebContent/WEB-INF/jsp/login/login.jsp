@@ -44,7 +44,7 @@
 							<table>
 								<tr>
 									<td><fmt:message key="login_email" /></td>
-									<td><input id="login" name="usuario.email" type="text"
+									<td><input id="login" name="usuario.email" value="${usuario.email}" type="text"
 										style="width: 150px" /></td>
 								</tr>
 								<tr>

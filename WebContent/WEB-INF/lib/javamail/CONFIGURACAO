@@ -1,0 +1,17 @@
+
+API Para envio de e-mails
+
+1. Montagem do ambiente e configuração do classpath
+- A configuração dos arquivos "mail.jar" e "activation.jar" deve ser realizada no diretório
+do tomcat. 
+- Para isto basta copiar os arquivos "mail.jar" e "activation.jar" para o diretório "TOMCAT_DIR/lib/".
+
+2. Configuração
+- A API Java Mail, em termos de produção/testes de aceitação, está configurada
+ no arquivo "context.xml", o qual é utilizado como recurso no "web.xml"
+ 
+  
+ 
+  
+
+ 

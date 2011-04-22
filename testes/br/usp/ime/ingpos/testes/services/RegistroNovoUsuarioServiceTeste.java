@@ -6,6 +6,8 @@ import br.usp.ime.ingpos.modelo.RegistroNovoUsuario;
 import br.usp.ime.ingpos.modelo.dao.PerfilDao;
 import br.usp.ime.ingpos.modelo.dao.RegistroNovoUsuarioDao;
 import br.usp.ime.ingpos.modelo.dao.UsuarioDao;
+import br.usp.ime.ingpos.services.EmailException;
+import br.usp.ime.ingpos.services.EmailService;
 import br.usp.ime.ingpos.services.RegistroNovoUsuarioService;
 import br.usp.ime.ingpos.services.RegistroNovoUsuarioService.RegistroResultado;
 import br.usp.ime.ingpos.services.UsuarioService;
@@ -16,9 +18,9 @@ public class RegistroNovoUsuarioServiceTeste
     extends
         BancoDeDadosTestCase
 {
-
-    private static final String CPF = "123456789";
-    private static final String EMAIL = "teste@teste.com";
+    public static final String CPF = "40018166369";
+    public static final String EMAIL = "ingressonaposxp@gmail.com";
+    public static final String SENHA = "123456";
 
     public RegistroNovoUsuarioServiceTeste(
         String name )
@@ -29,50 +31,65 @@ public class RegistroNovoUsuarioServiceTeste
     @Test
     public void testeRegistrar()
     {
-        final RegistroNovoUsuarioService registroNovoUsuarioService = new RegistroNovoUsuarioService(
-            new RegistroNovoUsuarioDao( getSessionCreator() ),
-            new PerfilDao( getSessionCreator() ),
-            new UsuarioService( new UsuarioDao( getSessionCreator() ), new UsuarioSessao() ) );
+        try {
 
-        RegistroNovoUsuario registroNovoUsuario = new RegistroNovoUsuario();
-        registroNovoUsuario.setEmail( EMAIL );
-        registroNovoUsuario.setCpf( CPF );
-        registroNovoUsuario.setSenha( "12345" );
-        registroNovoUsuario.setConfirmacaoSenha( "12345" );
+            RegistroNovoUsuarioService registroNovoUsuarioService = new RegistroNovoUsuarioService(
+                new RegistroNovoUsuarioDao( getSessionCreator() ),
+                new PerfilDao( getSessionCreator() ),
+                new UsuarioService( new UsuarioDao( getSessionCreator() ), new UsuarioSessao() ),
+                new EmailService( EmailServiceTeste.construirSessionParaTeste() ),
+                null );
 
-        RegistroResultado resultado = registroNovoUsuarioService.registrar( registroNovoUsuario );
+            RegistroNovoUsuario registroNovoUsuario = new RegistroNovoUsuario();
+            registroNovoUsuario.setEmail( EMAIL );
+            registroNovoUsuario.setCpf( CPF );
+            registroNovoUsuario.setSenha( SENHA );
+            registroNovoUsuario.setConfirmacaoSenha( SENHA );
 
-        assertTrue( resultado == RegistroResultado.SUCESSO
-            || resultado == RegistroResultado.CPF_OU_EMAIL_JA_EXISTENTE );
+            RegistroResultado resultado = registroNovoUsuarioService.registrar( registroNovoUsuario );
 
+            assertTrue( resultado == RegistroResultado.SUCESSO
+                || resultado == RegistroResultado.CPF_OU_EMAIL_JA_EXISTENTE );
+
+        } catch( EmailException e ) {
+            e.printStackTrace();
+            assertTrue( false );
+        }
     }
 
     @Test
     public void testeAtivar()
     {
-        final RegistroNovoUsuarioDao registroNovoUsuarioDao = new RegistroNovoUsuarioDao(
-            getSessionCreator() );
+        try {
+            final RegistroNovoUsuarioDao registroNovoUsuarioDao = new RegistroNovoUsuarioDao(
+                getSessionCreator() );
 
-        final RegistroNovoUsuarioService registroNovoUsuarioService = new RegistroNovoUsuarioService(
-            registroNovoUsuarioDao,
-            new PerfilDao( getSessionCreator() ),
-            new UsuarioService( new UsuarioDao( getSessionCreator() ), new UsuarioSessao() ) );
+            final RegistroNovoUsuarioService registroNovoUsuarioService = new RegistroNovoUsuarioService(
+                new RegistroNovoUsuarioDao( getSessionCreator() ),
+                new PerfilDao( getSessionCreator() ),
+                new UsuarioService( new UsuarioDao( getSessionCreator() ), new UsuarioSessao() ),
+                new EmailService( EmailServiceTeste.construirSessionParaTeste() ),
+                null );
 
-        final RegistroNovoUsuario registroNovoUsuario = registroNovoUsuarioDao.procurarPorEmailOuCpf(
-            EMAIL, CPF );
+            final RegistroNovoUsuario registroNovoUsuario = registroNovoUsuarioDao.procurarPorEmailOuCpf(
+                EMAIL, CPF );
 
-        assertNotNull( registroNovoUsuario );
+            assertNotNull( registroNovoUsuario );
 
-        final RegistroResultado resultado;
-        if( registroNovoUsuario == null ) {
-            resultado = null;
-        } else {
-            resultado = registroNovoUsuarioService.ativar( registroNovoUsuario.getChaveAtivacao() );
+            final RegistroResultado resultado;
+            if( registroNovoUsuario == null ) {
+                resultado = null;
+            } else {
+                resultado = registroNovoUsuarioService.ativar( registroNovoUsuario.getChaveAtivacao() );
+            }
+
+            assertTrue( resultado == RegistroResultado.SUCESSO
+                || resultado == RegistroResultado.CHAVE_ATIVACAO_NAO_EXISTE
+                || resultado == RegistroResultado.USUARIO_JA_ATIVADO );
+
+        } catch( EmailException e ) {
+            e.printStackTrace();
+            assertTrue( false );
         }
-
-        assertTrue( resultado == RegistroResultado.SUCESSO
-            || resultado == RegistroResultado.CHAVE_ATIVACAO_NAO_EXISTE
-            || resultado == RegistroResultado.USUARIO_JA_ATIVADO);
-
     }
 }

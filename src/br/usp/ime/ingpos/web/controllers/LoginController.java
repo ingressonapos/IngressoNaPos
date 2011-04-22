@@ -13,8 +13,8 @@ import br.usp.ime.ingpos.services.UsuarioService;
 import br.usp.ime.ingpos.web.interceptors.Transactional;
 
 /**
- * Controlador de requisiçõe. É responsável por executar lógica de
- * redirecionamento, incluindo desvios para páginas e definição de mensagens de
+ * Controlador de requisiï¿½ï¿½e. ï¿½ responsï¿½vel por executar lï¿½gica de
+ * redirecionamento, incluindo desvios para pï¿½ginas e definiï¿½ï¿½o de mensagens de
  * erro.
  */
 

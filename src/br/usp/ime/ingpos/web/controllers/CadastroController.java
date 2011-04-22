@@ -5,9 +5,12 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.TipoCedulaDeIdentidade;
 import br.usp.ime.ingpos.modelo.TipoEstadoCivil;
+import br.usp.ime.ingpos.seguranca.Criptografia;
+import br.usp.ime.ingpos.services.CartaDeRecomendacaoService;
 
 @Resource
 public class CadastroController
@@ -17,13 +20,15 @@ public class CadastroController
     private final UsuarioSessao usuarioSessao;
 
     private final Result result;
-
+    private CartaDeRecomendacaoService cartaDeRecomendacaoService;
     public CadastroController(
         final Result result,
-        final UsuarioSessao usuarioSessao)
+        final UsuarioSessao usuarioSessao,
+        final CartaDeRecomendacaoService cartaDeRecomendacaoService)
     {
         this.result = result;
         this.usuarioSessao = usuarioSessao;
+        this.cartaDeRecomendacaoService = cartaDeRecomendacaoService;
     }
 
     private void configurarResultDadosUsuario()
@@ -53,6 +58,15 @@ public class CadastroController
     @Path( "/cadastro/dadosCurriculo" )
     public void dadosCurriculo()
     {
+    }
+    
+    @Get @Post
+    @Path( "/cadastro/solicitarRecomendacao" )
+    public void solicitarRecomendacao(CartaDeRecomendacao cartaDeRecomendacao)
+    {
+        if(cartaDeRecomendacao != null) {
+            cartaDeRecomendacaoService.criar( cartaDeRecomendacao );
+        }
     }
 
 }

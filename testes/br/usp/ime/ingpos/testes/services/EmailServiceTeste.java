@@ -1,14 +1,15 @@
 package br.usp.ime.ingpos.testes.services;
 
-import java.util.List;
+import java.util.Properties;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
+import javax.mail.Authenticator;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
 
 import org.junit.Test;
-import org.jvnet.mock_javamail.Mailbox;
 
 import br.usp.ime.ingpos.modelo.Email;
+import br.usp.ime.ingpos.services.EmailException;
 import br.usp.ime.ingpos.services.EmailService;
 import br.usp.ime.ingpos.testes.IngPosTestCase;
 
@@ -17,45 +18,67 @@ public class EmailServiceTeste
         IngPosTestCase
 {
 
-    Email email;
-    EmailService eService;
-
     public EmailServiceTeste(
         String name )
     {
         super( name );
-        // TODO Auto-generated constructor stub
-        email = new Email();
-        email.setAssunto( "Teste" );
-        email.setConteudo( "Teste conteudo" );
-        email.setEmailDestinatario( "greganati@hotmail.com" );
-        email.setEmailRemetente( "ingressoNaPosXP@gmail.com" );
-        email.setPorta( "587" );
-        email.setSenha( "@b@c@xix" );
-        email.setHostNome( "smtp.gmail.com" );
-        email.setUsuario( "ingressoNaPosXP" );
-        eService = new EmailService( email );
     }
 
     @Test
-    public void testEnviouCerto()
-        throws MessagingException
+    public void testarEnviarEmail()
     {
+        try {
+            final String assunto = "Assunto";
+            final String conteudo = "Conteudo";
+            final String destinatario = "ingressonaposxp@gmail.com";
+            final String remetente = "ingressonaposxp@gmail.com";
 
-        eService.enviarEmail();
+            final Email email = new Email();
+            email.setAssunto( assunto );
+            email.setConteudo( conteudo );
+            email.setEmailRemetente( remetente );
+            email.setEmailDestinatario( destinatario );
 
-        List<Message> entradaList = Mailbox.get( "greganati@hotmail.com" );
-        assertTrue( entradaList.size() == 1 );
+            final EmailService emailService = new EmailService( construirSessionParaTeste() );
+            emailService.enviarEmail( email );
+        } catch( EmailException e ) {
+            e.printStackTrace();
+        }
     }
 
-    public void testNaoEnviouParaEsteEmail()
-        throws MessagingException
+    @Test
+    public void testarConfirmacaoEnvioDeEmail()
     {
+        // TODO: efetuar teste para ler do email do destinatario e verificar se
+        // o email enviado chegou
+        assertTrue( false );
+    }
 
-        eService.enviarEmail();
+    public static Session construirSessionParaTeste()
+    {
+        final Properties props = new Properties();
+        final int smtpServerPort = 465;
+        final String userName = "ingressonaposxp@gmail.com";
+        final String password = "@b@c@xix";
 
-        List<Message> entradaList = Mailbox.get( "abc@def.ghi" );
-        assertFalse( entradaList.size() == 1 );
+        props.put( "mail.smtp.host", "smtp.gmail.com" );
+        props.put( "mail.smtp.port", Integer.toString( smtpServerPort ) );
+        props.put( "mail.smtp.user", "ingressonaposxp" );
+        props.put( "mail.smtp.ssl.enable", "true" );
+
+        props.put( "mail.smtp.auth", "true" );
+        props.put( "mail.smtp.starttls.enable", "true" );
+        props.put( "mail.smtp.socketFactory.port", Integer.toString( smtpServerPort ) );
+        props.put( "mail.smtp.ssl.socketFactory.port", Integer.toString( smtpServerPort ) );
+
+        Session session = Session.getDefaultInstance( props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication()
+            {
+                return new PasswordAuthentication( userName, password );
+            }
+        } );
+
+        return session;
     }
 
 }
