@@ -133,11 +133,50 @@ h1 {
     font-size:18px;
 }
 
-#login, #login a{
+#login {
     font-family: geneva, arial;
+    width: 250px; 
+    margin: 0 auto; 
+    text-align: center;
 }
 
-.errorExplanation { color: red }
+#login #loginUsuario {
+	font-family: geneva, arial;
+    width: 200px; 
+    margin: 0 auto; 
+	text-align: left;
+}
+
+#login #loginSenha{
+	font-family: geneva, arial;
+    width: 200px; 
+    margin: 0 auto; 
+	text-align: left;
+}
+
+
+#messages { 
+	font-family: geneva, arial;
+	font-size: 17px;
+	color: green;	
+    width: 700px; 
+    margin: 0 auto; 
+    text-align: center;
+}
+
+#errors { 
+	font-family: geneva, arial;
+	font-size: 17px;
+	color: red;	
+    width: 700px; 
+    margin: 0 auto; 
+    text-align: center;    
+}
+
+
+.errorExplanation { 
+	color: red
+}
 
 
 /*#########################################*/ 

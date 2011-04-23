@@ -9,7 +9,6 @@ import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.TipoCedulaDeIdentidade;
 import br.usp.ime.ingpos.modelo.TipoEstadoCivil;
-import br.usp.ime.ingpos.seguranca.Criptografia;
 import br.usp.ime.ingpos.services.CartaDeRecomendacaoService;
 
 @Resource
@@ -21,37 +20,37 @@ public class CadastroController
 
     private final Result result;
     private CartaDeRecomendacaoService cartaDeRecomendacaoService;
+
     public CadastroController(
         final Result result,
         final UsuarioSessao usuarioSessao,
-        final CartaDeRecomendacaoService cartaDeRecomendacaoService)
+        final CartaDeRecomendacaoService cartaDeRecomendacaoService )
     {
         this.result = result;
         this.usuarioSessao = usuarioSessao;
         this.cartaDeRecomendacaoService = cartaDeRecomendacaoService;
     }
 
-    private void configurarResultDadosUsuario()
+    private void configurarResultDadosPessoais()
     {
         result.include( TIPOS_ESTADO_CIVIL, TipoEstadoCivil.getTiposEstadoCivil() );
         result.include( TIPOS_CEDULA_IDENTIDADE, TipoCedulaDeIdentidade.getTiposCedulaIdentidade() );
     }
 
     @Get
-    @Path( "/cadastro/dadosUsuario" )
-    public void dadosUsuario()
+    @Path( "/cadastro/dadosPessoais" )
+    public void dadosPessoais()
     {
-        configurarResultDadosUsuario();
+        configurarResultDadosPessoais();
     }
 
     @Post
-    @Path( "/cadastro/dadosUsuario" )
-    public void dadosUsuario(
+    @Path( "/cadastro/dadosPessoais" )
+    public void dadosPessoais(
         DadosPessoais dadosPessoais )
     {
-        configurarResultDadosUsuario();
-        
-        
+        configurarResultDadosPessoais();
+
     }
 
     @Get
@@ -59,12 +58,14 @@ public class CadastroController
     public void dadosCurriculo()
     {
     }
-    
-    @Get @Post
+
+    @Get
+    @Post
     @Path( "/cadastro/solicitarRecomendacao" )
-    public void solicitarRecomendacao(CartaDeRecomendacao cartaDeRecomendacao)
+    public void solicitarRecomendacao(
+        CartaDeRecomendacao cartaDeRecomendacao )
     {
-        if(cartaDeRecomendacao != null) {
+        if( cartaDeRecomendacao != null ) {
             cartaDeRecomendacaoService.criar( cartaDeRecomendacao );
         }
     }

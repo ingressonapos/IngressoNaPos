@@ -1,72 +1,47 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@ include file="../cabecalho.jsp"%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
-	<title>  <fmt:message key="registro_titulo" /> </title>
-	<link href="<c:url value='/css/style.css'/>" rel="stylesheet" type="text/css" />
-	<link href="<c:url value='/css/layout.css'/>" rel="stylesheet" type="text/css" />
-	<link href="<c:url value='/css/menu.css'/>" rel="stylesheet" type="text/css" />
-	
-</head>
+<center>
+	<h1> <fmt:message key="registro_solicitacao_inscricao" /> </h1>
+</center>
 
-<body>
-	
-	<center>		
-		<div id="principal">
-		<div id="menu"><%@ include file="../menu.jsp"%></div>
-			<div id="corpo">
-				<center><h1> <fmt:message key="registro_solicitacao_inscricao" /> </h1></center>
-												
-				<div id="form" style="width: 445px; margin: 10px auto;">
-					<form action="<c:url value='/registro'/>" method="post">
-						
-						<fieldset>
-							<legend><b> <fmt:message key="registro_nova_inscricao" /> </b></legend>
+<div id="form" style="width: 445px; margin: 10px auto;">
+	<form action="<c:url value='/registro'/>" method="post">
+		
+		<fieldset>
+			<legend><b> <fmt:message key="registro_nova_inscricao" /> </b></legend>
 
-							<div class="row">
-								<span class="label">  <fmt:message key="cadastro_cpf"/>  </span>
-								<span class="formw">
-									<input type="text" maxlength=50 name="registroNovoUsuario.cpf" value="${registroNovoUsuario.cpf}"  />
-								</span><br/>
-							</div>
-							<div class="row">
-								<span class="label"> <fmt:message key="login_email"/> </span>
-								<span class="formw">
-									<input type="text"  maxlength=50 name="registroNovoUsuario.email" value="${registroNovoUsuario.email}"/>
-								</span><br/>
-							</div>
-							<div class="row">
-								<span class="label"> <fmt:message key="login_senha"/>  </span>
-								<span class="formw"><input id="senha" type="password" name="registroNovoUsuario.senha"/> </span><br/>
-							</div>
-							
-							<div class="row">
-								<span class="label"> <fmt:message key="login_confirmacao_senha"/> </span>
-								<span class="formw"> <input id="senha" type="password" name="registroNovoUsuario.confirmacaoSenha"/> </span><br/>
-							</div>
-							<br/>
-							<br/>
-							<div class="row">
-								<input type="submit" value="<fmt:message key='registro_confirmar'/>" />
-								<a href="<c:url value='/login'/>"><button><fmt:message key="voltar"/></button></a>						 
-							</div>
-						</fieldset>
-						
-					</form>
-				</div>				
+			<div class="row">
+				<span class="label">  <fmt:message key="cadastro_cpf"/>  </span>
+				<span class="formw">
+					<input type="text" maxlength=50 name="registroNovoUsuario.cpf" value="${registroNovoUsuario.cpf}"  />
+				</span><br/>
 			</div>
-		</div>
-	
-		<div><%@ include file="../rodape.jsp"%></div>
-	
-	</center>
-</body>
-</html>
-
+			<div class="row">
+				<span class="label"> <fmt:message key="login_email"/> </span>
+				<span class="formw">
+					<input type="text"  maxlength=50 name="registroNovoUsuario.email" value="${registroNovoUsuario.email}"/>
+				</span><br/>
+			</div>
+			<div class="row">
+				<span class="label"> <fmt:message key="login_senha"/>  </span>
+				<span class="formw"><input id="senha" type="password" name="registroNovoUsuario.senha"/> </span><br/>
+			</div>
+			
+			<div class="row">
+				<span class="label"> <fmt:message key="login_confirmacao_senha"/> </span>
+				<span class="formw"> <input id="senha" type="password" name="registroNovoUsuario.confirmacaoSenha"/> </span><br/>
+			</div>
+			<br/>
+			<br/>
+			<div class="row">
+				<input type="submit" value="<fmt:message key='registro_confirmar'/>" />
+				<a href="<c:url value='/login'/>"><button><fmt:message key="voltar"/></button></a>						 
+			</div>
+		</fieldset>
+	</form>
+</div>
+		
+<%@ include file="../rodape.jsp"%>
