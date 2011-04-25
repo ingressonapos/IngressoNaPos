@@ -14,7 +14,7 @@
 			<legend><b> <fmt:message key="registro_nova_inscricao" /> </b></legend>
 
 			<div class="row">
-				<span class="label">  <fmt:message key="cadastro_cpf"/>  </span>
+				<span class="label">  <fmt:message key="cpf"/>  </span>
 				<span class="formw">
 					<input type="text" maxlength=50 name="registroNovoUsuario.cpf" value="${registroNovoUsuario.cpf}"  />
 				</span><br/>

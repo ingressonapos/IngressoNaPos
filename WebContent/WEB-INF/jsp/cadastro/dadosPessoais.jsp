@@ -6,111 +6,147 @@
 <script type="text/javascript">
 jQuery(function($){
 	$("input.data").mask("99/99/9999",{placeholder:""});
-  		$("input[name$='cep']").mask("99999-999",{placeholder:""});
-  		$("input[name$='cpf']").mask("999.999.999-99",{placeholder:""});
+  	$("input[name$='cep']").mask("99999-999",{placeholder:""});
+  	$("input[name$='cpf']").mask("999.999.999-99",{placeholder:""});
+  	$("input[name$='codTelefone']").mask("(99) 9999-9999",{placeholder:""});
 });
 </script>
 
 
 <%@ include file="../cabecalho.jsp"%>
 
-<center><h1>Cadastro</h1></center>
+<center><h1> <fmt:message key="titulo_cadastro" />  </h1></center>
 
 <div id="form" style="width: 445px; margin: 10px auto;">
 				
-	<form action="<c:url value='/cadastro/dadosUsuario'/>" method="post">
+	<form action="<c:url value='/cadastro/dadosPessoais'/>" method="post">
 	
 		<fieldset>
-			<legend><b>Dados Pessoais</b></legend>
+			<legend><b> <fmt:message key="titulo_dados_pessoais" /> </b></legend>
 			
 			<div class="row">
-				<div class="label">Nome Completo</div>
-				<span class="formw"><input type="text" name="dadosPessoais.nomeCompleto" maxlength=50 /></span>
+				<div class="label"> <fmt:message key="nome_completo" /> </div>
+				<span class="formw"><input type="text" name="dadosPessoais.nomeCompleto" 
+					value="${dadosPessoais.nomeCompleto}"  maxlength=50 />
+				</span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Data de Nascimento</div>
-				<span class="formw"><input class=data type="text" name="dadosPessoais.dataDeNascimento"/></span>
+				<div class="label"> <fmt:message key="data_de_nascimento" /> </div>
+				<span class="formw">
+					<input class="data" type="text" name="dadosPessoais.dataDeNascimento" 
+						value="<fmt:formatDate value='${dadosPessoais.dataDeNascimento}' type='date' />" />
+				</span>
 			</div>
 			<div class="row">
-				<div class="label"> Estado Civil</div>
+				<div class="label"> <fmt:message key="estado_civil" /> </div>
 				<span class="formw">
 					<select name="dadosPessoais.estadoCivil" id="selectMultiple">
-						<c:forEach var="tipo" items="${tiposEstadoCivil}"  >
-							<option value="${tipo}" >  <fmt:message key="${tipo.msgKey}" />  </option>
-						</c:forEach>										
+						<c:forEach var="tipo" items="${tiposEstadoCivil}"  >						
+							<c:choose> 
+								<c:when test="${tipo == dadosPessoais.estadoCivil}" > 
+							    	<option value="${tipo}" selected="${tipo}" >  <fmt:message key="${tipo.msgKey}" />  </option>
+							  	</c:when> 
+							  	<c:otherwise> 
+							    	<option value="${tipo}"  >  <fmt:message key="${tipo.msgKey}" />  </option> 
+							  	</c:otherwise> 
+							</c:choose>											
+						</c:forEach>
 					</select>
 				</span>
 			</div>
 			
 			<div class="row">
-				<div class="label"> Documento</div>
+				<div class="label"> <fmt:message key="documento" /> </div>
 				<span class="formw"> 
 					<select name="dadosPessoais.cedulaDeIdentidade.tipo" id="selectMultiple">
 						<c:forEach var="tipo" items="${tiposCedulaIdentidade}"  >
-							<option value="${tipo}" >  <fmt:message key="${tipo.msgKey}" />  </option>
+							<c:choose> 
+								<c:when test="${tipo == dadosPessoais.cedulaDeIdentidade.tipo}" > 
+							    	<option value="${tipo}" selected="${tipo}" >  <fmt:message key="${tipo.msgKey}" />  </option>
+							  	</c:when> 
+							  	<c:otherwise> 
+							    	<option value="${tipo}" >  <fmt:message key="${tipo.msgKey}" />  </option> 
+							  	</c:otherwise> 
+							</c:choose>							
 						</c:forEach>
 					</select> 
 				</span>
 			</div>
 			
 			<div class="row">
-				<div class="label">N&uacute;mero</div>
+				<div class="label"> <fmt:message key="numero" /> </div>
 				<span class="formw">
-					<input type="text" class="numero_com_digito" name="dadosPessoais.cedulaDeIdentidade.numero" />
-					<input type="text" class="digito" name="dadosPessoais.cedulaDeIdentidade.digito"/>
+					<input type="text" class="numero_com_digito" name="dadosPessoais.cedulaDeIdentidade.numero" 
+						value="${dadosPessoais.cedulaDeIdentidade.numero}" />
+					<input type="text" class="digito" name="dadosPessoais.cedulaDeIdentidade.digito" 
+						value="${dadosPessoais.cedulaDeIdentidade.digito}"/>
 				</span>
 			</div>
 			
 			<div class="row">
-				<div class="label">CPF</div>
-				<span class="formw"><input type="text" name="dadosPessoais.cpf" /></span>
+				<div class="label"> <fmt:message key="cpf" /> </div>
+				<span class="formw"><input type="text" name="dadosPessoais.cpf" value="${dadosPessoais.cpf}" /></span>
 			</div>
 			<div class="row">
-				<div class="label">Nacionalidade</div>
-				<span class="formw"><input type="text" name="dadosPessoais.nacionalidade" /></span>
+				<div class="label"> <fmt:message key="nacionalidade" /> </div>
+				<span class="formw"><input type="text" name="dadosPessoais.nacionalidade" value="${dadosPessoais.nacionalidade}"/></span>
 			</div>
 				
 		</fieldset>
 		<br>
 				
 		<fieldset>
-			<legend><b>Endereços</b></legend>							
-			<h3>Endereço Permanente</h3>
+			<legend><b> <fmt:message key="titulo_enderecos" /> </b></legend>							
+			<h3> <fmt:message key="titulo_endereco_permanente" /> </h3>
 			
 			<div class="row">
-				<div class="label">Logradouro</div>
-				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro"/></span>
+				<div class="label"> <fmt:message key="logradouro" /> </div>
+				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.logradouro" 
+					value="${dadosPessoais.enderecoPermanente.logradouro}" />
+				</span>
 			</div>
 			
 			<div class="row">
-				<div class="label">N&uacute;mero</div>
-				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.numero"/></span>
+				<div class="label"> <fmt:message key="endereco_numero" /> </div>
+				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.numero" 
+					value="${dadosPessoais.enderecoPermanente.numero}" />
+				</span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Complemento</div>
-				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.complemento"/></span>
+				<div class="label">  <fmt:message key="complemento" /> </div>
+				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.complemento" 
+					value="${dadosPessoais.enderecoPermanente.complemento}" />
+				</span>
 			</div>
 			
 			<div class="row">
-				<div class="label">CEP:</div>
-				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.cep.cep"/></span>
+				<div class="label"> <fmt:message key="cep" /> </div>
+				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.cep.cep" 
+					value="${dadosPessoais.enderecoPermanente.cep.cep}" />
+				</span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Cidade</div>
-				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.cidade"/></span>
+				<div class="label">  <fmt:message key="cidade" /> </div>
+				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.cidade"
+					value="${dadosPessoais.enderecoPermanente.cidade}" />
+				</span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Estado</div>
-				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.estado"/></span>
+				<div class="label"> <fmt:message key="estado" /> </div>
+				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.estado"
+					value="${dadosPessoais.enderecoPermanente.estado}" />
+				</span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Telefone Residencial:</div>
-				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.telefone.residencial.codTelefone" /></span>
+				<div class="label"> <fmt:message key="telefone_residencial" /> </div>
+				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.telefone.residencial.codTelefone"
+					value="${dadosPessoais.enderecoPermanente.telefone.residencial.codTelefone}" />
+				</span>
 			</div>
 			
 			<h3>Endereço para Correspondência</h3>
@@ -153,8 +189,8 @@ jQuery(function($){
 		</fieldset>
 		
 		<div>
-			<input type="submit" value="<fmt:message key='enviar'/>">
-			<a href="<c:url value='/'/>"><button><fmt:message key="voltar"/></button></a>
+			<input type="submit" value="<fmt:message key='enviar'/>" />
+			<a href="<c:url value='/'/>"> <fmt:message key="voltar"/> </a>
 		</div>
 	
 	</form>

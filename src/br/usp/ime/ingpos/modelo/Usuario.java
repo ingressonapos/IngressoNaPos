@@ -22,6 +22,12 @@ public class Usuario
     @GeneratedValue
     private Long usuarioID;
 
+    @Column( unique = true )
+    private String email;
+
+    @Column( length = 32 )
+    private String senha;
+
     @Embedded
     private DadosPessoais dadosPessoais;
 
@@ -42,6 +48,28 @@ public class Usuario
     public Long getUsuarioID()
     {
         return usuarioID;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(
+        String email )
+    {
+        this.email = email;
+    }
+
+    public String getSenha()
+    {
+        return senha;
+    }
+
+    public void setSenha(
+        String senha )
+    {
+        this.senha = senha;
     }
 
     public Perfil getPerfil()

@@ -79,7 +79,7 @@ public class RegistroNovoUsuarioService
                 registroNovoUsuario.definirChaveAtivacao();
 
                 emailService.enviarEmail( construirEmailRegistro( registroNovoUsuario ) );
-                
+
                 registroNovoUsuarioDAO.save( registroNovoUsuario );
 
                 resultado = RegistroResultado.SUCESSO;
@@ -139,11 +139,12 @@ public class RegistroNovoUsuarioService
                 resultado = RegistroResultado.USUARIO_JA_ATIVADO;
             } else {
                 novoUsuario = new Usuario();
+                novoUsuario.setEmail( registroNovoUsuario.getEmail() );
+                novoUsuario.setSenha( registroNovoUsuario.getSenha() );
+
                 final DadosPessoais dadosPessoais = novoUsuario.getDadosPessoais();
 
                 dadosPessoais.setCpf( registroNovoUsuario.getCpf() );
-                dadosPessoais.setEmail( registroNovoUsuario.getEmail() );
-                dadosPessoais.setSenha( registroNovoUsuario.getSenha() );
                 novoUsuario.setAtivo( true );
                 novoUsuario.setCurriculo( new Curriculo() );
                 novoUsuario.setPerfil( perfil );

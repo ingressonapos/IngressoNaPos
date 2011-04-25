@@ -7,6 +7,7 @@ import org.junit.Test;
 import br.usp.ime.ingpos.modelo.CEP;
 import br.usp.ime.ingpos.modelo.CedulaDeIdentidade;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
+import br.usp.ime.ingpos.modelo.Endereco;
 import br.usp.ime.ingpos.modelo.TipoCedulaDeIdentidade;
 import br.usp.ime.ingpos.modelo.TipoEstadoCivil;
 import br.usp.ime.ingpos.modelo.Usuario;
@@ -67,12 +68,13 @@ public class UsuarioServiceTeste
         dadosPessoais.setDataDeNascimento( new Date( 88 / 12 / 10 ) );
         dadosPessoais.setNomeCompleto( "Maria Imaculada" );
         dadosPessoais.setCedulaDeIdentidade( cedulaDeIdentidade );
+        dadosPessoais.setEnderecoCorrespondencia( new Endereco() );
+        dadosPessoais.setEnderecoPermanente( new Endereco() );
 
         final UsuarioService usuarioService = new UsuarioService( usuarioDao, usuarioSessao );
         usuarioService.cadastrarDadosPessoais( usuario, dadosPessoais );
 
         assertEquals( usuario.getDadosPessoais().getCpf(), dadosPessoais.getCpf() );
-        assertEquals( usuario.getDadosPessoais().getEmail(), dadosPessoais.getEmail() );
         assertEquals( usuario.getDadosPessoais().getEstadoCivil(), dadosPessoais.getEstadoCivil() );
         assertEquals( usuario.getDadosPessoais().getNacionalidade(),
             dadosPessoais.getNacionalidade() );
@@ -101,8 +103,6 @@ public class UsuarioServiceTeste
         cedulaDeIdentidade.setNumero( "45645655" );
         cedulaDeIdentidade.setDigito( "2" );
 
-        assertEquals( usuario.getDadosPessoais().getCpf(), RegistroNovoUsuarioServiceTeste.CPF );
-        assertEquals( usuario.getDadosPessoais().getEmail(), RegistroNovoUsuarioServiceTeste.EMAIL );
         assertEquals( usuario.getDadosPessoais().getEstadoCivil(), TipoEstadoCivil.SOLTEIRO );
         assertEquals( usuario.getDadosPessoais().getNacionalidade(), "Brasileiro" );
         assertEquals( usuario.getDadosPessoais().getDataDeNascimento(), new Date( 88 / 12 / 10 ) );

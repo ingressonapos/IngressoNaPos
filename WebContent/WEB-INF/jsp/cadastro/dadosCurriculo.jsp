@@ -213,7 +213,7 @@ jQuery(function($){
 		</fieldset>
 		
 		<div>
-			<input type="submit" value="Enviar">
+			<input type="submit" value="<fmt:message key='enviar'/>">
 			<a href="<c:url value='/'/>"><button><fmt:message key="voltar"/></button></a>			
 		</div>	
 	</form>

@@ -20,7 +20,7 @@ public class Endereco
     private Long enderecoID;
 
     @Column
-    private String logadouro;
+    private String logradouro;
 
     @Column
     private String numero;
@@ -52,15 +52,15 @@ public class Endereco
         return enderecoID;
     }
 
-    public String getLogadouro()
+    public String getLogradouro()
     {
-        return logadouro;
+        return logradouro;
     }
 
-    public void setLogadouro(
-        String logadouro )
+    public void setLogradouro(
+        String logradouro )
     {
-        this.logadouro = logadouro;
+        this.logradouro = logradouro;
     }
 
     public String getNumero()

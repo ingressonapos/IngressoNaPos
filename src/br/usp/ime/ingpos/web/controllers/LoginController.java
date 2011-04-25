@@ -8,14 +8,14 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.Validations;
 import br.com.caelum.vraptor.view.Results;
-import br.usp.ime.ingpos.modelo.DadosPessoais;
+import br.usp.ime.ingpos.modelo.Usuario;
 import br.usp.ime.ingpos.services.UsuarioService;
 import br.usp.ime.ingpos.web.interceptors.Transactional;
 
 /**
  * Controlador de requisi��e. � respons�vel por executar l�gica de
- * redirecionamento, incluindo desvios para p�ginas e defini��o de mensagens de
- * erro.
+ * redirecionamento, incluindo desvios para p�ginas e defini��o de
+ * mensagens de erro.
  */
 
 @Resource
@@ -46,7 +46,7 @@ public class LoginController
     @Path( "/login" )
     @Transactional
     public void login(
-        DadosPessoais usuario )
+        Usuario usuario )
     {
         try {
             final boolean success = usuarioService.autenticar( usuario.getEmail(),
