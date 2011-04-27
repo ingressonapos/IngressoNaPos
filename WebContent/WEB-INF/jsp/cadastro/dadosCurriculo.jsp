@@ -13,64 +13,64 @@ jQuery(function($){
 <%@ include file="../cabecalho.jsp"%>
 
 
-<center><h1>Cadastro</h1></center>
+<center><h1><fmt:message key="cadastro_curriculo_titulo_cadastro"/></h1></center>
 
 <div id="form" style="width: 445px; margin: 10px auto;">
 				
 	<form action="<c:url value='/cadastro/dadosCurriculo'/>" method="post">
 	
 		<fieldset>
-			<legend><b>Formação Acadêmica</b></legend>
-			<h3>Graduação</h3>
+			<legend><b><fmt:message key="cadastro_curriculo_titulo_formacao"/></b></legend>
+			<h3><fmt:message key="cadastro_curriculo_graduacao"/></h3>
 	
 			<div class="row">
-				<div class="label">Instituição</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_instituicao"/></div>
 				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Instituicao" maxlength=100 /></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Data de In&iacute;cio(mm/aaaa)</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_data_inicio"/></div>
 				<span class="formw"><input class=data type="text" name="curriculo.formacaoAcademica.ingressoData"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Data de T&eacute;rmino</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_data_termino"/></div>
 				<span class="formw"><input class=data type="text" name="curriculo.formacaoAcademica.terminoData"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">T&iacute;tulo Obtido</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_titulo_obtido"/></div>
 				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Titulo"/></span>
 			</div>
 			
-		<h3>P&oacute;s-Graduação</h3>
+		<h3><fmt:message key="cadastro_curriculo_titulo_posgraduacao"/></h3>
 		<div class="row">
-				<div class="label">Instituição</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_instituicao"/></div>
 				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Instituicao" maxlength=100 /></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Data de In&iacute;cio</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_data_inicio"/></div>
 				<span class="formw"><input type="text" class=data name="curriculo.formacaoAcademica.ingressoData"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Data de T&eacute;rmino</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_data_termino"/></div>
 				<span class="formw"><input type="text" class=data name="curriculo.formacaoAcademica.terminoData"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">T&iacute;tulo Obtido</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_titulo_obtido"/></div>
 				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Titulo"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">T&iacute;tulo da Dissertação</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_titulo_dissertacao"/></div>
 				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.tituloDissert"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Nome do Orientador</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_nome_orientador"/></div>
 				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.nomeOrientador"/></span>
 			</div>
 				
@@ -79,134 +79,134 @@ jQuery(function($){
 
 				
 		<fieldset>
-			<legend><b>Iniciação Científica</b></legend>							
+			<legend><b><fmt:message key="cadastro_curriculo_titulo_iniciacao_cientifica"/></b></legend>							
 			
 			<div class="row">
-				<div class="label">Realizou Iniciação Cient&iacute;fica? </div>
-				<span class="formw">Sim<input type="radio" name="curriculo.iniciacaoCientifica"/></span>
-				<span class="formw">Não<input type="radio" name="curriculo.iniciacaoCientifica"/></span>
+				<div class="label"><fmt:message key="cadastro_curriculo_realizou_iniciacao"/></div>
+				<span class="formw"><fmt:message key="sim"/><input type="radio" name="curriculo.iniciacaoCientifica"/></span>
+				<span class="formw"><fmt:message key="nao"/><input type="radio" name="curriculo.iniciacaoCientifica"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Instituição</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_instituicao"/></div>
 				<span class="formw"><input type="text" name="curriculo.iniciacaoCientifica.nomeInstituicao" maxlength=100/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Tema do Projeto</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_tema_projeto"/></div>
 				<span class="formw"><input type="text" name="curriculo.iniciacaoCientifica.temaProjeto" maxlength=100/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Nome do Orientador</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_nome_orientador"/></div>
 				<span class="formw"><input type="text" name="curriculo.iniciacaoCientifica.nomeOrientador" maxlength=50/></span>
 			</div>
 									
 		</fieldset>
 		
 		<fieldset>
-			<legend><b>Outras Atividades Acadêmicas</b></legend>
+			<legend><b><fmt:message key="cadastro_curriculo_titulo_outras_atividades"/></b></legend>
 			
 			<div class="row">
-				<div class="label">Descrição</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_descricao"/></div>
 				<span class="formw"><input type="text" name=""/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Instituição</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_instituicao"/></div>
 				<span class="formw"><input type="text" name="" maxlength=100/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Data de In&iacute;cio</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_data_inicio"/></div>
 				<span class="formw"><input type="text" class="data" name="curriculo.enderecoPermanente.numero" maxlength=100/></span>
 				
 			</div>
 			
 			<div class="row">
-				<div class="label">Data de T&eacute;rmino</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_data_termino"/></div>
 				<span class="formw"><input type="text" class=data name="curriculo.enderecoPermanente.complemento" maxlength=50/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">T&iacute;tulo Obtido</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_titulo_obtido"/></div>
 				<span class="formw"><input type="text" name="curriculo.enderecoPermanente.complemento" maxlength=50/></span>
 			</div>
 			
 		</fieldset>
 		
 		<fieldset>
-			<legend><b>POSCOMP</b></legend>							
+			<legend><b><fmt:message key="cadastro_curriculo_titulo_POSCOMP"/></b></legend>							
 			
 			<div class="row">
-				<div class="label">Realizou POSCOMP?</div>
-				Sim<span class="formw"><input type="radio" name=""/></span>
-				Não<span class="formw"><input type="radio" name=""/></span>
+				<div class="label"><fmt:message key="cadastro_curriculo_realizou_poscomp"/></div>
+				<fmt:message key="sim"/><span class="formw"><input type="radio" name=""/></span>
+				<fmt:message key="nao"/><span class="formw"><input type="radio" name=""/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Ano</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_ano"/></div>
 				<span class="formw"><input type="text" name="curriculo.posComp.ano" maxlength=4/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Acertos em L&oacute;gica</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_acertos_logica"/></div>
 				<span class="formw"><input type="text" name="curriculo.posComp.notaLogica" maxlength=2/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Acertos em Matem&aacute;tica</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_acertos_matematica"/></div>
 				<span class="formw"><input type="text" name="curriculo.posComp.notaMatematica" maxlength=2/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Acertos em Tecnologia</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_acertos_tecnologia"/></div>
 				<span class="formw"><input type="text" name="curriculo.posComp.notaTecnologia" maxlength=2/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Comprovante</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_comprovante"/></div>
 				<span class="formw"><input type="text" name="curriculo.posComp.arquivoPosComp" maxlength=2/></span>
 			</div>
 									
 		</fieldset>
 		
 		<fieldset>
-			<legend><b>Cartas de Recomendação</b></legend>							
+			<legend><b><fmt:message key="cadastro_curriculo_titulo_cartas_recomendacao"/></b></legend>							
 			
 			<div class="row">
-				<div class="label">Nome do Professor</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_nome_professor"/></div>
 				<span class="formw"><input type="text" name="" maxlength=50/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Instituição</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_instituicao"/></div>
 				<span class="formw"><input type="text" name="" maxlength=100/></span>
 			</div>
 									
 		</fieldset>
 		
 		<fieldset>
-			<legend><b>Aluno Especial</b></legend>							
+			<legend><b><fmt:message key="cadastro_curriculo_titulo_aluno_especial"/></b></legend>							
 			
 			<div class="row">
-				<div class="label">Foi aluno especial no IME?</div>
-				Sim<span class="formw"><input type="radio" name=""/></span>
-				Não<span class="formw"><input type="radio" name=""/></span>
+				<div class="label"><fmt:message key="cadastro_curriculo_aluno_especial"/></div>
+				<fmt:message key="sim"/>Sim<span class="formw"><input type="radio" name=""/></span>
+				<fmt:message key="nao"/>Não<span class="formw"><input type="radio" name=""/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Disciplina</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_disciplina"/></div>
 				<span class="formw"><input type="text" name="" maxlength=50/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Ano</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_ano"/></div>
 				<span class="formw"><input type="text" name="" maxlength=4/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Conceito Obtido</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_conceito_obtido"/></div>
 				<span class="formw"><input type="text" name="" maxlength=2/></span>
 			</div>
 									
