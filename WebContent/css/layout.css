@@ -6,9 +6,8 @@ body {
 	font-size: 12px;
 	padding: 0px;
   	height: 100%;
-	margin: 0px;
+	margin: 0px auto;
 	text-align: center;
-	position: relative;
 }
 
 .fundo_topo{
@@ -153,26 +152,6 @@ h1 {
     margin: 0 auto; 
 	text-align: left;
 }
-
-
-#messages { 
-	font-family: geneva, arial;
-	font-size: 17px;
-	color: green;	
-    width: 700px; 
-    margin: 0 auto; 
-    text-align: center;
-}
-
-#errors { 
-	font-family: geneva, arial;
-	font-size: 17px;
-	color: red;	
-    width: 700px; 
-    margin: 0 auto; 
-    text-align: center;    
-}
-
 
 .errorExplanation { 
 	color: red
