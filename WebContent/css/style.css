@@ -21,12 +21,26 @@ h3{
 	font-size: 15px;
 }
 
+.button{
+	text-decoration: none;
+}
+
+.button:HOVER{
+	text-decoration: none;
+}
+
+.form_cadastro{
+	margin: 10px auto;
+	width: 700px;
+}
+
 fieldset{
 	margin: 15px 0px 15px 0px;
+	padding-left: 20px;
 }
 
 input[type=text]{
-	width: 300px;
+	width: 500px;
 }
 
 input.data{

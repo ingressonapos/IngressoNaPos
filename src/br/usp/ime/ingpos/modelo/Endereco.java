@@ -45,6 +45,8 @@ public class Endereco
 
     public Endereco()
     {
+    	telefone = new Telefone();
+    	cep = new CEP();
     }
 
     public Long getEnderecoID()
