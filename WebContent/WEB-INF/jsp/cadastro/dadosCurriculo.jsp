@@ -191,8 +191,8 @@ jQuery(function($){
 			
 			<div class="row">
 				<div class="label"><fmt:message key="cadastro_curriculo_aluno_especial"/></div>
-				<fmt:message key="sim"/>Sim<span class="formw"><input type="radio" name=""/></span>
-				<fmt:message key="nao"/>Não<span class="formw"><input type="radio" name=""/></span>
+				<fmt:message key="sim"/><span class="formw"><input type="radio" name=""/></span>
+				<fmt:message key="nao"/><span class="formw"><input type="radio" name=""/></span>
 			</div>
 			
 			<div class="row">
