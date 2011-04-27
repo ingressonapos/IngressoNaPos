@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.Email;
+import br.usp.ime.ingpos.modelo.Endereco;
 import br.usp.ime.ingpos.modelo.Perfil;
 import br.usp.ime.ingpos.modelo.RegistroNovoUsuario;
 import br.usp.ime.ingpos.modelo.Usuario;
@@ -141,9 +142,11 @@ public class RegistroNovoUsuarioService
                 novoUsuario = new Usuario();
                 novoUsuario.setEmail( registroNovoUsuario.getEmail() );
                 novoUsuario.setSenha( registroNovoUsuario.getSenha() );
-
+                
                 final DadosPessoais dadosPessoais = novoUsuario.getDadosPessoais();
 
+                dadosPessoais.setEnderecoCorrespondencia( new Endereco() );
+                dadosPessoais.setEnderecoPermanente( new Endereco() );
                 dadosPessoais.setCpf( registroNovoUsuario.getCpf() );
                 novoUsuario.setAtivo( true );
                 novoUsuario.setCurriculo( new Curriculo() );

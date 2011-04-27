@@ -8,7 +8,7 @@ jQuery(function($){
 	$("input.data").mask("99/99/9999",{placeholder:""});
   	$("input[name$='cep']").mask("99999-999",{placeholder:""});
   	$("input[name$='cpf']").mask("999.999.999-99",{placeholder:""});
-  	$("input[name$='codTelefone']").mask("(99) 9999-9999",{placeholder:""});
+  	$("input[name$='codTelefone']").mask("+99 (99) 9999-9999",{placeholder:""});
 });
 </script>
 
@@ -115,7 +115,7 @@ jQuery(function($){
 			</div>
 			
 			<div class="row">
-				<div class="label">  <fmt:message key="complemento" /> </div>
+				<div class="label"> <fmt:message key="complemento" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.complemento" 
 					value="${dadosPessoais.enderecoPermanente.complemento}" />
 				</span>
@@ -129,7 +129,7 @@ jQuery(function($){
 			</div>
 			
 			<div class="row">
-				<div class="label">  <fmt:message key="cidade" /> </div>
+				<div class="label"> <fmt:message key="cidade" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.cidade"
 					value="${dadosPessoais.enderecoPermanente.cidade}" />
 				</span>
@@ -140,8 +140,26 @@ jQuery(function($){
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.estado"
 					value="${dadosPessoais.enderecoPermanente.estado}" />
 				</span>
-			</div>
-			
+			</div>	
+					
+			<div class="row">
+				<div class="label"> <fmt:message key="pais" /> </div>
+				<span class="formw">
+					<select name="dadosPessoais.estadoCivil" id="selectMultiple">
+						<c:forEach var="tipo" items="${tiposEstadoCivil}"  >						
+							<c:choose> 
+								<c:when test="${tipo == dadosPessoais.estadoCivil}" > 
+							    	<option value="${tipo}" selected="${tipo}" >  <fmt:message key="${tipo.msgKey}" />  </option>
+							  	</c:when> 
+							  	<c:otherwise> 
+							    	<option value="${tipo}"  >  <fmt:message key="${tipo.msgKey}" />  </option> 
+							  	</c:otherwise> 
+							</c:choose>											
+						</c:forEach>
+					</select>
+				</span>
+			</div>		
+				
 			<div class="row">
 				<div class="label"> <fmt:message key="telefone_residencial" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoPermanente.telefone.residencial.codTelefone"
@@ -149,40 +167,40 @@ jQuery(function($){
 				</span>
 			</div>
 			
-			<h3>Endereço para Correspondência</h3>
+			<h3> <fmt:message key="titulo_endereco_correspondencia" /> </h3>
 			<br />
 			<div class="row">
-				<div class="label">Logradouro</div>
+				<div class="label"> <fmt:message key="logradouro" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.logradouro"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">N&uacute;mero</div>
+				<div class="label"> <fmt:message key="endereco_numero" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.numero" /></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Complemento</div>
+				<div class="label"> <fmt:message key="complemento" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.complemento"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">CEP:</div>
+				<div class="label"> <fmt:message key="cep" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.cep.cep"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Cidade</div>
+				<div class="label"> <fmt:message key="cidade" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.cidade"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Estado</div>
+				<div class="label"> <fmt:message key="estado" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.estado"/></span>
 			</div>
 			
 			<div class="row">
-				<div class="label">Telefone:</div>
+				<div class="label"> <fmt:message key="telefone" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.residencial.telefone"/></span>
 			</div>						
 									
