@@ -2,11 +2,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link href="<c:url value='/'/>/css/layout.css" rel="stylesheet"
-	type="text/css" />
+<%@ include file="../cabecalho.jsp"%>
 <link href="<c:url value='/'/>/css/jquery-ui.css" rel="stylesheet"
 	type="text/css" />
-<script type="text/javascript" src="<c:url value='/'/>/js/jquery.js"></script>
 <script type="text/javascript" src="<c:url value='/'/>/js/gdl.js"></script>
 <script language="javascript" type="text/javascript"
 	src="<c:url value='/'/>/js/interface.js"></script>
@@ -48,8 +46,6 @@ $.ajaxSetup ({
 });
 </script>
 
-
-<%@ include file="../cabecalho.jsp"%>
 
 <div style="height: 768px; width: 100%">
 	<div class="column" style="width: 650px">

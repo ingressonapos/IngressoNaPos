@@ -17,7 +17,7 @@
 <link href="<c:url value='/css/erros.css'/>" rel="stylesheet"
 	type="text/css" />
 <script type="text/javascript" src="<c:url value='/'/>/js/jquery.js"></script>
-<script type="text/javascript" src="<c:url value='/'/>/js/erros.js"></script>
+<!-- <script type="text/javascript" src="<c:url value='/'/>/js/erros.js"></script>  -->
 </head>
 
 <%

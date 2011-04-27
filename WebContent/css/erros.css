@@ -14,9 +14,16 @@
 }
 
 #messages {
-    position: relative;
-	top: 100px;
-	left: 80px;
+	width: 660px;
+	padding: 12px 2px 7px 2px;
+	background-color:white;
+	font-size:medium;
+	font-weight: bold;
+	border: 1px solid black;
+    position: absolute;
+    margin-left: 8%;	
+	top: 150px;
+	z-index: 100;
 }
 
 #errors { 
