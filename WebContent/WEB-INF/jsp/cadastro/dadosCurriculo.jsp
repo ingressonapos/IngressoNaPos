@@ -15,7 +15,7 @@ jQuery(function($){
 
 <center><h1><fmt:message key="cadastro_curriculo_titulo_cadastro"/></h1></center>
 
-<div id="form" style="width: 445px; margin: 10px auto;">
+<div id="form" class="form_cadastro">
 				
 	<form action="<c:url value='/cadastro/dadosCurriculo'/>" method="post">
 	
