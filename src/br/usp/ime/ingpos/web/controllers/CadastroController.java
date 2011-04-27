@@ -9,49 +9,61 @@ import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.TipoCedulaDeIdentidade;
 import br.usp.ime.ingpos.modelo.TipoEstadoCivil;
-import br.usp.ime.ingpos.seguranca.Criptografia;
 import br.usp.ime.ingpos.services.CartaDeRecomendacaoService;
+import br.usp.ime.ingpos.services.UsuarioService;
+import br.usp.ime.ingpos.web.interceptors.Transactional;
 
 @Resource
 public class CadastroController
 {
+
+    private static final String DADOS_PESSOAIS = "dadosPessoais";
     private static final String TIPOS_ESTADO_CIVIL = "tiposEstadoCivil";
     private static final String TIPOS_CEDULA_IDENTIDADE = "tiposCedulaIdentidade";
-    private final UsuarioSessao usuarioSessao;
 
+    private final UsuarioSessao usuarioSessao;
     private final Result result;
-    private CartaDeRecomendacaoService cartaDeRecomendacaoService;
+    private final UsuarioService usuarioService;
+    private final CartaDeRecomendacaoService cartaDeRecomendacaoService;
+    
     public CadastroController(
         final Result result,
         final UsuarioSessao usuarioSessao,
-        final CartaDeRecomendacaoService cartaDeRecomendacaoService)
+        final UsuarioService usuarioService,
+        final CartaDeRecomendacaoService cartaDeRecomendacaoService )
     {
         this.result = result;
         this.usuarioSessao = usuarioSessao;
+        this.usuarioService = usuarioService;
         this.cartaDeRecomendacaoService = cartaDeRecomendacaoService;
     }
 
-    private void configurarResultDadosUsuario()
+    private void configurarResultDadosPessoais()
     {
+        result.include( DADOS_PESSOAIS, usuarioSessao.getUsuario().getDadosPessoais() );
         result.include( TIPOS_ESTADO_CIVIL, TipoEstadoCivil.getTiposEstadoCivil() );
         result.include( TIPOS_CEDULA_IDENTIDADE, TipoCedulaDeIdentidade.getTiposCedulaIdentidade() );
     }
-
+    
     @Get
-    @Path( "/cadastro/dadosUsuario" )
-    public void dadosUsuario()
+    @Path( "/cadastro/dadosPessoais" )
+    public void dadosPessoais()
     {
-        configurarResultDadosUsuario();
+        configurarResultDadosPessoais();
     }
 
     @Post
-    @Path( "/cadastro/dadosUsuario" )
-    public void dadosUsuario(
+    @Path( "/cadastro/dadosPessoais" )
+    @Transactional
+    public void dadosPessoais(
         DadosPessoais dadosPessoais )
     {
-        configurarResultDadosUsuario();
+        String cpfSomenteNumeros = dadosPessoais.getCpf().replaceAll( "\\.", "" );
+        cpfSomenteNumeros = cpfSomenteNumeros.replaceAll( "-", "" );
+        dadosPessoais.setCpf( cpfSomenteNumeros );       
         
-        
+        usuarioService.cadastrarDadosPessoais( usuarioSessao.getUsuario(), dadosPessoais );
+        result.forwardTo( IndexController.class ).index();
     }
 
     @Get
@@ -59,12 +71,14 @@ public class CadastroController
     public void dadosCurriculo()
     {
     }
-    
-    @Get @Post
+
+    @Get
+    @Post
     @Path( "/cadastro/solicitarRecomendacao" )
-    public void solicitarRecomendacao(CartaDeRecomendacao cartaDeRecomendacao)
+    public void solicitarRecomendacao(
+        CartaDeRecomendacao cartaDeRecomendacao )
     {
-        if(cartaDeRecomendacao != null) {
+        if( cartaDeRecomendacao != null ) {
             cartaDeRecomendacaoService.criar( cartaDeRecomendacao );
         }
     }

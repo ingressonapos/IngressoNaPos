@@ -14,7 +14,7 @@ public class IndexController {
 	
 	@Get
 	@Path("/")
-	public void index() {
+    public void index() {
 	}
 
 }

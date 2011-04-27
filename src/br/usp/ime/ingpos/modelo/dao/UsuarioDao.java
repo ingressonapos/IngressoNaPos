@@ -24,7 +24,7 @@ public class UsuarioDao
     public Usuario procurarPorEmail(
         final String email )
     {
-        final List<Usuario> usuarios = findByCriteria( Restrictions.eq( "dadosPessoais.email",
+        final List<Usuario> usuarios = findByCriteria( Restrictions.eq( "email",
             email ) );
 
         if( usuarios.size() > 1 ) {
@@ -43,8 +43,8 @@ public class UsuarioDao
         final String senha )
     {
         final List<Usuario> usuarios = findByCriteria( Restrictions.and(
-            Restrictions.eq( "dadosPessoais.email", email ),
-            Restrictions.eq( "dadosPessoais.senha", senha ) ) );
+            Restrictions.eq( "email", email ),
+            Restrictions.eq( "senha", senha ) ) );
 
         if( usuarios.size() > 1 ) {
             throw new IllegalStateException(

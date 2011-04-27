@@ -12,9 +12,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.Validations;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
-import br.usp.ime.ingpos.modelo.Email;
 import br.usp.ime.ingpos.modelo.RegistroNovoUsuario;
-import br.usp.ime.ingpos.services.EmailService;
 import br.usp.ime.ingpos.services.RegistroNovoUsuarioService;
 import br.usp.ime.ingpos.services.RegistroNovoUsuarioService.RegistroResultado;
 import br.usp.ime.ingpos.web.interceptors.Transactional;
@@ -98,18 +96,18 @@ public class RegistroController
                 validador.onErrorUsePageOf( getClass() ).registro();
 
                 break;
+            case ERRO_ENVIAR_EMAIL:
+                validador.checking( new Validations() {
+                    {
+                        that( false, "registro_titulo", "erro_enviar_email" );
+                    }
+                } );
+                validador.onErrorUsePageOf( getClass() ).registro();
+                break;
             default:
                 throw new IllegalStateException( "Resultado nao esperado: " + registroResultado );
         }
 
-        Email email = new Email();
-        email.setEmailRemetente( "ingressonaposxp@gmail.com" );
-        email.setAssunto( "Confirmação" );
-        email.setConteudo( "Por favor, clique no link para confirmar.<br /><br /><a href= 'http://localhost:8080/Ingresso-na-Pos/registro/ativacao/"
-            + registroNovoUsuario.getChaveAtivacao() + "'>clique aqui</a>" );
-        email.setEmailDestinatario( registroNovoUsuario.getEmail() );
-        EmailService eService = new EmailService( email );
-        eService.enviarEmail();
     }
 
     @Get

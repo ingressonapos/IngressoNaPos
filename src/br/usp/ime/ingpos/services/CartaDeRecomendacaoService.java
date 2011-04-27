@@ -16,26 +16,36 @@ public class CartaDeRecomendacaoService
 {
     private CartaDeRecomendacaoDAO cartaDeRecomendacaoDAO;
     private UsuarioSessao usuarioSessao;
-    
+
     public CartaDeRecomendacaoService(
-        final CartaDeRecomendacaoDAO cartaDeRecomendacaoDAO, final UsuarioSessao usuarioSessao )
+        final CartaDeRecomendacaoDAO cartaDeRecomendacaoDAO,
+        final UsuarioSessao usuarioSessao )
     {
         this.cartaDeRecomendacaoDAO = cartaDeRecomendacaoDAO;
         this.usuarioSessao = usuarioSessao;
     }
 
-    public void salvar(final CartaDeRecomendacao cartaDeRecomendacao) {
-        cartaDeRecomendacaoDAO.saveOrUpdate(cartaDeRecomendacao);
+    public void salvar(
+        final CartaDeRecomendacao cartaDeRecomendacao )
+    {
+        cartaDeRecomendacaoDAO.saveOrUpdate( cartaDeRecomendacao );
     }
 
-    public void criar(final CartaDeRecomendacao cartaDeRecomendacao) {
+    public void criar(
+        final CartaDeRecomendacao cartaDeRecomendacao )
+    {
         cartaDeRecomendacao.setUsuario( usuarioSessao.getUsuario() );
-        String hash = Criptografia.md5( cartaDeRecomendacao.getEmail() + usuarioSessao.getUsuario().getDadosPessoais().getEmail() );
+
+        String hash = Criptografia.md5( cartaDeRecomendacao.getEmail()
+            + usuarioSessao.getUsuario().getEmail() );
+
         cartaDeRecomendacao.setHash( hash );
-        cartaDeRecomendacaoDAO.save( cartaDeRecomendacao);
+        cartaDeRecomendacaoDAO.save( cartaDeRecomendacao );
     }
-    
-    public List<CartaDeRecomendacao> procurarPorHash(final String hash) {
+
+    public List<CartaDeRecomendacao> procurarPorHash(
+        final String hash )
+    {
         return cartaDeRecomendacaoDAO.procurarPorHash( hash );
     }
 }

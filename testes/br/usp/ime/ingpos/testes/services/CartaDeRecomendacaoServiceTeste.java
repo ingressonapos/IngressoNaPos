@@ -40,7 +40,7 @@ public class CartaDeRecomendacaoServiceTeste extends BancoDeDadosTestCase
             cartaDeRecomendacao.setEmail( "teste@teste.com" );
             cartaDeRecomendacaoService.criar( cartaDeRecomendacao );
             
-            String hash = Criptografia.md5( cartaDeRecomendacao.getEmail() + usuario.getDadosPessoais().getEmail() );
+            String hash = Criptografia.md5( cartaDeRecomendacao.getEmail() + usuario.getEmail() );
             List<CartaDeRecomendacao> cartasDeRecomendacao = cartaDeRecomendacaoService.procurarPorHash( hash );
             
             Assert.assertTrue( cartasDeRecomendacao.size() > 0 );
