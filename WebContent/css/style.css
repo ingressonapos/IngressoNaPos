@@ -21,6 +21,15 @@ h3{
 	font-size: 15px;
 }
 
+.button{
+	text-decoration: none;
+}
+
+.button:HOVER{
+	text-decoration: none;
+}
+
+
 fieldset{
 	margin: 15px 0px 15px 0px;
 }
