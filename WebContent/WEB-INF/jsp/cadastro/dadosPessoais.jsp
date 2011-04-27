@@ -87,10 +87,24 @@ jQuery(function($){
 				<div class="label"> <fmt:message key="cadastro_dados_pessoais_cpf" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.cpf" value="${dadosPessoais.cpf}" /></span>
 			</div>
+
 			<div class="row">
-				<div class="label"> <fmt:message key="cadastro_dados_pessoais_nacionalidade" /> </div>
-				<span class="formw"><input type="text" name="dadosPessoais.nacionalidade" value="${dadosPessoais.nacionalidade}"/></span>
-			</div>
+				<div class="label"> <fmt:message key="cadastro_dados_pessoais_pais_origem" /> </div>
+				<span class="formw">
+					<select name="dadosPessoais.nacionalidade" id="selectMultiple">
+						<c:forEach var="tipo" items="${tiposPais}"  >						
+							<c:choose> 
+								<c:when test="${tipo == dadosPessoais.nacionalidade}" > 
+							    	<option value="${tipo}" selected="${tipo}" >  <fmt:message key="${tipo.msgKey}" />  </option>
+							  	</c:when> 
+							  	<c:otherwise> 
+							    	<option value="${tipo}"  >  <fmt:message key="${tipo.msgKey}" />  </option> 
+							  	</c:otherwise> 
+							</c:choose>											
+						</c:forEach>
+					</select>
+				</span>
+			</div>		
 				
 		</fieldset>
 		<br>
@@ -144,10 +158,10 @@ jQuery(function($){
 			<div class="row">
 				<div class="label"> <fmt:message key="pais" /> </div>
 				<span class="formw">
-					<select name="dadosPessoais.estadoCivil" id="selectMultiple">
-						<c:forEach var="tipo" items="${tiposEstadoCivil}"  >						
+					<select name="dadosPessoais.enderecoPermanente.pais" id="selectMultiple">
+						<c:forEach var="tipo" items="${tiposPais}"  >						
 							<c:choose> 
-								<c:when test="${tipo == dadosPessoais.estadoCivil}" > 
+								<c:when test="${tipo == dadosPessoais.enderecoPermanente.pais}" > 
 							    	<option value="${tipo}" selected="${tipo}" >  <fmt:message key="${tipo.msgKey}" />  </option>
 							  	</c:when> 
 							  	<c:otherwise> 
@@ -196,6 +210,24 @@ jQuery(function($){
 			<div class="row">
 				<div class="label"> <fmt:message key="estado" /> </div>
 				<span class="formw"><input type="text" name="dadosPessoais.enderecoCorrespondencia.estado"/></span>
+			</div>
+			
+			<div class="row">
+				<div class="label"> <fmt:message key="pais" /> </div>
+				<span class="formw">
+					<select name="dadosPessoais.enderecoCorrespondencia.pais" id="selectMultiple">
+						<c:forEach var="tipo" items="${tiposPais}"  >						
+							<c:choose> 
+								<c:when test="${tipo == dadosPessoais.enderecoCorrespondencia.pais}" > 
+							    	<option value="${tipo}" selected="${tipo}" >  <fmt:message key="${tipo.msgKey}" />  </option>
+							  	</c:when> 
+							  	<c:otherwise> 
+							    	<option value="${tipo}"  >  <fmt:message key="${tipo.msgKey}" />  </option> 
+							  	</c:otherwise> 
+							</c:choose>											
+						</c:forEach>
+					</select>
+				</span>
 			</div>
 			
 			<div class="row">

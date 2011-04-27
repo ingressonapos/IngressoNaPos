@@ -10,6 +10,7 @@ import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.Endereco;
 import br.usp.ime.ingpos.modelo.TipoCedulaDeIdentidade;
 import br.usp.ime.ingpos.modelo.TipoEstadoCivil;
+import br.usp.ime.ingpos.modelo.TipoPais;
 import br.usp.ime.ingpos.modelo.Usuario;
 import br.usp.ime.ingpos.modelo.dao.UsuarioDao;
 import br.usp.ime.ingpos.services.UsuarioService;
@@ -64,7 +65,7 @@ public class UsuarioServiceTeste
         // dadosPessoais.setEmail( RegistroNovoUsuarioServiceTeste.EMAIL );
         // dadosPessoais.setSenha( RegistroNovoUsuarioServiceTeste.SENHA );
         dadosPessoais.setEstadoCivil( TipoEstadoCivil.SOLTEIRO );
-        dadosPessoais.setNacionalidade( "Brasileiro" );
+        dadosPessoais.setNacionalidade( TipoPais.ALBANIA );
         dadosPessoais.setDataDeNascimento( new Date( 88 / 12 / 10 ) );
         dadosPessoais.setNomeCompleto( "Maria Imaculada" );
         dadosPessoais.setCedulaDeIdentidade( cedulaDeIdentidade );
@@ -104,7 +105,7 @@ public class UsuarioServiceTeste
         cedulaDeIdentidade.setDigito( "2" );
 
         assertEquals( usuario.getDadosPessoais().getEstadoCivil(), TipoEstadoCivil.SOLTEIRO );
-        assertEquals( usuario.getDadosPessoais().getNacionalidade(), "Brasileiro" );
+        assertEquals( usuario.getDadosPessoais().getNacionalidade(), TipoPais.ALBANIA );
         assertEquals( usuario.getDadosPessoais().getDataDeNascimento(), new Date( 88 / 12 / 10 ) );
         assertEquals( usuario.getDadosPessoais().getNomeCompleto(), "Maria Imaculada" );
         assertEquals( usuario.getDadosPessoais().getCedulaDeIdentidade().getDigito(),
