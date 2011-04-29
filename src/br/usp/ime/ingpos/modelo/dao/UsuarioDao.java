@@ -24,11 +24,10 @@ public class UsuarioDao
     public Usuario procurarPorEmail(
         final String email )
     {
-        final List<Usuario> usuarios = findByCriteria( Restrictions.eq( "email",
-            email ) );
+        final List<Usuario> usuarios = findByCriteria( Restrictions.eq( "email", email ) );
 
         if( usuarios.size() > 1 ) {
-            throw new IllegalStateException( "Existem dois ou mais usu�rios com mesmo email" );
+            throw new IllegalStateException( "Existem dois ou mais usuários com mesmo email" );
         }
 
         if( usuarios.isEmpty() ) {
@@ -43,8 +42,7 @@ public class UsuarioDao
         final String senha )
     {
         final List<Usuario> usuarios = findByCriteria( Restrictions.and(
-            Restrictions.eq( "email", email ),
-            Restrictions.eq( "senha", senha ) ) );
+            Restrictions.eq( "email", email ), Restrictions.eq( "senha", senha ) ) );
 
         if( usuarios.size() > 1 ) {
             throw new IllegalStateException(
