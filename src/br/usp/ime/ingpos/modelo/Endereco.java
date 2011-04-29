@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -29,7 +31,8 @@ public class Endereco
     private String complemento;
 
     @Column
-    private String pais;
+    @Enumerated( EnumType.STRING )
+    private TipoPais pais;
 
     @Column
     private String estado;
@@ -45,6 +48,8 @@ public class Endereco
 
     public Endereco()
     {
+    	telefone = new Telefone();
+    	cep = new CEP();
     }
 
     public Long getEnderecoID()
@@ -107,13 +112,13 @@ public class Endereco
         this.estado = estado;
     }
 
-    public String getPais()
+    public TipoPais getPais()
     {
         return pais;
     }
 
     public void setPais(
-        String pais )
+        TipoPais pais )
     {
         this.pais = pais;
     }

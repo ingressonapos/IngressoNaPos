@@ -9,6 +9,7 @@ import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.TipoCedulaDeIdentidade;
 import br.usp.ime.ingpos.modelo.TipoEstadoCivil;
+import br.usp.ime.ingpos.modelo.TipoPais;
 import br.usp.ime.ingpos.services.CartaDeRecomendacaoService;
 import br.usp.ime.ingpos.services.UsuarioService;
 import br.usp.ime.ingpos.web.interceptors.Transactional;
@@ -20,6 +21,7 @@ public class CadastroController
     private static final String DADOS_PESSOAIS = "dadosPessoais";
     private static final String TIPOS_ESTADO_CIVIL = "tiposEstadoCivil";
     private static final String TIPOS_CEDULA_IDENTIDADE = "tiposCedulaIdentidade";
+    private static final String TIPOS_PAIS = "tiposPais";
 
     private final UsuarioSessao usuarioSessao;
     private final Result result;
@@ -43,6 +45,7 @@ public class CadastroController
         result.include( DADOS_PESSOAIS, usuarioSessao.getUsuario().getDadosPessoais() );
         result.include( TIPOS_ESTADO_CIVIL, TipoEstadoCivil.getTiposEstadoCivil() );
         result.include( TIPOS_CEDULA_IDENTIDADE, TipoCedulaDeIdentidade.getTiposCedulaIdentidade() );
+        result.include( TIPOS_PAIS, TipoPais.getTiposPais() );
     }
     
     @Get
