@@ -63,7 +63,35 @@ public class CadastroController
     {
         String cpfSomenteNumeros = dadosPessoais.getCpf().replaceAll( "\\.", "" );
         cpfSomenteNumeros = cpfSomenteNumeros.replaceAll( "-", "" );
-        dadosPessoais.setCpf( cpfSomenteNumeros );       
+        dadosPessoais.setCpf( cpfSomenteNumeros );
+        
+        String telefoneSomenteNumeros = dadosPessoais.getEnderecoPermanente().getTelefone().getCodTelefone();
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\(", " ");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\)", " ");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\+", "");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("-", "");
+        String[] telefoneSeparado = telefoneSomenteNumeros.split(" ");
+        dadosPessoais.getEnderecoPermanente().getTelefone().setCodPais(telefoneSeparado[0]);
+        dadosPessoais.getEnderecoPermanente().getTelefone().setCodDDD(telefoneSeparado[2]);
+        dadosPessoais.getEnderecoPermanente().getTelefone().setCodTelefone(telefoneSeparado[4]);
+        
+        telefoneSomenteNumeros = dadosPessoais.getEnderecoCorrespondencia().getTelefone().getCodTelefone();
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\(", " ");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\)", " ");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\+", "");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("-", "");
+        telefoneSeparado = telefoneSomenteNumeros.split(" ");
+        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodPais(telefoneSeparado[0]);
+        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodDDD(telefoneSeparado[2]);
+        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodTelefone(telefoneSeparado[4]);
+        
+        String cepSomenteNumeros = dadosPessoais.getEnderecoPermanente().getCep().getCep();
+        cepSomenteNumeros = cepSomenteNumeros.replaceAll("-", "");
+        dadosPessoais.getEnderecoPermanente().getCep().setCep(cepSomenteNumeros);
+        
+        cepSomenteNumeros = dadosPessoais.getEnderecoCorrespondencia().getCep().getCep();
+        cepSomenteNumeros = cepSomenteNumeros.replaceAll("-", "");
+        dadosPessoais.getEnderecoCorrespondencia().getCep().setCep(cepSomenteNumeros);
         
         usuarioService.cadastrarDadosPessoais( usuarioSessao.getUsuario(), dadosPessoais );
         result.forwardTo( IndexController.class ).index();
