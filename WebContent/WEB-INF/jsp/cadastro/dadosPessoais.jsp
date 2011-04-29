@@ -76,7 +76,7 @@ jQuery(function($){
 			<div class="row">
 				<div class="label"> <fmt:message key="cadastro_dados_pessoais_numero" /> </div>
 				<span class="formw">
-					<input type="text" class="numero_com_digito" name="dadosPessoais.cedulaDeIdentidade.numero" 
+					<input type="text" class="reduzido" name="dadosPessoais.cedulaDeIdentidade.numero" 
 						value="${dadosPessoais.cedulaDeIdentidade.numero}" />
 					<input type="text" class="digito" name="dadosPessoais.cedulaDeIdentidade.digito" 
 						value="${dadosPessoais.cedulaDeIdentidade.digito}"/>

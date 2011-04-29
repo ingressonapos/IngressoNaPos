@@ -16,13 +16,13 @@
 			<div class="row">
 				<span class="label">  <fmt:message key="cpf"/>  </span>
 				<span class="formw">
-					<input type="text" maxlength=50 name="registroNovoUsuario.cpf" value="${registroNovoUsuario.cpf}"  />
+					<input type="text" class=reduzido maxlength=50 name="registroNovoUsuario.cpf" value="${registroNovoUsuario.cpf}"  />
 				</span><br/>
 			</div>
 			<div class="row">
 				<span class="label"> <fmt:message key="login_email"/> </span>
 				<span class="formw">
-					<input type="text"  maxlength=50 name="registroNovoUsuario.email" value="${registroNovoUsuario.email}"/>
+					<input type="text" class=reduzido maxlength=50 name="registroNovoUsuario.email" value="${registroNovoUsuario.email}"/>
 				</span><br/>
 			</div>
 			<div class="row">
