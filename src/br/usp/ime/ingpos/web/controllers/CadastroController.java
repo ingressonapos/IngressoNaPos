@@ -6,6 +6,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
+import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.TipoCedulaDeIdentidade;
 import br.usp.ime.ingpos.modelo.TipoEstadoCivil;
@@ -101,6 +102,14 @@ public class CadastroController
     @Path( "/cadastro/dadosCurriculo" )
     public void dadosCurriculo()
     {
+    }
+    
+    @Post
+    @Path("/cadastro/dadosCurriculo")
+    public void dadosCurriculo(Curriculo curriculo){
+    	
+    	
+    	result.forwardTo(IndexController.class).index();
     }
 
     @Get
