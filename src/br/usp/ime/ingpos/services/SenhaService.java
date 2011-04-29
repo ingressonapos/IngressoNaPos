@@ -82,11 +82,9 @@ public class SenhaService
                 emailService.enviarEmail( construirEmail( email, senhaGerada ) );
                 return true;
             } else {
-                System.out.println( "Usuário com este e-mail não existe!" );
                 return false;
             }
         } catch( EmailException e ) {
-            /* resultado = RegistroResultado.ERRO_ENVIAR_EMAIL; */
             return false;
         }
     }

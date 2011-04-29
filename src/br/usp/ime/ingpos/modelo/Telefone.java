@@ -54,4 +54,9 @@ public class Telefone
     {
         this.codTelefone = codTelefone;
     }
+    
+    public String getNumeroCompleto()
+    {
+    	return this.codPais + this.codDDD + this.codTelefone;
+    }
 }
