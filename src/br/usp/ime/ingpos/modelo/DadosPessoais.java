@@ -25,7 +25,8 @@ public class DadosPessoais
     private String cpf;
 
     @Column
-    private String nacionalidade;
+    @Enumerated( EnumType.STRING )
+    private TipoPais nacionalidade;
 
     @Column
     private Date dataDeNascimento;
@@ -80,13 +81,13 @@ public class DadosPessoais
         this.cpf = cpf;
     }
 
-    public String getNacionalidade()
+    public TipoPais getNacionalidade()
     {
         return nacionalidade;
     }
 
     public void setNacionalidade(
-        String nacionalidade )
+        TipoPais nacionalidade )
     {
         this.nacionalidade = nacionalidade;
     }

@@ -8,7 +8,8 @@ public enum TipoCedulaDeIdentidade
 {
     RG,
     RNE,
-    PASSAPORTE;
+    PASSAPORTE,
+    OUTRO;
 
     private final String msgKey;
 

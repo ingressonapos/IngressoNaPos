@@ -99,4 +99,19 @@ public class Email
     {
         this.emailRemetente = emailRemetente;
     }
+    
+    public static Email construirEmail(
+         String conteudo,
+         String remetente,
+         String destinatario,
+         String assunto)
+    {
+        Email email = new Email();
+        email.setEmailRemetente( remetente );
+        email.setAssunto( assunto );
+        email.setConteudo( conteudo );
+        email.setEmailDestinatario( destinatario );
+
+        return email;
+    }
 }

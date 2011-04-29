@@ -9,6 +9,7 @@ import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.TipoCedulaDeIdentidade;
 import br.usp.ime.ingpos.modelo.TipoEstadoCivil;
+import br.usp.ime.ingpos.modelo.TipoPais;
 import br.usp.ime.ingpos.services.CartaDeRecomendacaoService;
 import br.usp.ime.ingpos.services.UsuarioService;
 import br.usp.ime.ingpos.web.interceptors.Transactional;
@@ -20,6 +21,7 @@ public class CadastroController
     private static final String DADOS_PESSOAIS = "dadosPessoais";
     private static final String TIPOS_ESTADO_CIVIL = "tiposEstadoCivil";
     private static final String TIPOS_CEDULA_IDENTIDADE = "tiposCedulaIdentidade";
+    private static final String TIPOS_PAIS = "tiposPais";
 
     private final UsuarioSessao usuarioSessao;
     private final Result result;
@@ -43,6 +45,7 @@ public class CadastroController
         result.include( DADOS_PESSOAIS, usuarioSessao.getUsuario().getDadosPessoais() );
         result.include( TIPOS_ESTADO_CIVIL, TipoEstadoCivil.getTiposEstadoCivil() );
         result.include( TIPOS_CEDULA_IDENTIDADE, TipoCedulaDeIdentidade.getTiposCedulaIdentidade() );
+        result.include( TIPOS_PAIS, TipoPais.getTiposPais() );
     }
     
     @Get
@@ -60,7 +63,35 @@ public class CadastroController
     {
         String cpfSomenteNumeros = dadosPessoais.getCpf().replaceAll( "\\.", "" );
         cpfSomenteNumeros = cpfSomenteNumeros.replaceAll( "-", "" );
-        dadosPessoais.setCpf( cpfSomenteNumeros );       
+        dadosPessoais.setCpf( cpfSomenteNumeros );
+        
+        String telefoneSomenteNumeros = dadosPessoais.getEnderecoPermanente().getTelefone().getCodTelefone();
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\(", " ");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\)", " ");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\+", "");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("-", "");
+        String[] telefoneSeparado = telefoneSomenteNumeros.split(" ");
+        dadosPessoais.getEnderecoPermanente().getTelefone().setCodPais(telefoneSeparado[0]);
+        dadosPessoais.getEnderecoPermanente().getTelefone().setCodDDD(telefoneSeparado[2]);
+        dadosPessoais.getEnderecoPermanente().getTelefone().setCodTelefone(telefoneSeparado[4]);
+        
+        telefoneSomenteNumeros = dadosPessoais.getEnderecoCorrespondencia().getTelefone().getCodTelefone();
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\(", " ");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\)", " ");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\+", "");
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("-", "");
+        telefoneSeparado = telefoneSomenteNumeros.split(" ");
+        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodPais(telefoneSeparado[0]);
+        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodDDD(telefoneSeparado[2]);
+        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodTelefone(telefoneSeparado[4]);
+        
+        String cepSomenteNumeros = dadosPessoais.getEnderecoPermanente().getCep().getCep();
+        cepSomenteNumeros = cepSomenteNumeros.replaceAll("-", "");
+        dadosPessoais.getEnderecoPermanente().getCep().setCep(cepSomenteNumeros);
+        
+        cepSomenteNumeros = dadosPessoais.getEnderecoCorrespondencia().getCep().getCep();
+        cepSomenteNumeros = cepSomenteNumeros.replaceAll("-", "");
+        dadosPessoais.getEnderecoCorrespondencia().getCep().setCep(cepSomenteNumeros);
         
         usuarioService.cadastrarDadosPessoais( usuarioSessao.getUsuario(), dadosPessoais );
         result.forwardTo( IndexController.class ).index();
@@ -79,7 +110,7 @@ public class CadastroController
         CartaDeRecomendacao cartaDeRecomendacao )
     {
         if( cartaDeRecomendacao != null ) {
-            cartaDeRecomendacaoService.criar( cartaDeRecomendacao );
+            cartaDeRecomendacaoService.solicitarRecomendacao( cartaDeRecomendacao );
         }
     }
 

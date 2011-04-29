@@ -29,13 +29,18 @@ h3{
 	text-decoration: none;
 }
 
+.form_cadastro{
+	margin: 10px auto;
+	width: 700px;
+}
 
 fieldset{
 	margin: 15px 0px 15px 0px;
+	padding-left: 20px;
 }
 
 input[type=text]{
-	width: 300px;
+	width: 500px;
 }
 
 input.data{
@@ -174,7 +179,7 @@ div.spacer {
   clear: both;
 }
 
-input.numero_com_digito{
+input.reduzido{
 	width: 242px;
 }
 input.digito{

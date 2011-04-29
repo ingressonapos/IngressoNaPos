@@ -54,26 +54,27 @@ $.ajaxSetup ({
 <div style="height: 768px; width: 100%">
 	<div class="column" style="width: 650px">
 		<div class="portlet">
-			<div class="portlet-header">Filtro</div>
+			<div class="portlet-header"><fmt:message key="filtro" /></div>
 			<div class="portlet-content">
 				<div id="empresaFiltro" style="overflow:auto;">
 				</div>
 			</div>
 		</div>
 		<div class="portlet">
-			<div class="portlet-header">Tarefas pendentes
+			<div class="portlet-header"><fmt:message key="cadastro_efetuar" />
 			</div>
 			<div class="portlet-content">
 				<div id="tarefasPendentes" style="overflow:auto; height: 150px">
-					<p><a href="<c:url value='/cadastro/dadosCurriculo'/>">Cadastre o seu Curr&iacute;culo</a></p><br />
-					<p><a href="<c:url value='/cadastro/dadosPessoais'/>">Cadastre seus Dados Pessoais</a></p>
+					<p><a href="<c:url value='/cadastro/dadosPessoais'/>"><fmt:message key="cadastro_dados_pessoais" /></a></p>
+					<p><a href="<c:url value='/cadastro/dadosCurriculo'/>"><fmt:message key="cadastro_curriculo" /></a></p>					
+					<p><a href="<c:url value='/cadastro/solicitarRecomendacao'/>"><fmt:message key="cadastro_carta_recomendacao" /></a></p>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="column" style="width: 230px; float: left;">
 		<div class="portlet">
-			<div class="portlet-header">Usuário</div>
+			<div class="portlet-header"><fmt:message key="usuario" /></div>
 			<div class="portlet-content">
 				<center>
 					<p> ${usuarioSessao.nome} - 
@@ -83,7 +84,7 @@ $.ajaxSetup ({
 			</div>		
 		</div>
 		<div class="portlet">
-			<div class="portlet-header">Calendário</div>
+			<div class="portlet-header"><fmt:message key="calendario" /></div>
 			<div class="portlet-content"><div id="calendario"></div></div>
 		</div>
 	</div>
