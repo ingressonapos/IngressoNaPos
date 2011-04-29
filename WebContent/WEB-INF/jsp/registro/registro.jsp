@@ -13,33 +13,35 @@
 		<fieldset>
 			<legend><b> <fmt:message key="registro_nova_inscricao" /> </b></legend>
 
-			<div class="row">
-				<span class="label">  <fmt:message key="cpf"/>  </span>
-				<span class="formw">
-					<input type="text" maxlength=50 name="registroNovoUsuario.cpf" value="${registroNovoUsuario.cpf}"  />
-				</span><br/>
-			</div>
-			<div class="row">
-				<span class="label"> <fmt:message key="login_email"/> </span>
-				<span class="formw">
-					<input type="text"  maxlength=50 name="registroNovoUsuario.email" value="${registroNovoUsuario.email}"/>
-				</span><br/>
-			</div>
-			<div class="row">
-				<span class="label"> <fmt:message key="login_senha"/>  </span>
-				<span class="formw"><input id="senha" type="password" name="registroNovoUsuario.senha"/> </span><br/>
-			</div>
+			<table>
+				<tr>
+				<td><span class="label">  <fmt:message key="cpf"/>  </span></td>
+				<td><span class="formw">
+					<input type="text" class=reduzido maxlength=50 name="registroNovoUsuario.cpf" value="${registroNovoUsuario.cpf}"  />
+				</span>
+				</td>
+			<tr>
+				<td><span class="label"> <fmt:message key="login_email"/> </span></td>
+				<td><span class="formw">
+					<input type="text" class=reduzido maxlength=50 name="registroNovoUsuario.email" value="${registroNovoUsuario.email}"/>
+				</span>
+				</td>
+			<tr>
+				<td><span class="label"> <fmt:message key="login_senha"/>  </span></td>
+				<td><span class="formw"><input id="senha" type="password" name="registroNovoUsuario.senha"/> </span></td>
+			</tr>
 			
-			<div class="row">
-				<span class="label"> <fmt:message key="login_confirmacao_senha"/> </span>
-				<span class="formw"> <input id="senha" type="password" name="registroNovoUsuario.confirmacaoSenha"/> </span><br/>
-			</div>
-			<br/>
-			<br/>
-			<div class="row">
-				<input type="submit" value="<fmt:message key='registro_confirmar'/>" />
-				<a href="<c:url value='/login'/>"><button><fmt:message key="voltar"/></button></a>						 
-			</div>
+			<tr>
+				<td><span class="label"> <fmt:message key="login_confirmacao_senha"/> </span></td>
+				<td><span class="formw"> <input id="senha" type="password" name="registroNovoUsuario.confirmacaoSenha"/> </span></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="<fmt:message key='registro_confirmar'/>" />
+					<a href="<c:url value='/login'/>"><button><fmt:message key="voltar"/></button></a>
+				</td>						 
+			</tr>
+			</table>
 		</fieldset>
 	</form>
 </div>

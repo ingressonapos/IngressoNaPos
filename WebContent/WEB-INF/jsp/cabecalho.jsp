@@ -6,8 +6,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><fmt:message key="system_title" />
-</title>
+<title><fmt:message key="system_title" /></title>
 <link href="<c:url value='/css/style.css'/>" rel="stylesheet"
 	type="text/css" />
 <link href="<c:url value='/css/layout.css'/>" rel="stylesheet"
@@ -17,7 +16,7 @@
 <link href="<c:url value='/css/erros.css'/>" rel="stylesheet"
 	type="text/css" />
 <script type="text/javascript" src="<c:url value='/'/>/js/jquery.js"></script>
-<!-- <script type="text/javascript" src="<c:url value='/'/>/js/erros.js"></script>  -->
+<script type="text/javascript" src="<c:url value='/'/>/js/erros.js"></script>
 </head>
 
 <%
@@ -29,26 +28,36 @@
 <body>
 	<center>
 		<!-- Este div sera fechado em rodape.jsp -->
-		
+
 		<div id="principal">
 			<!-- Este div sera fechado em rodape.jsp -->
 
 			<c:if test="${not empty errors}">
-			<div id=mascara></div>
+				<div id=mascara></div>
 				<div id="errors">
 					<c:forEach items="${errors}" var="error">
-						<div><fmt:message key="${error.category}" /> - ${error.message}</div>
-			</c:forEach>
-					<div class=ok><button>OK</button></div>
+						<div>
+							<fmt:message key="${error.category}" />
+							- ${error.message}
+						</div>
+					</c:forEach>
+					<div class=ok>
+						<button>OK</button>
+					</div>
 				</div>
 			</c:if>
 
 			<c:if test="${not empty messages}">
+				<div id=mascara></div>
 				<div id="messages">
 					<c:forEach items="${messages}" var="message">
-						<div><fmt:message key="${message}" /></div>
+						<div>
+							<fmt:message key="${message}" />
+						</div>
 					</c:forEach>
-					<div class=ok><button>OK</button></div>
+					<div class=ok>
+						<button>OK</button>
+					</div>
 				</div>
 			</c:if>
 
