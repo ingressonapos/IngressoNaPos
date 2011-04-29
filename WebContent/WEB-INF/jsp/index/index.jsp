@@ -48,14 +48,7 @@ $.ajaxSetup ({
 
 
 <div style="height: 768px; width: 100%">
-	<div class="column" style="width: 650px">
-		<div class="portlet">
-			<div class="portlet-header">Filtro</div>
-			<div class="portlet-content">
-				<div id="empresaFiltro" style="overflow:auto;">
-				</div>
-			</div>
-		</div>
+	<div class="column" style="width: 620px">
 		<div class="portlet">
 			<div class="portlet-header">Tarefas pendentes
 			</div>
@@ -67,7 +60,7 @@ $.ajaxSetup ({
 			</div>
 		</div>
 	</div>
-	<div class="column" style="width: 230px; float: left;">
+	<div class="column" style="width: 260px; float: left;">
 		<div class="portlet">
 			<div class="portlet-header">Usuário</div>
 			<div class="portlet-content">
