@@ -180,7 +180,7 @@ function copiaEndereco(){
 			</div>	
 					
 			<div class="row">
-				<div class="label"> <fmt:message key="pais" />
+				<div class="label"> <fmt:message key="cadastro_dados_pessoais_pais" />
 					<font color = "red">*</font> </div>
 				<span class="formw">
 					<select name="dadosPessoais.enderecoPermanente.pais" id="enderecoPermanentePais">
@@ -257,7 +257,7 @@ function copiaEndereco(){
 			</div>
 			
 			<div class="row">
-				<div class="label"> <fmt:message key="pais" /> </div>
+				<div class="label"> <fmt:message key="cadastro_dados_pessoais_pais" /> </div>
 				<span class="formw">
 					<select name="dadosPessoais.enderecoCorrespondencia.pais" id="enderecoCorrespondenciaPais">
 						<c:forEach var="tipo" items="${tiposPais}"  >						
@@ -275,7 +275,7 @@ function copiaEndereco(){
 			</div>
 			
 			<div class="row">
-				<div class="label"> <fmt:message key="telefone" /> </div>
+				<div class="label"> <fmt:message key="cadastro_dados_pessoais_telefone" /> </div>
 				<span class="formw"><input type="text" id="enderecoCorrespondenciaTelefone" name="dadosPessoais.enderecoCorrespondencia.telefone.codTelefone"
 					value="${dadosPessoais.enderecoCorrespondencia.telefone.numeroCompleto}" style="width: 200px"/>
 				</span>
