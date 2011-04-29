@@ -107,7 +107,7 @@ public class LoginController
         String email )
     {
         if( senhaService.enviarEmailSucedido( email ) ) {
-            result.include( "messages", "E-mail foi enviado com sucesso!" );
+            result.include( "messages", "email_sent" );
             result.redirectTo( getClass() ).forgot();
         } else {
             validador.checking( new Validations() {

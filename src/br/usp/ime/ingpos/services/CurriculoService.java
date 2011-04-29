@@ -28,4 +28,8 @@ public class CurriculoService
         }
         return usuarioSessao.getUsuario().getCurriculo();
     }
+    
+    public void cadastraCurriculo(Curriculo curriculo){
+    	curriculoDAO.saveOrUpdate(curriculo);
+    }
 }

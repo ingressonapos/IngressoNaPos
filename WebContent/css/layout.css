@@ -157,6 +157,21 @@ h1 {
 	color: red
 }
 
+#forgot {
+    font-family: geneva, arial;
+    width: 250px; 
+    margin: 0 auto; 
+    text-align: center;
+}
+
+#forgot #forgotEmail {
+	font-family: geneva, arial;
+    width: 200px; 
+    margin: 0 auto; 
+	text-align: left;
+>>>>>>> branch 'refs/heads/master' of https://lliw10@github.com/ingressonapos/IngressoNaPos.git
+}
+
 
 /*#########################################*/ 
 /* GRID*/
