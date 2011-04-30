@@ -50,19 +50,20 @@ $.ajaxSetup ({
 <div style="height: 768px; width: 100%">
 	<div class="column" style="width: 620px">
 		<div class="portlet">
-			<div class="portlet-header">Tarefas pendentes
+			<div class="portlet-header"> <fmt:message key="index_titulo_tarefas" />  
 			</div>
 			<div class="portlet-content">
 				<div id="tarefasPendentes" style="overflow:auto; height: 150px">
-					<p><a href="<c:url value='/cadastro/dadosCurriculo'/>">Cadastre o seu Curr&iacute;culo</a></p><br />
-					<p><a href="<c:url value='/cadastro/dadosPessoais'/>">Cadastre seus Dados Pessoais</a></p>
+					<p><a href="<c:url value='/cadastro/dadosPessoais'/>"> <fmt:message key="index_lnk_cadastro_dados_pessoais" /> </a></p>
+					<p><a href="<c:url value='/cadastro/dadosCurriculo'/>"> <fmt:message key="index_lnk_cadastro_curriculo" /> </a></p>
+					<p><a href="<c:url value='/cadastro/solicitarRecomendacao'/>"> <fmt:message key="index_lnk_cadastro_recomendacao" /> </a></p>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="column" style="width: 260px; float: left;">
 		<div class="portlet">
-			<div class="portlet-header">Usuário</div>
+			<div class="portlet-header"> <fmt:message key="index_titulo_usuario"/> </div>
 			<div class="portlet-content">
 				<center>
 					<p> ${usuarioSessao.nome} - 
@@ -72,7 +73,7 @@ $.ajaxSetup ({
 			</div>		
 		</div>
 		<div class="portlet">
-			<div class="portlet-header">Calendário</div>
+			<div class="portlet-header"> <fmt:message key="index_titulo_calendario"/></div>
 			<div class="portlet-content"><div id="calendario"></div></div>
 		</div>
 	</div>

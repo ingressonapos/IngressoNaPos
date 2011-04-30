@@ -28,7 +28,7 @@ public class DadosPessoais
     @Enumerated( EnumType.STRING )
     private TipoPais nacionalidade;
 
-    @Column
+    @Column    
     private Date dataDeNascimento;
 
     @Column

@@ -1,10 +1,14 @@
 package br.usp.ime.ingpos.modelo;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class CartaDeRecomendacao
@@ -21,6 +25,10 @@ public class CartaDeRecomendacao
 
     @Column( length = 50, unique = true, nullable = false )
     private String hash;
+
+    @Column
+    @Temporal( TemporalType.DATE )
+    private Date dataDeEnvio;
 
     @ManyToOne
     private Usuario usuario;
@@ -67,6 +75,17 @@ public class CartaDeRecomendacao
         String hash )
     {
         this.hash = hash;
+    }
+
+    public Date getDataDeEnvio()
+    {
+        return dataDeEnvio;
+    }
+
+    public void setDataDeEnvio(
+        final Date dataDeEnvio )
+    {
+        this.dataDeEnvio = dataDeEnvio;
     }
 
     public Usuario getUsuario()

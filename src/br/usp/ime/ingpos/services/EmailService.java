@@ -1,5 +1,7 @@
 package br.usp.ime.ingpos.services;
 
+import java.io.Serializable;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
@@ -19,7 +21,11 @@ import br.usp.ime.ingpos.modelo.Email;
 @Component
 @SessionScoped
 public class EmailService
+    implements
+        Serializable
 {
+    private static final long serialVersionUID = 7886620811055669211L;
+
     private static final String SMTP_PROTOCOL = "smtp";
 
     private final Session session;

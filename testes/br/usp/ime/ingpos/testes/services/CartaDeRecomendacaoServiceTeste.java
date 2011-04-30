@@ -70,10 +70,48 @@ public class CartaDeRecomendacaoServiceTeste
             }
 
         } catch( EmailException e ) {
-            // TODO Auto-generated catch block
+            assertTrue( false );
             e.printStackTrace();
-
         }
+    }
+
+    @Test
+    public void testProcurarTodasCartasDeRecomendacao()
+    {
+        try {
+            final UsuarioService usuarioService = new UsuarioService( new UsuarioDao(
+                getSessionCreator() ), new UsuarioSessao() );
+
+            final EmailService emailSevice = new EmailService(
+                EmailServiceTeste.construirSessionParaTeste() );
+
+            if( usuarioService.listaTodos().size() > 0 ) {
+
+                final Usuario usuario = usuarioService.listaTodos().get( 0 );
+                final UsuarioSessao usuarioSessao = new UsuarioSessao();
+                usuarioSessao.setUsuario( usuario );
+
+                final CartaDeRecomendacaoService cartaDeRecomendacaoService = new CartaDeRecomendacaoService(
+                    new CartaDeRecomendacaoDAO( getSessionCreator() ),
+                    usuarioSessao,
+                    emailSevice,
+                    null );
+
+                List<CartaDeRecomendacao> cartas = cartaDeRecomendacaoService.procurarPorUsuario( usuario );
+                assertNotNull( cartas );
+                assertNotNull( cartas.size() > 0 );
+                
+            }
+        } catch( EmailException e ) {
+            assertTrue( false );
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testProcurarCartasDeRecomendacaoPorUsuario()
+    {
+
     }
 
 }

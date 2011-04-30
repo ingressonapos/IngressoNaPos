@@ -1,5 +1,7 @@
 package br.usp.ime.ingpos.web.controllers;
 
+import java.util.List;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
@@ -28,7 +30,7 @@ public class CadastroController
     private final Result result;
     private final UsuarioService usuarioService;
     private final CartaDeRecomendacaoService cartaDeRecomendacaoService;
-    
+
     public CadastroController(
         final Result result,
         final UsuarioSessao usuarioSessao,
@@ -48,7 +50,7 @@ public class CadastroController
         result.include( TIPOS_CEDULA_IDENTIDADE, TipoCedulaDeIdentidade.getTiposCedulaIdentidade() );
         result.include( TIPOS_PAIS, TipoPais.getTiposPais() );
     }
-    
+
     @Get
     @Path( "/cadastro/dadosPessoais" )
     public void dadosPessoais()
@@ -65,35 +67,36 @@ public class CadastroController
         String cpfSomenteNumeros = dadosPessoais.getCpf().replaceAll( "\\.", "" );
         cpfSomenteNumeros = cpfSomenteNumeros.replaceAll( "-", "" );
         dadosPessoais.setCpf( cpfSomenteNumeros );
-        
+
         String telefoneSomenteNumeros = dadosPessoais.getEnderecoPermanente().getTelefone().getCodTelefone();
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\(", " ");
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\)", " ");
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\+", "");
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("-", "");
-        String[] telefoneSeparado = telefoneSomenteNumeros.split(" ");
-        dadosPessoais.getEnderecoPermanente().getTelefone().setCodPais(telefoneSeparado[0]);
-        dadosPessoais.getEnderecoPermanente().getTelefone().setCodDDD(telefoneSeparado[2]);
-        dadosPessoais.getEnderecoPermanente().getTelefone().setCodTelefone(telefoneSeparado[4]);
-        
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\(", " " );
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\)", " " );
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\+", "" );
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "-", "" );
+        String[] telefoneSeparado = telefoneSomenteNumeros.split( " " );
+        dadosPessoais.getEnderecoPermanente().getTelefone().setCodPais( telefoneSeparado[ 0 ] );
+        dadosPessoais.getEnderecoPermanente().getTelefone().setCodDDD( telefoneSeparado[ 2 ] );
+        dadosPessoais.getEnderecoPermanente().getTelefone().setCodTelefone( telefoneSeparado[ 4 ] );
+
         telefoneSomenteNumeros = dadosPessoais.getEnderecoCorrespondencia().getTelefone().getCodTelefone();
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\(", " ");
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\)", " ");
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("\\+", "");
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll("-", "");
-        telefoneSeparado = telefoneSomenteNumeros.split(" ");
-        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodPais(telefoneSeparado[0]);
-        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodDDD(telefoneSeparado[2]);
-        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodTelefone(telefoneSeparado[4]);
-        
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\(", " " );
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\)", " " );
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\+", "" );
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "-", "" );
+        telefoneSeparado = telefoneSomenteNumeros.split( " " );
+        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodPais( telefoneSeparado[ 0 ] );
+        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodDDD( telefoneSeparado[ 2 ] );
+        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodTelefone(
+            telefoneSeparado[ 4 ] );
+
         String cepSomenteNumeros = dadosPessoais.getEnderecoPermanente().getCep().getCep();
-        cepSomenteNumeros = cepSomenteNumeros.replaceAll("-", "");
-        dadosPessoais.getEnderecoPermanente().getCep().setCep(cepSomenteNumeros);
-        
+        cepSomenteNumeros = cepSomenteNumeros.replaceAll( "-", "" );
+        dadosPessoais.getEnderecoPermanente().getCep().setCep( cepSomenteNumeros );
+
         cepSomenteNumeros = dadosPessoais.getEnderecoCorrespondencia().getCep().getCep();
-        cepSomenteNumeros = cepSomenteNumeros.replaceAll("-", "");
-        dadosPessoais.getEnderecoCorrespondencia().getCep().setCep(cepSomenteNumeros);
-        
+        cepSomenteNumeros = cepSomenteNumeros.replaceAll( "-", "" );
+        dadosPessoais.getEnderecoCorrespondencia().getCep().setCep( cepSomenteNumeros );
+
         usuarioService.cadastrarDadosPessoais( usuarioSessao.getUsuario(), dadosPessoais );
         result.forwardTo( IndexController.class ).index();
     }
@@ -103,24 +106,30 @@ public class CadastroController
     public void dadosCurriculo()
     {
     }
-    
+
     @Post
-    @Path("/cadastro/dadosCurriculo")
-    public void dadosCurriculo(Curriculo curriculo){
-    	
-    	
-    	result.forwardTo(IndexController.class).index();
+    @Path( "/cadastro/dadosCurriculo" )
+    public void dadosCurriculo(
+        Curriculo curriculo )
+    {
+
+        result.forwardTo( IndexController.class ).index();
     }
 
     @Get
+    @Path( "/cadastro/solicitarRecomendacao" )
+    public void solicitarRecomendacao()
+    {
+        final List<CartaDeRecomendacao> cartasDeRecomendacao = cartaDeRecomendacaoService.procurarPorUsuario( usuarioSessao.getUsuario() );
+        result.include("cartasDeRecomendacao", cartasDeRecomendacao );
+    }
+
     @Post
     @Path( "/cadastro/solicitarRecomendacao" )
+    @Transactional
     public void solicitarRecomendacao(
         CartaDeRecomendacao cartaDeRecomendacao )
     {
-        if( cartaDeRecomendacao != null ) {
-            cartaDeRecomendacaoService.solicitarRecomendacao( cartaDeRecomendacao );
-        }
+        cartaDeRecomendacaoService.solicitarRecomendacao( cartaDeRecomendacao );
     }
-
 }

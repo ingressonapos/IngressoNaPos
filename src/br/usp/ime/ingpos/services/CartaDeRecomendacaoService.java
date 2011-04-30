@@ -1,11 +1,14 @@
 package br.usp.ime.ingpos.services;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
 import br.usp.ime.ingpos.modelo.Email;
+import br.usp.ime.ingpos.modelo.Usuario;
 import br.usp.ime.ingpos.modelo.dao.CartaDeRecomendacaoDAO;
 import br.usp.ime.ingpos.seguranca.Criptografia;
 import br.usp.ime.ingpos.web.controllers.UsuarioSessao;
@@ -31,7 +34,7 @@ public class CartaDeRecomendacaoService
         this.httpServletRequest = httpServletRequest;
     }
 
-    public void salvar(
+    public void salvarOuAtualizar(
         final CartaDeRecomendacao cartaDeRecomendacao )
     {
         cartaDeRecomendacaoDAO.saveOrUpdate( cartaDeRecomendacao );
@@ -65,6 +68,12 @@ public class CartaDeRecomendacaoService
         final String hash )
     {
         return cartaDeRecomendacaoDAO.procurarPorHash( hash );
+    }
+
+    public List<CartaDeRecomendacao> procurarPorUsuario(
+        final Usuario usuario )
+    {
+        return cartaDeRecomendacaoDAO.procurarPorUsuario( usuario );
     }
 
     private String construirConteudoCartaRecomendacao(

@@ -31,7 +31,7 @@ public class UsuarioTeste
         final String email = RegistroNovoUsuarioServiceTeste.EMAIL;
         final String senha = Criptografia.md5( RegistroNovoUsuarioServiceTeste.SENHA );
 
-        Usuario usuario = usuarioDao.findByEmailAndPassword( email, senha );
+        Usuario usuario = usuarioDao.procurarPorEmail( email );
         if( usuario == null ) {
             usuario = new Usuario();
             usuario.setEmail( email );
@@ -83,4 +83,5 @@ public class UsuarioTeste
 
         assertNotNull( usuarioDao.findByEmailAndPassword( email, Criptografia.md5( senha ) ) );
     }
+    
 }
