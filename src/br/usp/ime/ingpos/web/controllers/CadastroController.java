@@ -154,11 +154,12 @@ public class CadastroController
         result.forwardTo( CadastroController.class ).solicitarRecomendacao();
     }
 
-    @Post
-    @Path( "/cadastro/solicitarRecomendacao/{recomendacaoId}" )
-    public void solicitarRecomendacao(
-        final Integer recomendacaoId )
+    @Get
+    @Path( "/cadastro/reenviarRecomendacao/{cartaDeRecomendacao.cartaDeRecomendacaoID}" )
+    public void reenviarRecomendacao(
+        final CartaDeRecomendacao cartaDeRecomendacao )
     {
-        System.out.println( recomendacaoId );
+        cartaDeRecomendacaoService.reenviarRecomendacao( cartaDeRecomendacao );
+        result.forwardTo( CadastroController.class ).solicitarRecomendacao();
     }
 }

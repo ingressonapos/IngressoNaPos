@@ -39,72 +39,38 @@ public class CartaDeRecomendacaoServiceTeste
             final EmailService emailSevice = new EmailService(
                 EmailServiceTeste.construirSessionParaTeste() );
 
-            if( usuarioService.listaTodos().size() > 0 ) {
+            final Usuario usuario = usuarioService.procurarPorEmail( RegistroNovoUsuarioServiceTeste.EMAIL );
 
-                final Usuario usuario = usuarioService.listaTodos().get( 0 );
-                final UsuarioSessao usuarioSessao = new UsuarioSessao();
-                usuarioSessao.setUsuario( usuario );
+            assertNotNull( usuario );
 
-                final CartaDeRecomendacaoService cartaDeRecomendacaoService = new CartaDeRecomendacaoService(
-                    new CartaDeRecomendacaoDAO( getSessionCreator() ),
-                    usuarioSessao,
-                    emailSevice,
-                    null,
-                    new MockLocalization() );
+            final UsuarioSessao usuarioSessao = new UsuarioSessao();
+            usuarioSessao.setUsuario( usuario );
 
-                final CartaDeRecomendacao cartaDeRecomendacao = new CartaDeRecomendacao();
+            final CartaDeRecomendacaoService cartaDeRecomendacaoService = new CartaDeRecomendacaoService(
+                new CartaDeRecomendacaoDAO( getSessionCreator() ),
+                usuarioSessao,
+                emailSevice,
+                null,
+                new MockLocalization() );
 
-                cartaDeRecomendacao.setUsuario( usuario );
-                cartaDeRecomendacao.setNome( "Professor Alfredo" );
-                cartaDeRecomendacao.setEmail( "ingressonaposxp@gmail.com" );
-                cartaDeRecomendacaoService.solicitarRecomendacao( cartaDeRecomendacao );
+            final CartaDeRecomendacao cartaDeRecomendacao = new CartaDeRecomendacao();
 
-                String hash = Criptografia.md5( cartaDeRecomendacao.getEmail() + usuario.getEmail() );
-                CartaDeRecomendacao cartasDeRecomendacaoExistente = cartaDeRecomendacaoService.procurarPorHash( hash );
-                Assert.assertNotNull( cartasDeRecomendacaoExistente );
+            cartaDeRecomendacao.setUsuario( usuario );
+            cartaDeRecomendacao.setNome( "Professor Alfredo" );
+            cartaDeRecomendacao.setEmail( RegistroNovoUsuarioServiceTeste.EMAIL );
+            cartaDeRecomendacaoService.solicitarRecomendacao( cartaDeRecomendacao );
 
-                Assert.assertEquals( cartaDeRecomendacao.getEmail(),
-                    cartasDeRecomendacaoExistente.getEmail() );
-                Assert.assertEquals( cartaDeRecomendacao.getNome(),
-                    cartasDeRecomendacaoExistente.getNome() );
-                Assert.assertEquals( cartaDeRecomendacao.getUsuario(),
-                    cartasDeRecomendacaoExistente.getUsuario() );
-            }
+            String hash = Criptografia.md5( cartaDeRecomendacao.getEmail() + usuario.getEmail() );
+            CartaDeRecomendacao cartasDeRecomendacaoExistente = cartaDeRecomendacaoService.procurarPorHash( hash );
+            Assert.assertNotNull( cartasDeRecomendacaoExistente );
 
-        } catch( EmailException e ) {
-            assertTrue( false );
-            e.printStackTrace();
-        }
-    }
+            Assert.assertEquals( cartaDeRecomendacao.getEmail(),
+                cartasDeRecomendacaoExistente.getEmail() );
+            Assert.assertEquals( cartaDeRecomendacao.getNome(),
+                cartasDeRecomendacaoExistente.getNome() );
+            Assert.assertEquals( cartaDeRecomendacao.getUsuario(),
+                cartasDeRecomendacaoExistente.getUsuario() );
 
-    @Test
-    public void testProcurarTodasCartasDeRecomendacao()
-    {
-        try {
-            final UsuarioService usuarioService = new UsuarioService( new UsuarioDao(
-                getSessionCreator() ), new UsuarioSessao() );
-
-            final EmailService emailSevice = new EmailService(
-                EmailServiceTeste.construirSessionParaTeste() );
-
-            if( usuarioService.listaTodos().size() > 0 ) {
-
-                final Usuario usuario = usuarioService.listaTodos().get( 0 );
-                final UsuarioSessao usuarioSessao = new UsuarioSessao();
-                usuarioSessao.setUsuario( usuario );
-
-                final CartaDeRecomendacaoService cartaDeRecomendacaoService = new CartaDeRecomendacaoService(
-                    new CartaDeRecomendacaoDAO( getSessionCreator() ),
-                    usuarioSessao,
-                    emailSevice,
-                    null,
-                    new MockLocalization() );
-
-                List<CartaDeRecomendacao> cartas = cartaDeRecomendacaoService.procurarPorUsuario( usuario );
-                assertNotNull( cartas );
-                assertNotNull( cartas.size() > 0 );
-
-            }
         } catch( EmailException e ) {
             assertTrue( false );
             e.printStackTrace();
@@ -114,7 +80,71 @@ public class CartaDeRecomendacaoServiceTeste
     @Test
     public void testProcurarCartasDeRecomendacaoPorUsuario()
     {
+        try {
+            final UsuarioService usuarioService = new UsuarioService( new UsuarioDao(
+                getSessionCreator() ), new UsuarioSessao() );
 
+            final EmailService emailSevice = new EmailService(
+                EmailServiceTeste.construirSessionParaTeste() );
+
+            final Usuario usuario = usuarioService.procurarPorEmail( RegistroNovoUsuarioServiceTeste.EMAIL );
+
+            assertNotNull( usuario );
+
+            final UsuarioSessao usuarioSessao = new UsuarioSessao();
+            usuarioSessao.setUsuario( usuario );
+
+            final CartaDeRecomendacaoService cartaDeRecomendacaoService = new CartaDeRecomendacaoService(
+                new CartaDeRecomendacaoDAO( getSessionCreator() ),
+                usuarioSessao,
+                emailSevice,
+                null,
+                new MockLocalization() );
+
+            List<CartaDeRecomendacao> cartas = cartaDeRecomendacaoService.procurarPorUsuario( usuario );
+            assertNotNull( cartas );
+            assertNotNull( cartas.size() > 0 );
+
+        } catch( EmailException e ) {
+            assertTrue( false );
+            e.printStackTrace();
+        }
     }
 
+    @Test
+    public void testReenviarCartaDeRecomendacao()
+    {
+        try {
+            final UsuarioService usuarioService = new UsuarioService( new UsuarioDao(
+                getSessionCreator() ), new UsuarioSessao() );
+
+            final EmailService emailSevice = new EmailService(
+                EmailServiceTeste.construirSessionParaTeste() );
+
+            final Usuario usuario = usuarioService.procurarPorEmail( RegistroNovoUsuarioServiceTeste.EMAIL );
+            assertNotNull( usuario );
+
+            final UsuarioSessao usuarioSessao = new UsuarioSessao();
+            usuarioSessao.setUsuario( usuario );
+
+            final CartaDeRecomendacaoService cartaDeRecomendacaoService = new CartaDeRecomendacaoService(
+                new CartaDeRecomendacaoDAO( getSessionCreator() ),
+                usuarioSessao,
+                emailSevice,
+                null,
+                new MockLocalization() );
+
+            final List<CartaDeRecomendacao> cartas = cartaDeRecomendacaoService.procurarPorUsuario( usuario );
+            
+            assertNotNull( cartas );
+            assertTrue( cartas.size() > 0 );
+            
+            cartaDeRecomendacaoService.reenviarRecomendacao( cartas.get( 0 ) );
+                        
+
+        } catch( EmailException e ) {
+            assertTrue( false );
+            e.printStackTrace();
+        }
+    }
 }

@@ -133,7 +133,7 @@ $.ajaxSetup ({
 								<td> <fmt:formatDate value="${carta.dataDeEnvio}" pattern="dd/MM/yyyy - HH:mm"/> </td>
 								<td> 
 									<p>	
-										<a href="<c:url value='/cadastro/solicitarRecomendacao/${carta.cartaDeRecomendacaoID}'/>"> 
+										<a href="<c:url value='/cadastro/reenviarRecomendacao/${carta.cartaDeRecomendacaoID}'/>"> 
 											<fmt:message key="cadastro_recomendacao_lnk_reenviar" /> 
 										</a>
 									</p>

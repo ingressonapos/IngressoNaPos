@@ -50,16 +50,20 @@ public class CartaDeRecomendacaoService
         final CartaDeRecomendacao cartaDeRecomendacao )
     {
         try {
+            final String hash = Criptografia.md5( cartaDeRecomendacao.getEmail()
+                + usuarioSessao.getUsuario().getEmail() );
+
             cartaDeRecomendacao.setUsuario( usuarioSessao.getUsuario() );
             cartaDeRecomendacao.setDataDeEnvio( new Date() );
-            
-            String hash = Criptografia.md5( cartaDeRecomendacao.getEmail()
-                + usuarioSessao.getUsuario().getEmail() );
             cartaDeRecomendacao.setHash( hash );
 
-            final CartaDeRecomendacao cartaDeRecomendacaoExiste = cartaDeRecomendacaoDAO.procurarPorHash( hash );
-            if( cartaDeRecomendacaoExiste == null ) {
-                cartaDeRecomendacaoDAO.save( cartaDeRecomendacao );
+            final CartaDeRecomendacao cartaDeRecomendacaoExistente = cartaDeRecomendacaoDAO.procurarPorHash( hash );
+            if( cartaDeRecomendacaoExistente == null ) {
+                cartaDeRecomendacaoDAO.saveOrUpdate( cartaDeRecomendacao );
+            } else {
+                cartaDeRecomendacaoExistente.setNome( cartaDeRecomendacao.getNome() );
+                cartaDeRecomendacaoExistente.setDataDeEnvio( new Date() );
+                cartaDeRecomendacaoDAO.saveOrUpdate( cartaDeRecomendacaoExistente );
             }
 
             emailService.enviarEmail( Email.construirEmail(
@@ -70,6 +74,35 @@ public class CartaDeRecomendacaoService
             e.printStackTrace();
             throw new IllegalStateException( "Nao conseguiu enviar email" );
         }
+    }
+
+    public void reenviarRecomendacao(
+        CartaDeRecomendacao cartaDeRecomendacaoParamId )
+    {
+        try {
+            final CartaDeRecomendacao cartaDeRecomendacaoExistente = cartaDeRecomendacaoDAO.findById( cartaDeRecomendacaoParamId.getCartaDeRecomendacaoID() );
+
+            if( cartaDeRecomendacaoExistente == null ) {
+                // TODO: Erro
+                throw new IllegalStateException( "Recomendacao id="
+                    + cartaDeRecomendacaoParamId.getCartaDeRecomendacaoID() + " nao existe!" );
+
+            } else {
+                cartaDeRecomendacaoExistente.setDataDeEnvio( new Date() );
+
+                cartaDeRecomendacaoDAO.saveOrUpdate( cartaDeRecomendacaoExistente );
+
+                emailService.enviarEmail( Email.construirEmail(
+                    construirConteudoCartaRecomendacao( cartaDeRecomendacaoExistente ),
+                    usuarioSessao.getUsuario().getEmail(), cartaDeRecomendacaoExistente.getEmail(),
+                    localization.getMessage( "cadastro_recomendacao_email_msg_assunto" ) ) );
+
+            }
+        } catch( EmailException e ) {
+            e.printStackTrace();
+            throw new IllegalStateException( "Nao conseguiu enviar email" );
+        }
+
     }
 
     public CartaDeRecomendacao procurarPorHash(
@@ -122,4 +155,5 @@ public class CartaDeRecomendacaoService
 
         return urlRegistro;
     }
+
 }
