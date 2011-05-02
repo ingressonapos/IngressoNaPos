@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@ include file="../cabecalho.jsp"%>
+
 <link href="<c:url value='/'/>/css/jquery-ui.css" rel="stylesheet"
 	type="text/css" />
 <script type="text/javascript" src="<c:url value='/'/>/js/gdl.js"></script>
@@ -47,7 +48,7 @@ $.ajaxSetup ({
 </script>
 
 
-<div style="height: 768px; width: 100%">
+<div style="height: 500px; width: 100%">
 	<div class="column" style="width: 620px">
 		<div class="portlet">
 			<div class="portlet-header"> <fmt:message key="index_titulo_tarefas" />  

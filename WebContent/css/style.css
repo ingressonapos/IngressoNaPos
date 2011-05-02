@@ -1,95 +1,124 @@
 /* reset some stuff */
-h1,h2,h3,hr,ul,ins{margin:0px;padding:0px;border: 0px;text-decoration:none;}
+h1,h2,h3,hr,ul,ins {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	text-decoration: none;
+}
 
-html { overflow-y: scroll; }
+html {
+	overflow-y: scroll;
+}
 
 /* body stuff */
 body {
-	
 	background-image: url(../img/shadow.png);
 	background-color: #F3F3F3;
 	background-repeat: repeat-x;
-	font-family: 'Helvetica Neue',Helvetica,'Lucida Grande',Arial,Verdana,Sans-Serif;
+	font-family: 'Helvetica Neue', Helvetica, 'Lucida Grande', Arial,
+		Verdana, Sans-Serif;
 	color: #333;
 	cursor: default;
 }
 
-
-
-h3{
+h3 {
 	margin: 10px 5px 10px 5px;
 	font-size: 15px;
 }
 
-.button{
+.button {
 	text-decoration: none;
 }
 
-.button:HOVER{
+.button:HOVER {
 	text-decoration: none;
 }
 
-.form_cadastro{
+
+.form_cadastro {
 	margin: 10px auto;
 	width: 700px;
 }
 
-fieldset{
+#form_recomendacao {
+	height: 600px;
+	width: 100%;
+}
+
+.tabelaDiv {
+	height: 300px;
+	overflow: auto;
+}
+
+table.tabela {
+	width: 100%;
+}
+
+tabela th {
+	height:50px;	
+}
+
+tr.odd {
+	background: #FFFFCC;
+	border: 1px solid black;
+}
+
+tr.even {
+	background: #EEEEEE;
+	border: 1px solid black;
+}
+
+fieldset {
 	margin: 15px 0px 15px 0px;
 	padding-left: 20px;
 }
 
-input[type=text]{
+input[type=text] {
 	width: 500px;
 }
 
-input.data{
+input.data {
 	width: 100px;
 }
 
-input[type=radio]{
+input[type=radio] {
 	width: 15px;
 }
 
-
-
 /* CRIE UMA DIV DESSA CLASSE TODA VEZ QUE USAR UM FLOAT:LEFT DENTRO DE UMA DIV */
-.clear{
+.clear {
 	clear: both;
 }
 
 /* set some wrapper values */
-#wrapper{
+#wrapper {
 	width: 840px;
 	margin: 0 auto 0 auto;
 }
 
 /* stuff */
-#headnote{
+#headnote {
 	width: 700px;
 	padding: 60px 0px 60px 0px;
 	float: left;
 }
 
 /* set a nice big heading */
-#headnote h1{
+#headnote h1 {
 	color: #444;
 	font-size: 50px;
 	font-weight: 100;
 }
 
 /* a little smaller text */
-#headnote h2{
+#headnote h2 {
 	font-size: 18px;
 	font-weight: 100;
 	margin-top: -5px;
 	color: #9F14AC;
 }
 
-
-
-
-#headnote h3{
+#headnote h3 {
 	font-size: 14px;
 	font-weight: 100;
 	margin-top: -5px;
@@ -103,85 +132,77 @@ hr {
 	height: 2px;
 }
 
-
-#debug{
+#debug {
 	background-color: white;
-	
 	border: 1px solid #ccc;
-	
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 }
 
-#debug h1{
+#debug h1 {
 	font-size: 12px;
-	
 	padding: 7px;
-	
 	background-color: #e0e0e0;
 }
 
-#debug p{
+#debug p {
 	font-size: 11px;
-	
 	padding: 7px;
 }
 
-#licence{
+#licence {
 	margin-top: 40px;
 	margin-bottom: 20px;
-	
 	float: left;
 }
 
 #donate {
 	margin-top: 40px;
 	margin-bottom: 20px;
-	
 	float: right;
-	
 	font-size: 11px;
 	color: #999;
 }
 
-#donate a{
+#donate a {
 	color: #999;
 }
 
-#browser-support{
-	margin-top:40px;
+#browser-support {
+	margin-top: 40px;
 	font-size: 11px;
 	color: #999;
 }
 
-#heading{
+#heading {
 	background-image: url(../img/heading.png);
 	width: 640px;
 	height: 82px;
 }
 
 div.row {
-  clear: both;
-  padding-top: 5px;
+	clear: both;
+	padding-top: 5px;
 }
 
 div.label {
-  width: 100%;
-  text-align: left;
+	width: 100%;
+	text-align: left;
 }
 
 span.formw {
-  width: 250px;
-  text-align: left;
-} 
-  
-div.spacer {
-  clear: both;
+	width: 250px;
+	text-align: left;
 }
 
-input.reduzido{
+div.spacer {
+	clear: both;
+}
+
+input.reduzido {
 	width: 242px;
 }
-input.digito{
+
+input.digito {
 	width: 50px;
 }

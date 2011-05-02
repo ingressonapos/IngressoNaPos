@@ -28,7 +28,6 @@ public class RegistroController
     private final Result resultado;
     private final Validator validador;
     private final RegistroNovoUsuarioService registroNovoUsuarioService;
-
     private RegistroNovoUsuario registroNovoUsuarioRequisicao;
 
     public RegistroController(
@@ -132,6 +131,7 @@ public class RegistroController
                 throw new IllegalStateException( "Resultado nao esperado: " + registroResultado );
 
         }
+
         resultado.redirectTo( LoginController.class ).login();
     }
 

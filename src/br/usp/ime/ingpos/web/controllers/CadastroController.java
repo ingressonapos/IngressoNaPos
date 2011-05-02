@@ -2,11 +2,15 @@ package br.usp.ime.ingpos.web.controllers;
 
 import java.util.List;
 
+import org.springframework.util.StringUtils;
+
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.validator.Validations;
 import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
 import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
@@ -20,8 +24,8 @@ import br.usp.ime.ingpos.web.interceptors.Transactional;
 @Resource
 public class CadastroController
 {
-
     private static final String DADOS_PESSOAIS = "dadosPessoais";
+    private static final String CARTAS_DE_RECOMENDACAO = "cartasDeRecomendacao";
     private static final String TIPOS_ESTADO_CIVIL = "tiposEstadoCivil";
     private static final String TIPOS_CEDULA_IDENTIDADE = "tiposCedulaIdentidade";
     private static final String TIPOS_PAIS = "tiposPais";
@@ -30,14 +34,17 @@ public class CadastroController
     private final Result result;
     private final UsuarioService usuarioService;
     private final CartaDeRecomendacaoService cartaDeRecomendacaoService;
+    private final Validator validador;
 
     public CadastroController(
         final Result result,
+        final Validator validator,
         final UsuarioSessao usuarioSessao,
         final UsuarioService usuarioService,
         final CartaDeRecomendacaoService cartaDeRecomendacaoService )
     {
         this.result = result;
+        this.validador = validator;
         this.usuarioSessao = usuarioSessao;
         this.usuarioService = usuarioService;
         this.cartaDeRecomendacaoService = cartaDeRecomendacaoService;
@@ -121,15 +128,37 @@ public class CadastroController
     public void solicitarRecomendacao()
     {
         final List<CartaDeRecomendacao> cartasDeRecomendacao = cartaDeRecomendacaoService.procurarPorUsuario( usuarioSessao.getUsuario() );
-        result.include("cartasDeRecomendacao", cartasDeRecomendacao );
+        result.include( CARTAS_DE_RECOMENDACAO, cartasDeRecomendacao );
     }
 
     @Post
     @Path( "/cadastro/solicitarRecomendacao" )
     @Transactional
     public void solicitarRecomendacao(
-        CartaDeRecomendacao cartaDeRecomendacao )
+        final CartaDeRecomendacao cartaDeRecomendacao )
     {
+        validador.checking( new Validations() {
+            {
+                that( StringUtils.hasText( cartaDeRecomendacao.getNome() ),
+                    "cadastro_recomendacao_nome", "erro_carta_recomendacao_nome_vazio" );
+
+                that( StringUtils.hasText( cartaDeRecomendacao.getEmail() ),
+                    "cadastro_recomendacao_email", "erro_carta_recomendacao_email_vazio" );
+            }
+        } );
+
+        validador.onErrorForwardTo( getClass() ).solicitarRecomendacao();
+
         cartaDeRecomendacaoService.solicitarRecomendacao( cartaDeRecomendacao );
+
+        result.forwardTo( CadastroController.class ).solicitarRecomendacao();
+    }
+
+    @Post
+    @Path( "/cadastro/solicitarRecomendacao/{recomendacaoId}" )
+    public void solicitarRecomendacao(
+        final Integer recomendacaoId )
+    {
+        System.out.println( recomendacaoId );
     }
 }

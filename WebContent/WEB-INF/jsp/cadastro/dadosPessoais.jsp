@@ -285,7 +285,7 @@ function copiaEndereco(){
 		
 		<div>
 			<input type="submit" value="<fmt:message key='enviar'/>" />
-			<a class=button href="<c:url value='/'/>"><button><fmt:message key="voltar"/></button> </a>
+			<a class=button href="<c:url value='/'/>"><button type="button"><fmt:message key="voltar"/></button> </a>	
 		</div>
 	
 	</form>

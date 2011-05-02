@@ -38,7 +38,7 @@
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="<fmt:message key='registro_confirmar'/>" />
-					<a href="<c:url value='/login'/>"><button><fmt:message key="voltar"/></button></a>
+					<a class=button href="<c:url value='/login'/>"><button type="button"><fmt:message key="voltar"/></button> </a>
 				</td>						 
 			</tr>
 			</table>

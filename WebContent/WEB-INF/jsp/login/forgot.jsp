@@ -21,18 +21,16 @@
 						type="text"/>
 					</td>
 				</tr>
-				<tr>
-					<td></td>
-					<td><input id="submit" name="submit" type="submit"
-						value="<fmt:message key='enviar' />" /></td>
-				</tr>
 			</table>
+			<br/>
+			<div>
+				<input id="submit" name="submit" type="submit" value="<fmt:message key='enviar' />" />
+				<a class=button href="<c:url value='/login'/>"><button type="button"><fmt:message key="voltar"/></button> </a>
+			</div>
+			
 		</fieldset>
 	</form>
-	<p>
-		<b><a href="<c:url value='/login'/>"><fmt:message
-			key="senha_voltar_tela_inicial" /> </a></b>
-	</p>
+	
 </div>
 
 <%@ include file="../rodape.jsp"%>

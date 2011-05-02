@@ -27,7 +27,7 @@ public class CartaDeRecomendacao
     private String hash;
 
     @Column
-    @Temporal( TemporalType.DATE )
+    @Temporal( TemporalType.TIMESTAMP )
     private Date dataDeEnvio;
 
     @ManyToOne

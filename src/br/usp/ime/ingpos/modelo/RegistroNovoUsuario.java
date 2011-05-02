@@ -41,7 +41,7 @@ public class RegistroNovoUsuario
     private String confirmacaoSenha;
 
     @Column
-    @Temporal( TemporalType.TIME )
+    @Temporal( TemporalType.TIMESTAMP )
     private Date dataHoraRegistro;
 
     public RegistroNovoUsuario()

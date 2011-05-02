@@ -1,9 +1,11 @@
 package br.usp.ime.ingpos.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.caelum.vraptor.core.Localization;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
@@ -17,21 +19,25 @@ import br.usp.ime.ingpos.web.controllers.UsuarioSessao;
 @Component
 public class CartaDeRecomendacaoService
 {
+
     private final CartaDeRecomendacaoDAO cartaDeRecomendacaoDAO;
     private final UsuarioSessao usuarioSessao;
     private final EmailService emailService;
     private final HttpServletRequest httpServletRequest;
+    private final Localization localization;
 
     public CartaDeRecomendacaoService(
         final CartaDeRecomendacaoDAO cartaDeRecomendacaoDAO,
         final UsuarioSessao usuarioSessao,
         final EmailService emailService,
-        final HttpServletRequest httpServletRequest )
+        final HttpServletRequest httpServletRequest,
+        final Localization localization )
     {
         this.cartaDeRecomendacaoDAO = cartaDeRecomendacaoDAO;
         this.usuarioSessao = usuarioSessao;
         this.emailService = emailService;
         this.httpServletRequest = httpServletRequest;
+        this.localization = localization;
     }
 
     public void salvarOuAtualizar(
@@ -43,24 +49,26 @@ public class CartaDeRecomendacaoService
     public void solicitarRecomendacao(
         final CartaDeRecomendacao cartaDeRecomendacao )
     {
-        cartaDeRecomendacao.setUsuario( usuarioSessao.getUsuario() );
-
-        String hash = Criptografia.md5( cartaDeRecomendacao.getEmail()
-            + usuarioSessao.getUsuario().getEmail() );
-        cartaDeRecomendacao.setHash( hash );
-
-        final CartaDeRecomendacao cartaDeRecomendacaoExiste = cartaDeRecomendacaoDAO.procurarPorHash( hash );
-        if( cartaDeRecomendacaoExiste == null ) {
-            cartaDeRecomendacaoDAO.save( cartaDeRecomendacao );
-        }
-
         try {
+            cartaDeRecomendacao.setUsuario( usuarioSessao.getUsuario() );
+            cartaDeRecomendacao.setDataDeEnvio( new Date() );
+            
+            String hash = Criptografia.md5( cartaDeRecomendacao.getEmail()
+                + usuarioSessao.getUsuario().getEmail() );
+            cartaDeRecomendacao.setHash( hash );
+
+            final CartaDeRecomendacao cartaDeRecomendacaoExiste = cartaDeRecomendacaoDAO.procurarPorHash( hash );
+            if( cartaDeRecomendacaoExiste == null ) {
+                cartaDeRecomendacaoDAO.save( cartaDeRecomendacao );
+            }
+
             emailService.enviarEmail( Email.construirEmail(
                 construirConteudoCartaRecomendacao( cartaDeRecomendacao ),
                 usuarioSessao.getUsuario().getEmail(), cartaDeRecomendacao.getEmail(),
-                "Carta de Recomendação" ) );
+                localization.getMessage( "cadastro_recomendacao_email_msg_assunto" ) ) );
         } catch( EmailException e ) {
-
+            e.printStackTrace();
+            throw new IllegalStateException( "Nao conseguiu enviar email" );
         }
     }
 

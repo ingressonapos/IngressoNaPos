@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import br.com.caelum.vraptor.util.test.MockLocalization;
 import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
 import br.usp.ime.ingpos.modelo.Usuario;
 import br.usp.ime.ingpos.modelo.dao.CartaDeRecomendacaoDAO;
@@ -48,7 +49,8 @@ public class CartaDeRecomendacaoServiceTeste
                     new CartaDeRecomendacaoDAO( getSessionCreator() ),
                     usuarioSessao,
                     emailSevice,
-                    null );
+                    null,
+                    new MockLocalization() );
 
                 final CartaDeRecomendacao cartaDeRecomendacao = new CartaDeRecomendacao();
 
@@ -95,12 +97,13 @@ public class CartaDeRecomendacaoServiceTeste
                     new CartaDeRecomendacaoDAO( getSessionCreator() ),
                     usuarioSessao,
                     emailSevice,
-                    null );
+                    null,
+                    new MockLocalization() );
 
                 List<CartaDeRecomendacao> cartas = cartaDeRecomendacaoService.procurarPorUsuario( usuario );
                 assertNotNull( cartas );
                 assertNotNull( cartas.size() > 0 );
-                
+
             }
         } catch( EmailException e ) {
             assertTrue( false );
