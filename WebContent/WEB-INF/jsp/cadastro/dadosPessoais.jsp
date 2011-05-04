@@ -30,8 +30,13 @@ function copiaEndereco(){
 <center><h1> <fmt:message key="cadastro_dados_pessoais_titulo_cadastro" />  </h1></center>
 
 <div id="form" class="form_cadastro">
-				
+
 	<form action="<c:url value='/cadastro/dadosPessoais'/>" method="post">
+	
+		<br>
+		<div align="right">
+			<font color = "red"><fmt:message key="cadastro_dados_pessoais_asterisco_obrigatorio" /></font>
+		</div>
 	
 		<fieldset>
 			<legend><b> <fmt:message key="cadastro_dados_pessoais_titulo_dados_pessoais" /> </b></legend>
