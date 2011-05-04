@@ -101,8 +101,8 @@ $.ajaxSetup ({
 			</div>		
 		</fieldset>
 				
-		<div class="column" style="height: 300px;  width: 100%" >
-			<div class="portlet">
+		<div class="column" style="width: 100%" >
+			<div class="portlet" style="height: 300px;  width: 100%">
 				<div class="portlet-header"> 
 					<fmt:message key="cadastro_recomendacao_titulo_cartas_enviadas">
 					      <fmt:param value="${fn:length(cartasDeRecomendacao)}"/>					      
