@@ -59,4 +59,24 @@ public class RegistroNovoUsuarioDao
             return registroNovoUsuarioList.get( 0 );
         }
     }
+    
+    public RegistroNovoUsuario procurarPorEmailOuNome(
+            final String email,
+            final String nome )
+        {
+            final List<RegistroNovoUsuario> registroNovoUsuarioList = findByCriteria( Restrictions.or(
+                Restrictions.eq( "email", email ), Restrictions.eq( "nomeCompleto", nome ) ) );
+
+            if( registroNovoUsuarioList.size() > 1 ) {
+                throw new IllegalStateException(
+                    "Existem dois ou mais registros de novo usuário mesmo nome: " + nome + " ou email: "
+                        + email );
+            }
+
+            if( registroNovoUsuarioList.isEmpty() ) {
+                return null;
+            } else {
+                return registroNovoUsuarioList.get( 0 );
+            }
+        }
 }

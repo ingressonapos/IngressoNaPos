@@ -18,7 +18,7 @@ public class RegistroNovoUsuarioServiceTeste
     extends
         BancoDeDadosTestCase
 {
-    public static final String CPF = "40018166369";
+    public static final String NOME = "Alfredo Goldman";
     public static final String EMAIL = "ingressonaposxp@gmail.com";
     public static final String SENHA = "123456";
 
@@ -42,14 +42,14 @@ public class RegistroNovoUsuarioServiceTeste
 
             RegistroNovoUsuario registroNovoUsuario = new RegistroNovoUsuario();
             registroNovoUsuario.setEmail( EMAIL );
-            registroNovoUsuario.setCpf( CPF );
+            registroNovoUsuario.setNomeCompleto( NOME );
             registroNovoUsuario.setSenha( SENHA );
             registroNovoUsuario.setConfirmacaoSenha( SENHA );
 
             RegistroResultado resultado = registroNovoUsuarioService.registrar( registroNovoUsuario );
 
             assertTrue( resultado == RegistroResultado.SUCESSO
-                || resultado == RegistroResultado.CPF_OU_EMAIL_JA_EXISTENTE );
+                || resultado == RegistroResultado.NOME_OU_EMAIL_JA_EXISTENTE );
 
         } catch( EmailException e ) {
             e.printStackTrace();
@@ -71,8 +71,8 @@ public class RegistroNovoUsuarioServiceTeste
                 new EmailService( EmailServiceTeste.construirSessionParaTeste() ),
                 null );
 
-            final RegistroNovoUsuario registroNovoUsuario = registroNovoUsuarioDao.procurarPorEmailOuCpf(
-                EMAIL, CPF );
+            final RegistroNovoUsuario registroNovoUsuario = registroNovoUsuarioDao.procurarPorEmailOuNome(
+                EMAIL, NOME );
 
             assertNotNull( registroNovoUsuario );
 

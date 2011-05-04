@@ -26,7 +26,7 @@ public class RegistroNovoUsuario
     private Long registroNovoUsuarioID;
 
     @Column( unique = true )
-    private String cpf;
+    private String nomeCompleto;
 
     @Column( unique = true )
     private String email;
@@ -53,15 +53,15 @@ public class RegistroNovoUsuario
         return registroNovoUsuarioID;
     }
 
-    public String getCpf()
+    public String getNomeCompleto()
     {
-        return cpf;
+        return nomeCompleto;
     }
 
-    public void setCpf(
-        String cpf )
+    public void setNomeCompleto(
+        String nomeCompleto )
     {
-        this.cpf = cpf;
+        this.nomeCompleto = nomeCompleto;
     }
 
     public String getEmail()
