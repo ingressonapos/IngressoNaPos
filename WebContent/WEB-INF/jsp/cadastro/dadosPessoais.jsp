@@ -7,8 +7,8 @@
 jQuery(function($){
 	$("input.data").mask("99/99/9999",{placeholder:""});
   	$("input[name$='cpf']").mask("999.999.999-99",{placeholder:""});
-  	$("input[name$='codTelefone']").mask("+99 (99) 9999-9999",{placeholder:""});
-  	$("input[name$='telefone']").mask("+99 (99) 9999-9999",{placeholder:""});
+  	$("input[name$='codTelefone']").mask("(99) 9999-9999",{placeholder:""});
+  	$("input[name$='telefone']").mask("(99) 9999-9999",{placeholder:""});
   	$("input[name$='cep']").mask("99999-999",{placeholder:""});
 });
 
@@ -30,8 +30,13 @@ function copiaEndereco(){
 <center><h1> <fmt:message key="cadastro_dados_pessoais_titulo_cadastro" />  </h1></center>
 
 <div id="form" class="form_cadastro">
-				
+
 	<form action="<c:url value='/cadastro/dadosPessoais'/>" method="post">
+	
+		<br>
+		<div align="right">
+			<font color = "red"><fmt:message key="cadastro_dados_pessoais_asterisco_obrigatorio" /></font>
+		</div>
 	
 		<fieldset>
 			<legend><b> <fmt:message key="cadastro_dados_pessoais_titulo_dados_pessoais" /> </b></legend>
@@ -199,7 +204,7 @@ function copiaEndereco(){
 			</div>		
 				
 			<div class="row">
-				<div class="label"> <fmt:message key="cadastro_dados_pessoais_telefone_residencial" />
+				<div class="label"> <fmt:message key="cadastro_dados_pessoais_telefone_contato" />
 					<font color = "red">*</font> </div>
 				<span class="formw"><input type="text" id="enderecoPermanenteTelefone" name="dadosPessoais.enderecoPermanente.telefone.codTelefone"
 					value="${dadosPessoais.enderecoPermanente.telefone.numeroCompleto}" style="width: 200px" />

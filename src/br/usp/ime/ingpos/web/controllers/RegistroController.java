@@ -11,7 +11,6 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.Validations;
-import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.RegistroNovoUsuario;
 import br.usp.ime.ingpos.services.RegistroNovoUsuarioService;
 import br.usp.ime.ingpos.services.RegistroNovoUsuarioService.RegistroResultado;
@@ -63,8 +62,8 @@ public class RegistroController
         validador.checking( new Validations() {
             {
                 if( registroNovoUsuario != null ) {
-                    that( DadosPessoais.isValidoCpf( registroNovoUsuario.getCpf() ),
-                        "erro_tipo_cpf", "erro_cpf_invalido" );
+                    that( !registroNovoUsuario.getNomeCompleto().equals(""),
+                        "erro_tipo_nome", "erro_campo_nulo" );
 
                     that( registroNovoUsuario.getSenha().length() >= SENHA_MINIMO_CARACTERES,
                         "erro_tipo_senha", "erro_senha_tamanho_invalido", SENHA_MINIMO_CARACTERES );
@@ -86,10 +85,10 @@ public class RegistroController
                 resultado.include( "messages", "registro_sucesso" );
                 resultado.redirectTo( LoginController.class ).login();
                 break;
-            case CPF_OU_EMAIL_JA_EXISTENTE:
+            case NOME_OU_EMAIL_JA_EXISTENTE:
                 validador.checking( new Validations() {
                     {
-                        that( false, "registro_titulo", "registro_cpf_ou_email_ja_existem" );
+                        that( false, "registro_titulo", "registro_nome_ou_email_ja_existem" );
                     }
                 } );
                 validador.onErrorUsePageOf( getClass() ).registro();

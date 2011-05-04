@@ -15,9 +15,9 @@
 
 			<table>
 				<tr>
-				<td><span class="label">  <fmt:message key="cpf"/>  </span></td>
+				<td><span class="label">  <fmt:message key="nome_completo"/>  </span></td>
 				<td><span class="formw">
-					<input type="text" class=reduzido maxlength=50 name="registroNovoUsuario.cpf" value="${registroNovoUsuario.cpf}"  />
+					<input type="text" class=reduzido maxlength=50 name="registroNovoUsuario.nomeCompleto" value="${registroNovoUsuario.nomeCompleto}"  />
 				</span>
 				</td>
 			<tr>

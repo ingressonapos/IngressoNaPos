@@ -24,7 +24,7 @@ public class RegistroNovoUsuarioService
     public static enum RegistroResultado
     {
         SUCESSO,
-        CPF_OU_EMAIL_JA_EXISTENTE,
+        NOME_OU_EMAIL_JA_EXISTENTE,
         CHAVE_ATIVACAO_NAO_EXISTE,
         USUARIO_JA_ATIVADO,
         ERRO_ENVIAR_EMAIL
@@ -68,11 +68,11 @@ public class RegistroNovoUsuarioService
     {
         RegistroResultado resultado;
 
-        final RegistroNovoUsuario registroNovoUsuarioExistente = registroNovoUsuarioDAO.procurarPorEmailOuCpf(
-            registroNovoUsuario.getEmail(), registroNovoUsuario.getCpf() );
+        final RegistroNovoUsuario registroNovoUsuarioExistente = registroNovoUsuarioDAO.procurarPorEmailOuNome(
+            registroNovoUsuario.getEmail(), registroNovoUsuario.getNomeCompleto() );
 
         if( registroNovoUsuarioExistente != null ) {
-            resultado = RegistroResultado.CPF_OU_EMAIL_JA_EXISTENTE;
+            resultado = RegistroResultado.NOME_OU_EMAIL_JA_EXISTENTE;
         } else {
 
             try {
@@ -147,7 +147,7 @@ public class RegistroNovoUsuarioService
 
                 dadosPessoais.setEnderecoCorrespondencia( new Endereco() );
                 dadosPessoais.setEnderecoPermanente( new Endereco() );
-                dadosPessoais.setCpf( registroNovoUsuario.getCpf() );
+                dadosPessoais.setNomeCompleto( registroNovoUsuario.getNomeCompleto() );
                 novoUsuario.setAtivo( true );
                 novoUsuario.setCurriculo( new Curriculo() );
                 novoUsuario.setPerfil( perfil );
