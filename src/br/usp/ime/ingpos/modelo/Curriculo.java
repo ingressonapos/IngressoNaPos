@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Curriculo
@@ -25,17 +29,21 @@ public class Curriculo
 
     @OneToMany
     @JoinColumn( referencedColumnName = "curriculoID" )
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
     private Set<FormacaoAcademica> formacaoAcademica;
 
     @OneToMany
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
     @JoinColumn( referencedColumnName = "curriculoID" )
     private Set<Bolsa> bolsas;
 
     @OneToMany
     @JoinColumn( referencedColumnName = "curriculoID" )
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
     private Set<IniciacaoCientifica> iniciacaoCientifica;
 
-    @ManyToOne
+    @OneToOne
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
     private PosComp posComp;
 
     public Curriculo()

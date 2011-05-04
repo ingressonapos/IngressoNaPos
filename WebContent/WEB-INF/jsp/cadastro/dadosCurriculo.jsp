@@ -109,28 +109,28 @@ jQuery(function($){
 			
 			<div class="row">
 				<div class="label"><fmt:message key="cadastro_curriculo_descricao"/></div>
-				<span class="formw"><input type="text" name=""/></span>
+				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.tipoBolsa"/></span>
 			</div>
 			
 			<div class="row">
 				<div class="label"><fmt:message key="cadastro_curriculo_instituicao"/></div>
-				<span class="formw"><input type="text" name="" maxlength=100/></span>
+				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.nomeInstituicao" maxlength=100/></span>
 			</div>
 			
 			<div class="row">
 				<div class="label"><fmt:message key="cadastro_curriculo_data_inicio"/></div>
-				<span class="formw"><input type="text" class="data" name="curriculo.enderecoPermanente.numero" maxlength=100/></span>
+				<span class="formw"><input type="text" class="data" name="curriculo.bolsas.ingressoData" maxlength=100/></span>
 				
 			</div>
 			
 			<div class="row">
 				<div class="label"><fmt:message key="cadastro_curriculo_data_termino"/></div>
-				<span class="formw"><input type="text" class=data name="curriculo.enderecoPermanente.complemento" maxlength=50/></span>
+				<span class="formw"><input type="text" class=data name="curriculo.bolsas.terminoData" maxlength=50/></span>
 			</div>
 			
 			<div class="row">
 				<div class="label"><fmt:message key="cadastro_curriculo_titulo_obtido"/></div>
-				<span class="formw"><input type="text" name="curriculo.enderecoPermanente.complemento" maxlength=50/></span>
+				<span class="formw"><input type="text" name="curriculo.bolsa.complemento" maxlength=50/></span>
 			</div>
 			
 		</fieldset>

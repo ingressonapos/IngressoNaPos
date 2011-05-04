@@ -2,6 +2,7 @@ package br.usp.ime.ingpos.web.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
 import br.com.caelum.vraptor.Get;
@@ -18,6 +19,7 @@ import br.usp.ime.ingpos.modelo.TipoCedulaDeIdentidade;
 import br.usp.ime.ingpos.modelo.TipoEstadoCivil;
 import br.usp.ime.ingpos.modelo.TipoPais;
 import br.usp.ime.ingpos.services.CartaDeRecomendacaoService;
+import br.usp.ime.ingpos.services.CurriculoService;
 import br.usp.ime.ingpos.services.UsuarioService;
 import br.usp.ime.ingpos.web.interceptors.Transactional;
 
@@ -35,19 +37,22 @@ public class CadastroController
     private final UsuarioService usuarioService;
     private final CartaDeRecomendacaoService cartaDeRecomendacaoService;
     private final Validator validador;
+    private final CurriculoService curriculoService;
 
     public CadastroController(
         final Result result,
         final Validator validator,
         final UsuarioSessao usuarioSessao,
         final UsuarioService usuarioService,
-        final CartaDeRecomendacaoService cartaDeRecomendacaoService )
+        final CartaDeRecomendacaoService cartaDeRecomendacaoService,
+        final CurriculoService curriculoService)
     {
         this.result = result;
         this.validador = validator;
         this.usuarioSessao = usuarioSessao;
         this.usuarioService = usuarioService;
         this.cartaDeRecomendacaoService = cartaDeRecomendacaoService;
+        this.curriculoService = curriculoService;
     }
 
     private void configurarResultDadosPessoais()
@@ -112,14 +117,16 @@ public class CadastroController
     @Path( "/cadastro/dadosCurriculo" )
     public void dadosCurriculo()
     {
+    	System.out.println("ip");
     }
 
     @Post
     @Path( "/cadastro/dadosCurriculo" )
+    @Transactional
     public void dadosCurriculo(
         Curriculo curriculo )
     {
-
+    	curriculoService.cadastraCurriculo(curriculo);
         result.forwardTo( IndexController.class ).index();
     }
 

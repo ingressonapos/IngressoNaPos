@@ -1,6 +1,7 @@
 package br.usp.ime.ingpos.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Bolsa
@@ -27,10 +30,13 @@ public class Bolsa
     @Column( length = 50 )
     private String nomeInstituicao; // Instituicao que concedeu a bolsa
 
-    @Column
-    private Integer duracao;
+    @Temporal( TemporalType.DATE )
+    private Date ingressoData;
 
-    @Column( length = 50 )
+    @Temporal( TemporalType.DATE )
+    private Date terminoData;
+
+	@Column( length = 50 )
     private String nomeOrientador;
 
     @Column( length = 50 )
@@ -48,6 +54,22 @@ public class Bolsa
     {
         return bolsaId;
     }
+    
+    public Date getIngressoData() {
+		return ingressoData;
+	}
+
+	public void setIngressoData(Date ingressoData) {
+		this.ingressoData = ingressoData;
+	}
+
+	public Date getTerminoData() {
+		return terminoData;
+	}
+
+	public void setTerminoData(Date terminoData) {
+		this.terminoData = terminoData;
+	}
 
     public String getTipoBolsa()
     {
@@ -69,17 +91,6 @@ public class Bolsa
         String nomeInstituicao )
     {
         this.nomeInstituicao = nomeInstituicao;
-    }
-
-    public Integer getDuracao()
-    {
-        return duracao;
-    }
-
-    public void setDuracao(
-        Integer duracao )
-    {
-        this.duracao = duracao;
     }
 
     public String getNomeOrientador()
