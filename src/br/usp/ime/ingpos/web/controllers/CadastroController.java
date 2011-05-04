@@ -36,6 +36,7 @@ public class CadastroController
     private final UsuarioService usuarioService;
     private final CartaDeRecomendacaoService cartaDeRecomendacaoService;
     private final Validator validador;
+    private DadosPessoais dadosPessoais;
 
     public CadastroController(
         final Result result,
@@ -53,7 +54,10 @@ public class CadastroController
 
     private void configurarResultDadosPessoais()
     {
-        result.include( DADOS_PESSOAIS, usuarioSessao.getUsuario().getDadosPessoais() );
+    	if (this.dadosPessoais == null)
+    		result.include( DADOS_PESSOAIS, usuarioSessao.getUsuario().getDadosPessoais() );
+    	else
+    		result.include( DADOS_PESSOAIS, this.dadosPessoais );
         result.include( TIPOS_ESTADO_CIVIL, TipoEstadoCivil.getTiposEstadoCivil() );
         result.include( TIPOS_CEDULA_IDENTIDADE, TipoCedulaDeIdentidade.getTiposCedulaIdentidade() );
         result.include( TIPOS_PAIS, TipoPais.getTiposPais() );
@@ -120,7 +124,9 @@ public class CadastroController
             }
         } );
     	
+    	this.dadosPessoais = dadosPessoais; /*mantem os dados já preenchidos*/
         validador.onErrorForwardTo( getClass() ).dadosPessoais();
+        this.dadosPessoais = null;
     	
         if (dadosPessoais.getNacionalidade().equals(TipoPais.BRASIL))
         {
