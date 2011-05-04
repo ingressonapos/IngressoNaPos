@@ -76,25 +76,22 @@ public class CadastroController
         dadosPessoais.setCpf( cpfSomenteNumeros );
 
         String telefoneSomenteNumeros = dadosPessoais.getEnderecoPermanente().getTelefone().getCodTelefone();
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\(", " " );
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\(", "" );
         telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\)", " " );
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\+", "" );
         telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "-", "" );
         String[] telefoneSeparado = telefoneSomenteNumeros.split( " " );
-        dadosPessoais.getEnderecoPermanente().getTelefone().setCodPais( telefoneSeparado[ 0 ] );
-        dadosPessoais.getEnderecoPermanente().getTelefone().setCodDDD( telefoneSeparado[ 2 ] );
-        dadosPessoais.getEnderecoPermanente().getTelefone().setCodTelefone( telefoneSeparado[ 4 ] );
+        dadosPessoais.getEnderecoPermanente().getTelefone().setCodDDD( telefoneSeparado[ 0 ] );
+        dadosPessoais.getEnderecoPermanente().getTelefone().setCodTelefone(
+            telefoneSeparado[ 2 ] );
 
         telefoneSomenteNumeros = dadosPessoais.getEnderecoCorrespondencia().getTelefone().getCodTelefone();
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\(", " " );
+        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\(", "" );
         telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\)", " " );
-        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\+", "" );
         telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "-", "" );
         telefoneSeparado = telefoneSomenteNumeros.split( " " );
-        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodPais( telefoneSeparado[ 0 ] );
-        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodDDD( telefoneSeparado[ 2 ] );
+        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodDDD( telefoneSeparado[ 0 ] );
         dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodTelefone(
-            telefoneSeparado[ 4 ] );
+            telefoneSeparado[ 2 ] );
 
         String cepSomenteNumeros = dadosPessoais.getEnderecoPermanente().getCep().getCep();
         cepSomenteNumeros = cepSomenteNumeros.replaceAll( "-", "" );

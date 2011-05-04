@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Vector;
 
 public enum TipoPais {
+	BRASIL,
 	AFRICA_DO_SUL,
 	ALBANIA,
 	ALEMANHA,
@@ -27,7 +28,6 @@ public enum TipoPais {
 	BENIN,
 	BERMUDAS,
 	BOTSUANA,
-	BRASIL,
 	BRUNEI,
 	BULGARIA,
 	BURKINA_FASSO,
