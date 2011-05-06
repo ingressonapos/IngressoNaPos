@@ -71,8 +71,8 @@ public class RegistroNovoUsuarioServiceTeste
                 new EmailService( EmailServiceTeste.construirSessionParaTeste() ),
                 null );
 
-            final RegistroNovoUsuario registroNovoUsuario = registroNovoUsuarioDao.procurarPorEmailOuNome(
-                EMAIL, NOME );
+            final RegistroNovoUsuario registroNovoUsuario = registroNovoUsuarioDao.procurarPorEmail(
+                EMAIL );
 
             assertNotNull( registroNovoUsuario );
 

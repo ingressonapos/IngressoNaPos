@@ -60,16 +60,15 @@ public class RegistroNovoUsuarioDao
         }
     }
     
-    public RegistroNovoUsuario procurarPorEmailOuNome(
-            final String email,
-            final String nome )
+    public RegistroNovoUsuario procurarPorEmail(
+            final String email )
         {
-            final List<RegistroNovoUsuario> registroNovoUsuarioList = findByCriteria( Restrictions.or(
-                Restrictions.eq( "email", email ), Restrictions.eq( "nomeCompleto", nome ) ) );
+            final List<RegistroNovoUsuario> registroNovoUsuarioList = findByCriteria(
+                Restrictions.eq( "email", email ) );
 
             if( registroNovoUsuarioList.size() > 1 ) {
                 throw new IllegalStateException(
-                    "Existem dois ou mais registros de novo usuário mesmo nome: " + nome + " ou email: "
+                    "Existem dois ou mais registros de novo usuário mesmo email: "
                         + email );
             }
 

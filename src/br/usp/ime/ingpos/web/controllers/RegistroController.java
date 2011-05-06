@@ -88,7 +88,7 @@ public class RegistroController
             case NOME_OU_EMAIL_JA_EXISTENTE:
                 validador.checking( new Validations() {
                     {
-                        that( false, "registro_titulo", "registro_nome_ou_email_ja_existem" );
+                        that( false, "registro_titulo", "registro_email_ja_existe" );
                     }
                 } );
                 validador.onErrorUsePageOf( getClass() ).registro();

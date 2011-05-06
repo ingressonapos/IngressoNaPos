@@ -68,8 +68,8 @@ public class RegistroNovoUsuarioService
     {
         RegistroResultado resultado;
 
-        final RegistroNovoUsuario registroNovoUsuarioExistente = registroNovoUsuarioDAO.procurarPorEmailOuNome(
-            registroNovoUsuario.getEmail(), registroNovoUsuario.getNomeCompleto() );
+        final RegistroNovoUsuario registroNovoUsuarioExistente = registroNovoUsuarioDAO.procurarPorEmail(
+            registroNovoUsuario.getEmail() );
 
         if( registroNovoUsuarioExistente != null ) {
             resultado = RegistroResultado.NOME_OU_EMAIL_JA_EXISTENTE;
