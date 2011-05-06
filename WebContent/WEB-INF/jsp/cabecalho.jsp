@@ -15,8 +15,11 @@
 	type="text/css" />
 <link href="<c:url value='/css/erros.css'/>" rel="stylesheet"
 	type="text/css" />
+<link href="<c:url value='/css/menu_style.css'/>" rel="stylesheet"
+	type="text/css" />
 <script type="text/javascript" src="<c:url value='/'/>/js/jquery.js"></script>
 <script type="text/javascript" src="<c:url value='/'/>/js/erros.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>/js/jquery.maskedinput.js"></script>
 </head>
 
 <%
@@ -77,10 +80,6 @@
 					</tr>
 				</tbody>
 			</table>
-			<c:if test="${usuarioSessao.usuarioAutenticado}">
-				<fmt:message key="menu_msg_bem_vindo" />
-				<b>${usuarioSessao.nome}</b>
-			</c:if>
 
 
 			<div id="corpo">
