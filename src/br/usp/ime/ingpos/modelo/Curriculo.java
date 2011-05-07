@@ -30,7 +30,7 @@ public class Curriculo
     @OneToMany
     @JoinColumn( referencedColumnName = "curriculoID" )
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
-    private Set<FormacaoAcademica> formacaoAcademica;
+    private Set<FormacaoAcademica> formacoesAcademicas;
 
     @OneToMany
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
@@ -40,7 +40,7 @@ public class Curriculo
     @OneToMany
     @JoinColumn( referencedColumnName = "curriculoID" )
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
-    private Set<IniciacaoCientifica> iniciacaoCientifica;
+    private Set<IniciacaoCientifica> iniciacoesCientificas;
 
     @OneToOne
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
@@ -48,20 +48,20 @@ public class Curriculo
 
     public Curriculo()
     {
-        this.formacaoAcademica = new HashSet<FormacaoAcademica>();
+        this.formacoesAcademicas = new HashSet<FormacaoAcademica>();
         this.bolsas = new HashSet<Bolsa>();
-        this.iniciacaoCientifica = new HashSet<IniciacaoCientifica>();
+        this.iniciacoesCientificas = new HashSet<IniciacaoCientifica>();
     }
 
-    public Set<IniciacaoCientifica> getIniciacaoCientifica()
+    public Set<IniciacaoCientifica> getIniciacoesCientificas()
     {
-        return iniciacaoCientifica;
+        return iniciacoesCientificas;
     }
 
-    public void setIniciacaoCientifica(
+    public void setIniciacoesCientificas(
         Set<IniciacaoCientifica> iniciacaoCientifica )
     {
-        this.iniciacaoCientifica = iniciacaoCientifica;
+        this.iniciacoesCientificas = iniciacaoCientifica;
     }
 
     public PosComp getPosComp()
@@ -86,15 +86,15 @@ public class Curriculo
         this.curriculoID = curriculoID;
     }
 
-    public Set<FormacaoAcademica> getFormacaoAcademica()
+    public Set<FormacaoAcademica> getFormacoesAcademicas()
     {
-        return formacaoAcademica;
+        return formacoesAcademicas;
     }
 
-    public void setFormacaoAcademica(
+    public void setFormacoesAcademicas(
         Set<FormacaoAcademica> formacaoAcademica )
     {
-        this.formacaoAcademica = formacaoAcademica;
+        this.formacoesAcademicas = formacaoAcademica;
     }
 
     public Set<Bolsa> getBolsas()
@@ -107,4 +107,19 @@ public class Curriculo
     {
         this.bolsas = bolsas;
     }
+
+    public void adicionaFormacaoAcademica(
+        FormacaoAcademica formacaoAcademica )
+    {
+        this.formacoesAcademicas.add( formacaoAcademica );
+        
+    }
+
+    public void adicionaIniciacaoCientifica(
+        IniciacaoCientifica iniciacaoCientifica )
+    {
+        this.iniciacoesCientificas.add(iniciacaoCientifica);
+        
+    }
+
 }
