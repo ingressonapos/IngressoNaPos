@@ -1,10 +1,6 @@
 package br.usp.ime.ingpos.testes.services;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,9 +12,9 @@ import br.usp.ime.ingpos.modelo.IniciacaoCientifica;
 import br.usp.ime.ingpos.modelo.PosComp;
 import br.usp.ime.ingpos.modelo.Usuario;
 import br.usp.ime.ingpos.modelo.dao.CurriculoDAO;
+import br.usp.ime.ingpos.modelo.dao.FormacaoAcademicaDAO;
 import br.usp.ime.ingpos.modelo.dao.UsuarioDao;
 import br.usp.ime.ingpos.services.CurriculoService;
-import br.usp.ime.ingpos.services.UsuarioService;
 import br.usp.ime.ingpos.testes.BancoDeDadosTestCase;
 import br.usp.ime.ingpos.web.controllers.UsuarioSessao;
 
@@ -30,6 +26,7 @@ public class CurriculoServiceTeste extends BancoDeDadosTestCase {
 	private CurriculoDAO curriculoDAO;
 	private CurriculoService curriculoService;
 	private Curriculo curriculo;
+	private FormacaoAcademicaDAO formacaoAcademicaDAO;
 
 	public CurriculoServiceTeste(String name) {
 		super(name);
@@ -42,8 +39,9 @@ public class CurriculoServiceTeste extends BancoDeDadosTestCase {
 		usuario = usuarioDao.procurarPorEmail(RegistroNovoUsuarioServiceTeste.EMAIL);
 		usuarioSessao = new UsuarioSessao();
 		usuarioSessao.setUsuario(usuario);
+		formacaoAcademicaDAO = new FormacaoAcademicaDAO( getSessionCreator() );
 		curriculoDAO = new CurriculoDAO(getSessionCreator());
-		curriculoService = new CurriculoService(curriculoDAO,
+		curriculoService = new CurriculoService(curriculoDAO, formacaoAcademicaDAO,
 				usuarioSessao);
 		curriculo = new Curriculo();
 	};
@@ -91,35 +89,63 @@ public class CurriculoServiceTeste extends BancoDeDadosTestCase {
 	@Test
 	public void testeCadastrarCurriculo() {
 
-		Set<Bolsa> bolsas = new TreeSet<Bolsa>();
-		Set<FormacaoAcademica> formacaoAcademicas = new TreeSet<FormacaoAcademica>();
-		Set<IniciacaoCientifica> iniciacaoCientificas = new TreeSet<IniciacaoCientifica>();
-		Bolsa bolsa1 = instanciaBolsa();
-		FormacaoAcademica formacaoAcademica1 = instanciaFormacao();
-		IniciacaoCientifica iniciacaoCientifica1 = instanciaIniciacao();
-		PosComp posComp = instanciaPosComp();
-		bolsas.add(bolsa1);
-		formacaoAcademicas.add(formacaoAcademica1);
-		iniciacaoCientificas.add(iniciacaoCientifica1);
+//		Set<Bolsa> bolsas = new TreeSet<Bolsa>();
+//		Set<FormacaoAcademica> formacaoAcademicas = new TreeSet<FormacaoAcademica>();
+//		Set<IniciacaoCientifica> iniciacaoCientificas = new TreeSet<IniciacaoCientifica>();
+//		Bolsa bolsa1 = instanciaBolsa();
+//		FormacaoAcademica formacaoAcademica1 = instanciaFormacao();
+//		IniciacaoCientifica iniciacaoCientifica1 = instanciaIniciacao();
+//		PosComp posComp = instanciaPosComp();
+//		bolsas.add(bolsa1);
+//		formacaoAcademicas.add(formacaoAcademica1);
+//		iniciacaoCientificas.add(iniciacaoCientifica1);
+//
+//		curriculo.setBolsas(bolsas);
+//		curriculo.setPosComp(posComp);
+//		curriculo.setFormacaoAcademica(formacaoAcademicas);
+//		curriculo.setIniciacaoCientifica(iniciacaoCientificas);
+//		usuario.setCurriculo(curriculo);
+//
+//		curriculoService.cadastraCurriculo(curriculo);
 
-		curriculo.setBolsas(bolsas);
-		curriculo.setPosComp(posComp);
-		curriculo.setFormacaoAcademica(formacaoAcademicas);
-		curriculo.setIniciacaoCientifica(iniciacaoCientificas);
-		usuario.getCandidato().setCurriculo(curriculo);
-
-		curriculoService.cadastraCurriculo(curriculo);
-		
-		
-		
 
 	}
-
-	 @Test
-	 public void testeProcuraCurriculo(){
-		 assertEquals(usuarioSessao.getUsuario().getCandidato().getCurriculo(), curriculoService.procuraCurriculo(usuario));
 	
+	@Test
+	public void testeSalvaFormacaoAcademica(){
+	    FormacaoAcademica formacaoAcademica = instanciaFormacao();
+	    curriculoService.salvaFormacaoAcademica(usuario, usuarioDao, formacaoAcademica);
+	    
+	    assertTrue( usuario.getCurriculo().getFormacoesAcademicas().contains( formacaoAcademica ) );
+	}
 	
-	 }
+	@Test
+	public void testeProcuraFormacaoAcademicaNulo(){
+	    FormacaoAcademica formacaoAcademica = instanciaFormacao();
+	    assertEquals( null, curriculoService.procuraFormacao(usuario, usuarioDao, formacaoAcademica));
+	}
+	
+   @Test
+    public void testeRemoveFormacaoAcademica(){
+       FormacaoAcademica formacaoAcademica = instanciaFormacao();
+       curriculoService.removerFormacaoAcademica(usuario, usuarioDao, formacaoAcademica);
+       
+    }
+	
+	@Test
+	public void testeSalvaIniciacaoCientifica(){
+	    IniciacaoCientifica iniciacaoCientifica = instanciaIniciacao();
+	    curriculoService.salvaIniciacaoCientifica(usuario, usuarioDao, iniciacaoCientifica);
+	    
+	    assertTrue( usuario.getCurriculo().getIniciacoesCientificas().contains( iniciacaoCientifica ) );
+	}
+	
+	@Test
+	public void testeSalvaPosComp(){
+	    PosComp posComp = instanciaPosComp();
+	    curriculoService.salvaPosComp(usuario, usuarioDao, posComp);
+	    
+	    assertEquals( posComp, usuario.getCurriculo().getPosComp() );
+	}
 
 }

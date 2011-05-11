@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,9 +25,13 @@ public class FormacaoAcademica
     @Id
     @GeneratedValue
     private Long formacaoAcademicaId;
+    
+    @Column
+    @Enumerated( EnumType.STRING )
+    private TipoDeFormacao tipoDeFormacao;
 
     @Column( length = 50 )
-    private String Instituicao;
+    private String instituicao;
 
     @Temporal( TemporalType.DATE )
     private Date ingressoData;
@@ -57,13 +63,13 @@ public class FormacaoAcademica
 
     public String getInstituicao()
     {
-        return Instituicao;
+        return instituicao;
     }
 
     public void setInstituicao(
         String instituicao )
     {
-        Instituicao = instituicao;
+        this.instituicao = instituicao;
     }
 
     public Date getIngressoData()
@@ -130,5 +136,16 @@ public class FormacaoAcademica
         Curriculo curriculo )
     {
         this.curriculo = curriculo;
+    }
+
+    public void setTipoDeFormacao(
+        TipoDeFormacao tipoDeFormacao )
+    {
+        this.tipoDeFormacao = tipoDeFormacao;
+    }
+
+    public TipoDeFormacao getTipoDeFormacao()
+    {
+        return tipoDeFormacao;
     }
 }

@@ -1,8 +1,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script type="text/javascript" src="<c:url value='/'/>/js/jquery.js"></script>
-<script type="text/javascript" src="<c:url value='/'/>/js/jquery.maskedinput.js"></script>
+<%@ include file="../cabecalho.jsp"%>
 <script type="text/javascript">
 jQuery(function($){
 	$("input.data").mask("99/9999",{placeholder:""});
@@ -10,7 +9,7 @@ jQuery(function($){
 </script>
 
 
-<%@ include file="../cabecalho.jsp"%>
+
 
 
 <center><h1><fmt:message key="cadastro_curriculo_titulo_cadastro"/></h1></center>

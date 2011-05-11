@@ -2,6 +2,7 @@ package br.usp.ime.ingpos.modelo.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.caelum.vraptor.ioc.Component;
