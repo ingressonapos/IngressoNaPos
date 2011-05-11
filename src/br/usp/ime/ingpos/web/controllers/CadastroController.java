@@ -231,86 +231,46 @@ public class CadastroController
     @Get
 	@Path("/cadastro/dadosVaga")
 	public void dadosVaga() {
-		List<AreaDeInteresse> areasDeInteresseMaiorAfinidade = new ArrayList<AreaDeInteresse>();
-		areasDeInteresseMaiorAfinidade.add(new AreaDeInteresse(
+		List<AreaDeInteresse> areasDeInteresse = new ArrayList<AreaDeInteresse>();
+		areasDeInteresse.add(new AreaDeInteresse(
 				"banco_de_dados", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"bioinformatica", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"combinatoria", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"combinatoria_grafos", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"computacao_grafica", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"computacao_paralela", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"computacao_musical", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"criptografia", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"engenharia_software", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"inteligencia_artificial", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"linguagens_programacao", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"logica_computacional", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"otimizacao_combinatoria", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"otimizacao_continua", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"sistemas_distribuidos", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"sistemas_tutores_inteligentes", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"teoria_automatos", false));
+		areasDeInteresse.add(new AreaDeInteresse(
+				"visao_computacional", false));
 
-		// <input type="checkbox" name="areaInteresse1" value="banco_de_dados"
-		// id="banco_de_dados5" onclick="alteraCheckbox('banco_de_dados', 1)">
-		// <fmt:message key="banco_de_dados"/><br>
-		// <input type="checkbox" name="areaInteresse1" value="bioinformatica"
-		// id="bioinformatica1" onclick="alteraCheckbox('bioinformatica', 1)">
-		// <fmt:message key="bioinformatica"/><br>
-		// <input type="checkbox" name="areaInteresse1" value="combinatoria"
-		// id="combinatoria1" onclick="alteraCheckbox('combinatoria', 1)">
-		// <fmt:message key="combinatoria"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="combinatoria_grafos" id="combinatoria_grafos1"
-		// onclick="alteraCheckbox('combinatoria_grafos', 1)">
-		// <fmt:message key="combinatoria_grafos"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="computacao_grafica" id="computacao_grafica1"
-		// onclick="alteraCheckbox('computacao_grafica', 1)">
-		// <fmt:message key="computacao_grafica"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="computacao_paralela" id="computacao_paralela1"
-		// onclick="alteraCheckbox('computacao_paralela', 1)">
-		// <fmt:message key="computacao_paralela"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="computacao_musical" id="computacao_musical1"
-		// onclick="alteraCheckbox('computacao_musical', 1)">
-		// <fmt:message key="computacao_musical"/><br>
-		// <input type="checkbox" name="areaInteresse1" value="criptografia"
-		// id="criptografia1" onclick="alteraCheckbox('criptografia', 1)">
-		// <fmt:message key="criptografia"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="engenharia_software" id="engenharia_software1"
-		// onclick="alteraCheckbox('engenharia_software', 1)">
-		// <fmt:message key="engenharia_software"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="inteligencia_artificial" id="inteligencia_artificial1"
-		// onclick="alteraCheckbox('inteligencia_artificial', 1)">
-		// <fmt:message key="inteligencia_artificial"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="linguagens_programacao" id="linguagens_programacao1"
-		// onclick="alteraCheckbox('linguagens_programacao', 1)">
-		// <fmt:message key="linguagens_programacao"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="logica_computacional" id="logica_computacional1"
-		// onclick="alteraCheckbox('logica_computacional', 1)">
-		// <fmt:message key="logica_computacional"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="otimizacao_combinatoria" id="otimizacao_combinatoria1"
-		// onclick="alteraCheckbox('otimizacao_combinatoria', 1)">
-		// <fmt:message key="otimizacao_combinatoria"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="otimizacao_continua" id="otimizacao_continua1"
-		// onclick="alteraCheckbox('otimizacao_continua', 1)">
-		// <fmt:message key="otimizacao_continua"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="sistemas_distribuidos" id="sistemas_distribuidos1"
-		// onclick="alteraCheckbox('sistemas_distribuidos', 1)">
-		// <fmt:message key="sistemas_distribuidos"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="sistemas_tutores_inteligentes"
-		// id="sistemas_tutores_inteligentes1"
-		// onclick="alteraCheckbox('sistemas_tutores_inteligentes', 1)">
-		// <fmt:message key="sistemas_tutores_inteligentes"/><br>
-		// <input type="checkbox" name="areaInteresse1" value="teoria_automatos"
-		// id="teoria_automatos1"
-		// onclick="alteraCheckbox('teoria_automatos', 1)">
-		// <fmt:message key="teoria_automatos"/><br>
-		// <input type="checkbox" name="areaInteresse1"
-		// value="visao_computacional" id="visao_computacional1"
-		// onclick="alteraCheckbox('visao_computacional', 1)">
-		// <fmt:message key="visao_computacional"/><br>
-		// <input type="checkbox" name="areaInteresse1" value="nao_sei">
-		// <fmt:message key="cadastro_vaga_nao_sei"/><br>
-		// <input type="checkbox" name="areaInteresse1" value="outra">
-		// <fmt:message key="outra"/><br>
-
-		result.include("areasDeInteresseMaiorAfinidade",
-				areasDeInteresseMaiorAfinidade);
+		result.include("areasDeInteresse",
+				areasDeInteresse);
 	}
 
     //	@Post

@@ -19,6 +19,15 @@ function alteraCheckbox(id, num){
 		cb2.attr('disabled', false);
 	}
 }
+
+function habilitaTexto(num){
+	id = $("#"+"outra"+num);
+	
+	if (id.attr('disabled'))
+		id.attr('disabled', false);
+	else
+		id.attr('disabled', true);
+}
 </script>
 
 <center><h1><fmt:message key="cadastro_vaga_titulo"/></h1></center>
@@ -77,23 +86,36 @@ function alteraCheckbox(id, num){
 			 	<div>
 				 	<div class="label"><fmt:message key="cadastro_vaga_interesse_muita_afinidade"/></div>
 				 	<br>
-				 	<c:forEach  var="area" items="${areasDeInteresseMaiorAfinidade}" varStatus="rowCounter">
+				 	<c:forEach  var="area" items="${areasDeInteresse}" varStatus="rowCounter">
 						<input type="checkbox" name="${area.descricao}" value="${area.selecionada}" 
 							id="<c:out value="${area.descricao}"/>1" onclick="alteraCheckbox('<c:out value="${area.descricao}"/>', 1)">
 						<fmt:message key="${area.descricao}"/><br />
 					</c:forEach>
+					
+					<input type="checkbox" name="nao_sei_ainda_maior_afinidade" value="true">
+						<fmt:message key="cadastro_vaga_nao_sei"/><br />
+					<input type="checkbox" name="outra_maior_afinidade" value="true" onclick="habilitaTexto(1)">
+						<fmt:message key="cadastro_vaga_outra_qual"/>
+						<input type="text" name="outra_maior_afinidade_nome" id="outra1" disabled style="width: 60%">
+						<br />
 				</div>
 				<p>
 				<div>
 				 	<div class="label"><fmt:message key="cadastro_vaga_interesse_menor_afinidade"/></div>
 					<br>
-					<c:forEach  var="area" items="${areasDeInteresseMaiorAfinidade}" varStatus="rowCounter">
+					<c:forEach  var="area" items="${areasDeInteresse}" varStatus="rowCounter">
 						<input type="checkbox" name="${area.descricao}" value="${area.selecionada}" 
 							id="<c:out value="${area.descricao}"/>2" onclick="alteraCheckbox('<c:out value="${area.descricao}"/>', 2)">
 						<fmt:message key="${area.descricao}"/><br />
-					</c:forEach>					
+					</c:forEach>
 					
-					<br>
+					<input type="checkbox" name="nao_sei_ainda_menor_afinidade" value="true">
+						<fmt:message key="cadastro_vaga_nao_sei"/><br />
+					<input type="checkbox" name="outra_menor_afinidade" value="true" onclick="habilitaTexto(2)">
+						<fmt:message key="cadastro_vaga_outra_qual"/>
+						<input type="text" name="outra_menor_afinidade_nome" id="outra2" disabled style="width: 60%">
+						<br />
+					<br />
 				</div>
 			 
 		</fieldset>
