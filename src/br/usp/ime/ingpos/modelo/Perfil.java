@@ -14,7 +14,11 @@ public class Perfil
 {
     private static final long serialVersionUID = 5653550355165213879L;
 
+    public static final String DESCRICAO_ADMINISTRADOR = "Administrador";
     public static final String DESCRICAO_CANDIDATO = "Candidato";
+    public static final String DESCRICAO_COORDENADOR = "Coordenador";
+    public static final String DESCRICAO_PROFESSOR = "Professor";
+    public static final String DESCRICAO_SECRETARIO = "Secretario";
 
     @Id
     @GeneratedValue

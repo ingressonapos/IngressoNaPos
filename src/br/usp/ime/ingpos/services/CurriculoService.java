@@ -24,7 +24,7 @@ public class CurriculoService {
 	}
 
 	public Curriculo getCurriculo() {
-		return usuarioSessao.getUsuario().getCurriculo();
+		return usuarioSessao.getUsuario().getCandidato().getCurriculo();
 	}
 
 	public void cadastraCurriculo(Curriculo curriculo) {
@@ -32,6 +32,6 @@ public class CurriculoService {
 	}
 
 	public Curriculo procuraCurriculo(Usuario usuario){
-		return usuario.getCurriculo();
+		return usuario.getCandidato().getCurriculo();
 	}
 }

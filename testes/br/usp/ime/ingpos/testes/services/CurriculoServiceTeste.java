@@ -106,7 +106,7 @@ public class CurriculoServiceTeste extends BancoDeDadosTestCase {
 		curriculo.setPosComp(posComp);
 		curriculo.setFormacaoAcademica(formacaoAcademicas);
 		curriculo.setIniciacaoCientifica(iniciacaoCientificas);
-		usuario.setCurriculo(curriculo);
+		usuario.getCandidato().setCurriculo(curriculo);
 
 		curriculoService.cadastraCurriculo(curriculo);
 		
@@ -117,7 +117,7 @@ public class CurriculoServiceTeste extends BancoDeDadosTestCase {
 
 	 @Test
 	 public void testeProcuraCurriculo(){
-		 assertEquals(usuarioSessao.getUsuario().getCurriculo(), curriculoService.procuraCurriculo(usuario));
+		 assertEquals(usuarioSessao.getUsuario().getCandidato().getCurriculo(), curriculoService.procuraCurriculo(usuario));
 	
 	
 	 }
