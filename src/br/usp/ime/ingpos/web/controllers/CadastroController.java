@@ -91,11 +91,7 @@ public class CadastroController
                 	
                 	that( dadosPessoais.getDataDeNascimento() != null, "erro_tipo_data_nascimento", "erro_campo_nulo");
                 	
-                	that( !dadosPessoais.getCedulaDeIdentidade().getNumero().equals(""), "erro_tipo_identidade", "erro_campo_nulo");
-                	
-                    that( !dadosPessoais.getCpf().equals("") ,"erro_tipo_cpf", "erro_campo_nulo" );
-                    
-                    that( DadosPessoais.isValidoCpf( dadosPessoais.getCpf() ), "erro_tipo_cpf", "erro_cpf_invalido" );
+                	that( !dadosPessoais.getCedulaDeIdentidade().getNumero().equals(""), "erro_tipo_identidade", "erro_campo_nulo");                  
                     
                     that( !endereco.getLogradouro().equals(""), "erro_tipo_logradouro_permanente", "erro_campo_nulo" );
                     
@@ -110,12 +106,17 @@ public class CadastroController
                     that( !endereco.getTelefone().getCodTelefone().equals(""), "erro_tipo_telefone", "erro_campo_nulo" );
 
                     if (dadosPessoais.getNacionalidade().equals(TipoPais.BRASIL))
-                    {
+                    { 
+                    	that( !dadosPessoais.getCpf().equals("") ,"erro_tipo_cpf", "erro_campo_nulo" );
+                    
+                    	that( DadosPessoais.isValidoCpf( dadosPessoais.getCpf() ), "erro_tipo_cpf", "erro_cpf_invalido" );
+                    	
                     	that( !(endereco.getCep().getCep().length() != 9 && !endereco.getCep().getCep().equals("")),
                     			"erro_tipo_cep_permanente", "erro_cep_invalido" );
                     	
                     	that( !(endereco.getTelefone().getCodTelefone().length() != 14 && !endereco.getTelefone().equals("")),
                     			"erro_tipo_telefone", "erro_telefone_invalido");
+                    	
                     }
                     
                     endereco = dadosPessoais.getEnderecoCorrespondencia();
