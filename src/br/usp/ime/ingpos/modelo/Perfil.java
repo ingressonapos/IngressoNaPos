@@ -18,7 +18,7 @@ public class Perfil
     public static final String DESCRICAO_CANDIDATO = "Candidato";
     public static final String DESCRICAO_COORDENADOR = "Coordenador";
     public static final String DESCRICAO_PROFESSOR = "Professor";
-    public static final String DESCRICAO_SECRETARIO = "Secretario";
+    public static final String DESCRICAO_SECRETARIO = "Secretaria";
 
     @Id
     @GeneratedValue
