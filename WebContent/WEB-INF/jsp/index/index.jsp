@@ -58,6 +58,7 @@ $.ajaxSetup ({
 					<p><a href="<c:url value='/cadastro/dadosPessoais'/>"> <fmt:message key="index_lnk_cadastro_dados_pessoais" /> </a></p>
 					<p><a href="<c:url value='/cadastro/dadosCurriculo'/>"> <fmt:message key="index_lnk_cadastro_curriculo" /> </a></p>
 					<p><a href="<c:url value='/cadastro/solicitarRecomendacao'/>"> <fmt:message key="index_lnk_cadastro_recomendacao" /> </a></p>
+					<p><a href="<c:url value='/cadastro/dadosVaga'/>"> <fmt:message key="index_lnk_cadastro_vaga" /> </a></p>
 				</div>
 			</div>
 		</div>
