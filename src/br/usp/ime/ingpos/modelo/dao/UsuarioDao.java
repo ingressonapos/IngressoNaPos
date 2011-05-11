@@ -55,4 +55,8 @@ public class UsuarioDao
             return usuarios.get( 0 );
         }
     }
+    
+    public List<Usuario> procurarCandidatos() {
+        return findByCriteria( Restrictions.isNotNull( "candidato" ) );
+    }
 }

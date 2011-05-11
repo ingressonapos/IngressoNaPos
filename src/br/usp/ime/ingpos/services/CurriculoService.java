@@ -1,10 +1,7 @@
 package br.usp.ime.ingpos.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
-import br.com.caelum.vraptor.ioc.SessionScoped;
 import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.FormacaoAcademica;
 import br.usp.ime.ingpos.modelo.IniciacaoCientifica;
@@ -35,7 +32,7 @@ public class CurriculoService
 
     public Curriculo getCurriculo()
     {
-        return usuarioSessao.getUsuario().getCurriculo();
+        return usuarioSessao.getUsuario().getCandidato().getCurriculo();
     }
 
     public void cadastraCurriculo(
@@ -47,7 +44,7 @@ public class CurriculoService
     public Curriculo procuraCurriculo(
         Usuario usuario )
     {
-        return usuario.getCurriculo();
+        return usuario.getCandidato().getCurriculo();
     }
 
     public void salvaFormacaoAcademica(
@@ -55,9 +52,9 @@ public class CurriculoService
         UsuarioDao usuarioDao,
         FormacaoAcademica formacaoAcademica )
     {
-        if( usuario.getCurriculo() == null )
-            usuario.setCurriculo( new Curriculo() );
-        usuario.getCurriculo().adicionaFormacaoAcademica( formacaoAcademica );
+        if( usuario.getCandidato().getCurriculo() == null )
+            usuario.getCandidato().setCurriculo( new Curriculo() );
+        usuario.getCandidato().getCurriculo().adicionaFormacaoAcademica( formacaoAcademica );
         usuarioDao.saveOrUpdate( usuario );
 
     }
@@ -67,9 +64,9 @@ public class CurriculoService
         UsuarioDao usuarioDao,
         IniciacaoCientifica iniciacaoCientifica )
     {
-        if( usuario.getCurriculo() == null )
-            usuario.setCurriculo( new Curriculo() );
-        usuario.getCurriculo().adicionaIniciacaoCientifica( iniciacaoCientifica );
+        if( usuario.getCandidato().getCurriculo() == null )
+            usuario.getCandidato().setCurriculo( new Curriculo() );
+        usuario.getCandidato().getCurriculo().adicionaIniciacaoCientifica( iniciacaoCientifica );
         usuarioDao.saveOrUpdate( usuario );
 
     }
@@ -79,9 +76,9 @@ public class CurriculoService
         UsuarioDao usuarioDao,
         PosComp posComp )
     {
-        if( usuario.getCurriculo() == null )
-            usuario.setCurriculo( new Curriculo() );
-        usuario.getCurriculo().setPosComp( posComp );
+        if( usuario.getCandidato().getCurriculo() == null )
+            usuario.getCandidato().setCurriculo( new Curriculo() );
+        usuario.getCandidato().getCurriculo().setPosComp( posComp );
         usuarioDao.saveOrUpdate( usuario );
 
     }
@@ -92,7 +89,6 @@ public class CurriculoService
         FormacaoAcademica formacaoAcademica )
     {
 
-        
     }
 
     public FormacaoAcademica procuraFormacao(

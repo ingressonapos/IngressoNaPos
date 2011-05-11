@@ -5,8 +5,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
+
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
+import br.usp.ime.ingpos.modelo.Candidato;
 import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.Email;
@@ -14,6 +17,7 @@ import br.usp.ime.ingpos.modelo.Endereco;
 import br.usp.ime.ingpos.modelo.Perfil;
 import br.usp.ime.ingpos.modelo.RegistroNovoUsuario;
 import br.usp.ime.ingpos.modelo.Usuario;
+import br.usp.ime.ingpos.modelo.dao.CandidatoDAO;
 import br.usp.ime.ingpos.modelo.dao.PerfilDao;
 import br.usp.ime.ingpos.modelo.dao.RegistroNovoUsuarioDao;
 
@@ -33,18 +37,21 @@ public class RegistroNovoUsuarioService
     private final RegistroNovoUsuarioDao registroNovoUsuarioDAO;
     private final UsuarioService usuarioService;
     private final PerfilDao perfilDao;
+    private final CandidatoDAO candidatoDAO;
     private final EmailService emailService;
     private final HttpServletRequest httpServletRequest;
 
     public RegistroNovoUsuarioService(
         final RegistroNovoUsuarioDao registroNovoUsuarioDAO,
         final PerfilDao perfilDao,
+        final CandidatoDAO candidatoDAO,
         final UsuarioService usuarioService,
         final EmailService emailService,
         final HttpServletRequest httpServletRequest )
     {
         this.registroNovoUsuarioDAO = registroNovoUsuarioDAO;
         this.perfilDao = perfilDao;
+        this.candidatoDAO = candidatoDAO;
         this.usuarioService = usuarioService;
         this.emailService = emailService;
         this.httpServletRequest = httpServletRequest;
@@ -149,9 +156,11 @@ public class RegistroNovoUsuarioService
                 dadosPessoais.setEnderecoPermanente( new Endereco() );
                 dadosPessoais.setNomeCompleto( registroNovoUsuario.getNomeCompleto() );
                 novoUsuario.setAtivo( true );
-                novoUsuario.setCurriculo( new Curriculo() );
+                Candidato candidato = new Candidato();
+                candidatoDAO.save( candidato );
+                novoUsuario.setCandidato( candidato );
+                novoUsuario.getCandidato().setCurriculo( new Curriculo() );
                 novoUsuario.setPerfil( perfil );
-
                 usuarioService.salvar( novoUsuario );
 
                 resultado = RegistroResultado.SUCESSO;
