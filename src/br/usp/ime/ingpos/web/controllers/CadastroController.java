@@ -93,44 +93,38 @@ public class CadastroController
                 	
                 	that( !dadosPessoais.getCedulaDeIdentidade().getNumero().equals(""), "erro_tipo_identidade", "erro_campo_nulo");
                 	
-                    that( dadosPessoais.getCpf().equals("") || DadosPessoais.isValidoCpf( dadosPessoais.getCpf() ),
-                        "erro_tipo_cpf", "erro_cpf_invalido" );
+                    that( !dadosPessoais.getCpf().equals("") ,"erro_tipo_cpf", "erro_campo_nulo" );
                     
-                    that( endereco.getLogradouro().equals(""), "erro_tipo_logradouro_permanente", "erro_campo_nulo" );
+                    that( DadosPessoais.isValidoCpf( dadosPessoais.getCpf() ), "erro_tipo_cpf", "erro_cpf_invalido" );
                     
-                    that( endereco.getNumero().equals(""), "erro_tipo_numero_permanente", "erro_campo_nulo" );
+                    that( !endereco.getLogradouro().equals(""), "erro_tipo_logradouro_permanente", "erro_campo_nulo" );
                     
-                    that( endereco.getCep().getCep().equals(""), "erro_tipo_cep_permanente", "erro_campo_nulo" );
+                    that( !endereco.getNumero().equals(""), "erro_tipo_numero_permanente", "erro_campo_nulo" );
                     
-                    that( endereco.getCidade().equals(""), "erro_tipo_cidade_permanente", "erro_campo_nulo" );
+                    that( !endereco.getCep().getCep().equals(""), "erro_tipo_cep_permanente", "erro_campo_nulo" );
                     
-                    that( endereco.getEstado().equals(""), "erro_tipo_estado_permanente", "erro_campo_nulo" );
+                    that( !endereco.getCidade().equals(""), "erro_tipo_cidade_permanente", "erro_campo_nulo" );
                     
-                    that( endereco.getTelefone().getCodTelefone().equals(""), "erro_tipo_telefone", "erro_campo_nulo" );
+                    that( !endereco.getEstado().equals(""), "erro_tipo_estado_permanente", "erro_campo_nulo" );
+                    
+                    that( !endereco.getTelefone().getCodTelefone().equals(""), "erro_tipo_telefone", "erro_campo_nulo" );
 
                     if (dadosPessoais.getNacionalidade().equals(TipoPais.BRASIL))
                     {
-                    	that( endereco.getCep().getCep().length() != 9 && !endereco.getCep().getCep().equals(""),
+                    	that( !(endereco.getCep().getCep().length() != 9 && !endereco.getCep().getCep().equals("")),
                     			"erro_tipo_cep_permanente", "erro_cep_invalido" );
                     	
-                    	that( endereco.getTelefone().getCodTelefone().length() != 14 && !endereco.getTelefone().equals(""),
+                    	that( !(endereco.getTelefone().getCodTelefone().length() != 14 && !endereco.getTelefone().equals("")),
                     			"erro_tipo_telefone", "erro_telefone_invalido");
                     }
                     
                     endereco = dadosPessoais.getEnderecoCorrespondencia();
                     
-                    if (!endereco.getCep().getCep().equals(""))
-                    	that( endereco.getCep().getCep().length() != 9,
-                    			"erro_tipo_cep_correspondencia", "erro_cep_invalido" );
-                    
-                    if (!endereco.getTelefone().getCodTelefone().equals(""))
-                    	that( endereco.getTelefone().getCodTelefone().length() != 14,
-                    			"erro_tipo_telefone_correspondencia", "erro_telefone_invalido");
                 }
             }
         } );
     	
-    	this.dadosPessoais = dadosPessoais; /*mantem os dados já preenchidos*/
+    	this.dadosPessoais = dadosPessoais; //mantem os dados já preenchidos
         validador.onErrorForwardTo( getClass() ).dadosPessoais();
         this.dadosPessoais = null;
     	
@@ -149,14 +143,17 @@ public class CadastroController
 	        dadosPessoais.getEnderecoPermanente().getTelefone().setCodTelefone(
 	            telefoneSeparado[ 2 ] );
 	
-	        telefoneSomenteNumeros = dadosPessoais.getEnderecoCorrespondencia().getTelefone().getCodTelefone();
-	        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\(", "" );
-	        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\)", " " );
-	        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "-", "" );
-	        telefoneSeparado = telefoneSomenteNumeros.split( " " );
-	        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodDDD( telefoneSeparado[ 0 ] );
-	        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodTelefone(
-	            telefoneSeparado[ 2 ] );
+	        if(dadosPessoais.getEnderecoCorrespondencia().getTelefone().equals(""))
+	        {
+		        telefoneSomenteNumeros = dadosPessoais.getEnderecoCorrespondencia().getTelefone().getCodTelefone();
+		        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\(", "" );
+		        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "\\)", " " );
+		        telefoneSomenteNumeros = telefoneSomenteNumeros.replaceAll( "-", "" );
+		        telefoneSeparado = telefoneSomenteNumeros.split( " " );
+		        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodDDD( telefoneSeparado[ 0 ] );
+		        dadosPessoais.getEnderecoCorrespondencia().getTelefone().setCodTelefone(
+		            telefoneSeparado[ 2 ] );
+	        }
 	
 	        String cepSomenteNumeros = dadosPessoais.getEnderecoPermanente().getCep().getCep();
 	        cepSomenteNumeros = cepSomenteNumeros.replaceAll( "-", "" );

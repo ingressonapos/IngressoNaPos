@@ -25,7 +25,7 @@ public class RegistroNovoUsuario
     @GeneratedValue
     private Long registroNovoUsuarioID;
 
-    @Column( unique = true )
+    @Column
     private String nomeCompleto;
 
     @Column( unique = true )
