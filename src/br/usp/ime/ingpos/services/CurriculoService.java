@@ -1,14 +1,10 @@
 package br.usp.ime.ingpos.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
-import br.com.caelum.vraptor.ioc.SessionScoped;
 import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.FormacaoAcademica;
 import br.usp.ime.ingpos.modelo.IniciacaoCientifica;
-import br.usp.ime.ingpos.modelo.PosComp;
 import br.usp.ime.ingpos.modelo.Usuario;
 import br.usp.ime.ingpos.modelo.dao.CurriculoDAO;
 import br.usp.ime.ingpos.modelo.dao.FormacaoAcademicaDAO;
@@ -22,15 +18,18 @@ public class CurriculoService
     private CurriculoDAO curriculoDAO;
     private FormacaoAcademicaDAO formacaoAcademicaDAO;
     private UsuarioSessao usuarioSessao;
+    private UsuarioDao usuarioDao;
 
     public CurriculoService(
         final CurriculoDAO curriculoDAO,
         final FormacaoAcademicaDAO formacaoAcademicaDAO,
-        final UsuarioSessao usuarioSessao )
+        final UsuarioSessao usuarioSessao,
+        final UsuarioDao usuarioDao )
     {
         this.curriculoDAO = curriculoDAO;
         this.usuarioSessao = usuarioSessao;
         this.formacaoAcademicaDAO = formacaoAcademicaDAO;
+        this.usuarioDao = usuarioDao;
     }
 
     public Curriculo getCurriculo()
@@ -38,33 +37,45 @@ public class CurriculoService
         return usuarioSessao.getUsuario().getCurriculo();
     }
 
-    public void cadastraCurriculo(
+    public void atualizarCurriculo(
         Curriculo curriculo )
     {
-        curriculoDAO.saveOrUpdate( curriculo );
-    }
+        Usuario usuario = usuarioDao.findById( usuarioSessao.getUsuario().getUsuarioID() );
 
-    public Curriculo procuraCurriculo(
-        Usuario usuario )
-    {
-        return usuario.getCurriculo();
-    }
+        usuario.setCurriculo( curriculo );
 
-    public void salvaFormacaoAcademica(
-        Usuario usuario,
-        UsuarioDao usuarioDao,
-        FormacaoAcademica formacaoAcademica )
-    {
-        if( usuario.getCurriculo() == null )
-            usuario.setCurriculo( new Curriculo() );
-        usuario.getCurriculo().adicionaFormacaoAcademica( formacaoAcademica );
         usuarioDao.saveOrUpdate( usuario );
 
+        usuarioSessao.setUsuario( usuario );
     }
 
-    public void salvaIniciacaoCientifica(
+    public void adicionaFormacaoAcademica(
+        FormacaoAcademica formacaoAcademica )
+    {
+        final Usuario usuario = usuarioDao.findById( usuarioSessao.getUsuario().getUsuarioID() );
+        Curriculo curriculo = usuario.getCurriculo();
+
+        if( curriculo == null ) {
+            curriculo = new Curriculo();
+            usuario.setCurriculo( curriculo );
+        }
+
+        curriculo.adicionaFormacaoAcademica( formacaoAcademica );
+
+        usuarioDao.saveOrUpdate( usuario );
+
+        usuarioSessao.setUsuario( usuario );
+    }
+
+    public void removerFormacaoAcademica(
         Usuario usuario,
-        UsuarioDao usuarioDao,
+        FormacaoAcademica formacaoAcademica )
+    {
+
+    }
+
+    public void adicionaIniciacaoCientifica(
+        Usuario usuario,
         IniciacaoCientifica iniciacaoCientifica )
     {
         if( usuario.getCurriculo() == null )
@@ -72,38 +83,16 @@ public class CurriculoService
         usuario.getCurriculo().adicionaIniciacaoCientifica( iniciacaoCientifica );
         usuarioDao.saveOrUpdate( usuario );
 
+        usuarioSessao.setUsuario( usuario );
     }
 
-    public void salvaPosComp(
-        Usuario usuario,
-        UsuarioDao usuarioDao,
-        PosComp posComp )
+    public FormacaoAcademica procuraFormacaoPorId(
+        Long formacaoAcademicaId )
     {
-        if( usuario.getCurriculo() == null )
-            usuario.setCurriculo( new Curriculo() );
-        usuario.getCurriculo().setPosComp( posComp );
-        usuarioDao.saveOrUpdate( usuario );
-
-    }
-
-    public void removerFormacaoAcademica(
-        Usuario usuario,
-        UsuarioDao usuarioDao,
-        FormacaoAcademica formacaoAcademica )
-    {
-
-        
-    }
-
-    public FormacaoAcademica procuraFormacao(
-        Usuario usuario,
-        UsuarioDao usuarioDao,
-        FormacaoAcademica formacaoAcademica )
-    {
-        if(formacaoAcademica.getFormacaoAcademicaId() == null)
+        if( formacaoAcademicaId == null )
             return null;
-       return this.formacaoAcademicaDAO.procurarFormacaoAcademicaById(formacaoAcademica.getFormacaoAcademicaId());
-        
+
+        return this.formacaoAcademicaDAO.procurarFormacaoAcademicaById( formacaoAcademicaId );
     }
 
 }

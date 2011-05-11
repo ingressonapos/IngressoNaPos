@@ -9,8 +9,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,7 +23,7 @@ public class FormacaoAcademica
     @Id
     @GeneratedValue
     private Long formacaoAcademicaId;
-    
+
     @Column
     @Enumerated( EnumType.STRING )
     private TipoDeFormacao tipoDeFormacao;
@@ -33,14 +31,14 @@ public class FormacaoAcademica
     @Column( length = 50 )
     private String instituicao;
 
-    @Temporal( TemporalType.DATE )
+    @Temporal( TemporalType.TIMESTAMP )
     private Date ingressoData;
 
-    @Temporal( TemporalType.DATE )
+    @Temporal( TemporalType.TIMESTAMP )
     private Date terminoData;
 
     @Column
-    private String Titulo;
+    private String titulo;
 
     @Column( length = 50 )
     private String nomeOrientador;
@@ -48,12 +46,14 @@ public class FormacaoAcademica
     @Column( length = 50 )
     private String tituloDissert;
 
-    @ManyToOne
-    @JoinColumn( name = "curriculoID" )
-    private Curriculo curriculo;
-
     public FormacaoAcademica()
     {
+    }
+
+    public void setFormacaoAcademicaId(
+        Long formacaoAcademicaId )
+    {
+        this.formacaoAcademicaId = formacaoAcademicaId;
     }
 
     public Long getFormacaoAcademicaId()
@@ -96,13 +96,13 @@ public class FormacaoAcademica
 
     public String getTitulo()
     {
-        return Titulo;
+        return titulo;
     }
 
     public void setTitulo(
         String titulo )
     {
-        Titulo = titulo;
+        this.titulo = titulo;
     }
 
     public String getNomeOrientador()
@@ -127,17 +127,6 @@ public class FormacaoAcademica
         this.tituloDissert = tituloDissert;
     }
 
-    public Curriculo getCurriculo()
-    {
-        return curriculo;
-    }
-
-    public void setCurriculo(
-        Curriculo curriculo )
-    {
-        this.curriculo = curriculo;
-    }
-
     public void setTipoDeFormacao(
         TipoDeFormacao tipoDeFormacao )
     {
@@ -147,5 +136,35 @@ public class FormacaoAcademica
     public TipoDeFormacao getTipoDeFormacao()
     {
         return tipoDeFormacao;
+    }
+
+    @Override
+    public boolean equals(
+        Object obj )
+    {
+        if( this == obj ) {
+            return true;
+        }
+        if( ! obj.getClass().equals( this.getClass() ) ) {
+            return false;
+        }
+
+        FormacaoAcademica formacaoAcademica = (FormacaoAcademica) obj;
+
+        if( formacaoAcademicaId != null ) {
+            return formacaoAcademicaId.equals( formacaoAcademica.getFormacaoAcademicaId() );
+        } else {
+            return super.equals( obj );
+        }
+    }
+
+    @Override
+    public int hashCode()
+    {
+        if( formacaoAcademicaId != null ) {
+            return formacaoAcademicaId.hashCode();
+        } else {
+            return super.hashCode();
+        }
     }
 }

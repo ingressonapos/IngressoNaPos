@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -28,22 +27,30 @@ public class Curriculo
     private Long curriculoID;
 
     @OneToMany
-    @JoinColumn( referencedColumnName = "curriculoID" )
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    @Cascade( {
+        CascadeType.SAVE_UPDATE, CascadeType.DELETE
+    } )
+    @JoinColumn( name = "curriculoID" )
     private Set<FormacaoAcademica> formacoesAcademicas;
 
     @OneToMany
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    @Cascade( {
+        CascadeType.SAVE_UPDATE, CascadeType.DELETE
+    } )
     @JoinColumn( referencedColumnName = "curriculoID" )
     private Set<Bolsa> bolsas;
 
     @OneToMany
     @JoinColumn( referencedColumnName = "curriculoID" )
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    @Cascade( {
+        CascadeType.SAVE_UPDATE, CascadeType.DELETE
+    } )
     private Set<IniciacaoCientifica> iniciacoesCientificas;
 
     @OneToOne
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
+    @Cascade( {
+        CascadeType.SAVE_UPDATE, CascadeType.DELETE
+    } )
     private PosComp posComp;
 
     public Curriculo()
@@ -91,7 +98,7 @@ public class Curriculo
         return formacoesAcademicas;
     }
 
-    public void setFormacoesAcademicas(
+    protected void setFormacoesAcademicas(
         Set<FormacaoAcademica> formacaoAcademica )
     {
         this.formacoesAcademicas = formacaoAcademica;
@@ -108,18 +115,30 @@ public class Curriculo
         this.bolsas = bolsas;
     }
 
+    /**
+     * Adiciona uma formação academica ao curriculo. Se ja existe uma formação
+     * academica igual à informada, substitui a mesma no conjunto.
+     * 
+     * @param formacaoAcademica
+     */
     public void adicionaFormacaoAcademica(
         FormacaoAcademica formacaoAcademica )
     {
+        this.formacoesAcademicas.remove( formacaoAcademica );
         this.formacoesAcademicas.add( formacaoAcademica );
-        
+    }
+
+    public void removeFormacaoAcademica(
+        FormacaoAcademica formacaoAcademica )
+    {
+        this.formacoesAcademicas.remove( formacaoAcademica );
     }
 
     public void adicionaIniciacaoCientifica(
         IniciacaoCientifica iniciacaoCientifica )
     {
-        this.iniciacoesCientificas.add(iniciacaoCientifica);
-        
+        this.iniciacoesCientificas.add( iniciacaoCientifica );
+
     }
 
 }

@@ -4,11 +4,9 @@
 <%@ include file="../cabecalho.jsp"%>
 <script type="text/javascript">
 jQuery(function($){
-	$("input.data").mask("99/9999",{placeholder:""});
+	$("input.data").mask("99/99/9999",{placeholder:""});
 });
 </script>
-
-
 
 
 
@@ -16,65 +14,63 @@ jQuery(function($){
 
 <div id="form" class="form_cadastro">
 				
-	<form action="<c:url value='/cadastro/dadosCurriculo'/>" method="post">
-	
+	<form action="<c:url value='/cadastro/adicionaFormacaoAcademica'/>" method="post">
+		
+		<input type="hidden" name="formacaoAcademica.formacaoAcademicaId" 
+			value="${formacaoAcademica.formacaoAcademicaId}" maxlength=100 />
+		
 		<fieldset>
 			<legend><b><fmt:message key="cadastro_curriculo_titulo_formacao"/></b></legend>
-			<h3><fmt:message key="cadastro_curriculo_graduacao"/></h3>
-	
 			<div class="row">
-				<div class="label"><fmt:message key="cadastro_curriculo_instituicao"/></div>
-				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Instituicao" maxlength=100 /></span>
-			</div>
-			
-			<div class="row">
-				<div class="label"><fmt:message key="cadastro_curriculo_data_inicio"/></div>
-				<span class="formw"><input class=data type="text" name="curriculo.formacaoAcademica.ingressoData"/></span>
-			</div>
-			
-			<div class="row">
-				<div class="label"><fmt:message key="cadastro_curriculo_data_termino"/></div>
-				<span class="formw"><input class=data type="text" name="curriculo.formacaoAcademica.terminoData"/></span>
-			</div>
-			
-			<div class="row">
-				<div class="label"><fmt:message key="cadastro_curriculo_titulo_obtido"/></div>
-				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Titulo"/></span>
-			</div>
-			
-		<h3><fmt:message key="cadastro_curriculo_titulo_posgraduacao"/></h3>
-		<div class="row">
-				<div class="label"><fmt:message key="cadastro_curriculo_instituicao"/></div>
-				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Instituicao" maxlength=100 /></span>
-			</div>
-			
-			<div class="row">
-				<div class="label"><fmt:message key="cadastro_curriculo_data_inicio"/></div>
-				<span class="formw"><input type="text" class=data name="curriculo.formacaoAcademica.ingressoData"/></span>
-			</div>
-			
-			<div class="row">
-				<div class="label"><fmt:message key="cadastro_curriculo_data_termino"/></div>
-				<span class="formw"><input type="text" class=data name="curriculo.formacaoAcademica.terminoData"/></span>
-			</div>
-			
-			<div class="row">
-				<div class="label"><fmt:message key="cadastro_curriculo_titulo_obtido"/></div>
-				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.Titulo"/></span>
-			</div>
-			
-			<div class="row">
-				<div class="label"><fmt:message key="cadastro_curriculo_titulo_dissertacao"/></div>
-				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.tituloDissert"/></span>
-			</div>
-			
-			<div class="row">
-				<div class="label"><fmt:message key="cadastro_curriculo_nome_orientador"/></div>
-				<span class="formw"><input type="text" name="curriculo.formacaoAcademica.nomeOrientador"/></span>
-			</div>
+				<div class="label"><fmt:message key="cadastro_curriculo_tipo_formacao"/></div>
 				
+				<select name="formacaoAcademica.tipoDeFormacao" id="selectMultiple">
+					<option  value="${null}"> 
+						<fmt:message key="selecione"/> 
+					</option>
+					<c:forEach var="tipoDeFormacao" items="${tiposDeFormacao}">
+						<c:choose> 
+							<c:when test="${tipoDeFormacao == formacaoAcademica.tipoDeFormacao}" > 
+								<option value="${tipoDeFormacao}" selected="${tipoDeFormacao}" > 
+									<fmt:message key="cadastro_curriculo_tipo_formacao_${tipoDeFormacao.msgKey}" /> 
+								</option>
+							</c:when>
+							<c:otherwise>  
+								<option value="${tipoDeFormacao}">
+									<fmt:message key="cadastro_curriculo_tipo_formacao_${tipoDeFormacao.msgKey}"/>
+								</option>
+							</c:otherwise>
+						</c:choose>  
+					</c:forEach>
+				</select>
+			</div>
+			<div class="row">
+				<div class="label"><fmt:message key="cadastro_curriculo_instituicao"/></div>
+				<span class="formw"><input type="text" name="formacaoAcademica.instituicao" value="${formacaoAcademica.instituicao}" maxlength=100 /></span>
+			</div>
+			
+			<div class="row">
+				<div class="label"><fmt:message key="cadastro_curriculo_data_inicio"/></div>
+				<span class="formw"><input class=data type="text" name="formacaoAcademica.ingressoData"
+					value="<fmt:formatDate value="${formacaoAcademica.ingressoData}" type='date' pattern="dd/MM/yyyy"/>"/></span>
+			</div>
+			
+			<div class="row">
+				<div class="label"><fmt:message key="cadastro_curriculo_data_termino"/></div>
+				<span class="formw">
+					<input class=data type="text" name="formacaoAcademica.terminoData"
+						value="<fmt:formatDate value="${formacaoAcademica.terminoData}" type='date' pattern="dd/MM/yyyy"/>"/></span>			
+			</div>
+			
+			<div class="row">
+				<div class="label"><fmt:message key="cadastro_curriculo_titulo_obtido"/></div>
+				<span class="formw"><input type="text" name="formacaoAcademica.titulo" value="${formacaoAcademica.titulo}"/></span>
+			</div>
+			<div class="row">
+				<button type="submit" value="<fmt:message key='enviar'/>"> <fmt:message key='cadastro_curriculo_adicionar_formacao_academica'/> </button>
+			</div>		
 		</fieldset>
-		
+	</form>	
 
 				
 		<fieldset>
@@ -215,7 +211,7 @@ jQuery(function($){
 			<input type="submit" value="<fmt:message key='enviar'/>">
 			<a class=button href="<c:url value='/'/>"><button type="button"><fmt:message key="voltar"/></button> </a>			
 		</div>	
-	</form>
+	
 </div>
 
 <%@ include file="../rodape.jsp"%>
