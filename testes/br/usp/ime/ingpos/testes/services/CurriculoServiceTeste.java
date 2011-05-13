@@ -1,7 +1,6 @@
 package br.usp.ime.ingpos.testes.services;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +11,7 @@ import br.usp.ime.ingpos.modelo.FormacaoAcademica;
 import br.usp.ime.ingpos.modelo.IniciacaoCientifica;
 import br.usp.ime.ingpos.modelo.PosComp;
 import br.usp.ime.ingpos.modelo.Usuario;
+import br.usp.ime.ingpos.modelo.dao.CandidatoDAO;
 import br.usp.ime.ingpos.modelo.dao.CurriculoDAO;
 import br.usp.ime.ingpos.modelo.dao.FormacaoAcademicaDAO;
 import br.usp.ime.ingpos.modelo.dao.UsuarioDao;
@@ -28,6 +28,7 @@ public class CurriculoServiceTeste
     private Usuario usuario;
     private UsuarioSessao usuarioSessao;
     private CurriculoDAO curriculoDAO;
+    private CandidatoDAO candidatoDAO;
     private CurriculoService curriculoService;
     private FormacaoAcademicaDAO formacaoAcademicaDAO;
 
@@ -48,8 +49,10 @@ public class CurriculoServiceTeste
         usuarioSessao.setUsuario( usuario );
         formacaoAcademicaDAO = new FormacaoAcademicaDAO( getSessionCreator() );
         curriculoDAO = new CurriculoDAO( getSessionCreator() );
+        candidatoDAO = new CandidatoDAO( getSessionCreator() );
         curriculoService = new CurriculoService(
             curriculoDAO,
+            candidatoDAO,
             formacaoAcademicaDAO,
             usuarioSessao,
             usuarioDao );
@@ -131,7 +134,8 @@ public class CurriculoServiceTeste
         FormacaoAcademica formacaoAcademica = instanciaFormacao();
         curriculoService.adicionaFormacaoAcademica( formacaoAcademica );
 
-        assertTrue( usuario.getCurriculo().getFormacoesAcademicas().contains( formacaoAcademica ) );
+        assertTrue( usuario.getCandidato().getCurriculo().getFormacoesAcademicas().contains(
+            formacaoAcademica ) );
     }
 
     @Test
@@ -139,8 +143,8 @@ public class CurriculoServiceTeste
     {
         Usuario usuario = usuarioSessao.getUsuario();
 
-        assertNotNull( usuario.getCurriculo().getFormacoesAcademicas() );
-        assertFalse( usuario.getCurriculo().getFormacoesAcademicas().isEmpty() );
+        assertNotNull( usuario.getCandidato().getCurriculo().getFormacoesAcademicas() );
+        assertFalse( usuario.getCandidato().getCurriculo().getFormacoesAcademicas().isEmpty() );
     }
 
     @Test
@@ -157,7 +161,8 @@ public class CurriculoServiceTeste
         IniciacaoCientifica iniciacaoCientifica = instanciaIniciacao();
         curriculoService.adicionaIniciacaoCientifica( usuario, iniciacaoCientifica );
 
-        assertTrue( usuario.getCurriculo().getIniciacoesCientificas().contains( iniciacaoCientifica ) );
+        assertTrue( usuario.getCandidato().getCurriculo().getIniciacoesCientificas().contains(
+            iniciacaoCientifica ) );
     }
 
     @Test
@@ -169,7 +174,7 @@ public class CurriculoServiceTeste
         curriculo.setPosComp( posComp );
         curriculoService.atualizarCurriculo( curriculo );
 
-        assertEquals( posComp, usuario.getCurriculo().getPosComp() );
+        assertEquals( posComp, usuario.getCandidato().getCurriculo().getPosComp() );
     }
 
 }

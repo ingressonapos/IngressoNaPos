@@ -12,15 +12,11 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.Validations;
 import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
-import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.Endereco;
-import br.usp.ime.ingpos.modelo.FormacaoAcademica;
 import br.usp.ime.ingpos.modelo.TipoCedulaDeIdentidade;
-import br.usp.ime.ingpos.modelo.TipoDeFormacao;
 import br.usp.ime.ingpos.modelo.TipoEstadoCivil;
 import br.usp.ime.ingpos.modelo.TipoPais;
-import br.usp.ime.ingpos.modelo.Usuario;
 import br.usp.ime.ingpos.services.CartaDeRecomendacaoService;
 import br.usp.ime.ingpos.services.CurriculoService;
 import br.usp.ime.ingpos.services.UsuarioService;
@@ -143,7 +139,7 @@ public class CadastroController
             }
         } );
 
-        this.dadosPessoais = dadosPessoais; /* mantem os dados já preenchidos */
+        this.dadosPessoais = dadosPessoais; // mantem os dados ja preenchidos
         validador.onErrorForwardTo( getClass() ).dadosPessoais();
         this.dadosPessoais = null;
 
@@ -182,54 +178,6 @@ public class CadastroController
 
         usuarioService.cadastrarDadosPessoais( usuarioSessao.getUsuario(), dadosPessoais );
         result.forwardTo( IndexController.class ).index();
-    }
-
-    @Get
-    @Path( "/cadastro/dadosCurriculo" )
-    public void dadosCurriculo()
-    {
-        Usuario usuario = usuarioService.procurarPorEmail( usuarioSessao.getUsuario().getEmail() );
-        result.include( "formacaoAcademica",
-            usuario.getCurriculo().getFormacoesAcademicas().iterator().next() );
-        // result.include( "formacaoAcademica", new FormacaoAcademica());
-
-        result.include( "tiposDeFormacao", TipoDeFormacao.getTiposDeFormacao() );
-        if( curriculoService.getCurriculo() != null ) {
-            result.include( "curriculo", curriculoService.getCurriculo() );
-            result.include( "formacoesAcademicas",
-                curriculoService.getCurriculo().getFormacoesAcademicas() );
-        }
-    }
-
-    @Post
-    @Path( "/cadastro/dadosCurriculo" )
-    @Transactional
-    public void dadosCurriculo(
-        Curriculo curriculo )
-    {
-        curriculoService.atualizarCurriculo( curriculo );
-        result.forwardTo( IndexController.class ).index();
-    }
-
-    @Post
-    @Path( "/cadastro/adicionaFormacaoAcademica" )
-    @Transactional
-    public void adicionaFormacaoAcademica(
-        final FormacaoAcademica formacaoAcademica )
-    {
-        validador.checking( new Validations() {
-            {
-                that( formacaoAcademica.getTipoDeFormacao() != null, "cadastro_curriculo_tipo_formacao",
-                    "cadastro_curriculo_tipo_formacao_erro_vazio" );
-                
-                // TODO: incluir outras validacoes
-            }
-        } );
-        
-        validador.onErrorForwardTo( getClass() ).dadosCurriculo();
-
-        curriculoService.adicionaFormacaoAcademica( formacaoAcademica );
-        result.forwardTo( CadastroController.class ).dadosCurriculo();
     }
 
     @Get

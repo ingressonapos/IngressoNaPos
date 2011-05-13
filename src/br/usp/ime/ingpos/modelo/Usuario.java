@@ -2,7 +2,6 @@ package br.usp.ime.ingpos.modelo;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -37,8 +36,8 @@ public class Usuario
     @ManyToOne( optional = false )
     private Perfil perfil;
 
-    @OneToOne( cascade = CascadeType.ALL )
-    private Curriculo curriculo;
+    @OneToOne
+    private Candidato candidato;
 
     public Usuario()
     {
@@ -83,17 +82,6 @@ public class Usuario
         this.perfil = perfil;
     }
 
-    public Curriculo getCurriculo()
-    {
-        return curriculo;
-    }
-
-    public void setCurriculo(
-        Curriculo curriculo )
-    {
-        this.curriculo = curriculo;
-    }
-
     public DadosPessoais getDadosPessoais()
     {
         return dadosPessoais;
@@ -114,6 +102,17 @@ public class Usuario
     public boolean isAtivo()
     {
         return ativo;
+    }
+
+    public Candidato getCandidato()
+    {
+        return candidato;
+    }
+
+    public void setCandidato(
+        Candidato candidato )
+    {
+        this.candidato = candidato;
     }
 
 }

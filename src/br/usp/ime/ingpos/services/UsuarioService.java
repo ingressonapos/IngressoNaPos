@@ -101,4 +101,20 @@ public class UsuarioService
     {
         usuarioSessao.setUsuario( usuarioModificado );
     }
+
+    public Usuario pegarUsuario()
+    {
+        return usuarioSessao.getUsuario();
+    }
+
+    public List<Usuario> listaCandidatos()
+    {
+        return usuarioDAO.procurarCandidatos();
+    }
+
+    public Usuario procurarPorId(
+        final Long usuarioId )
+    {
+        return usuarioDAO.findById( usuarioId );
+    }
 }

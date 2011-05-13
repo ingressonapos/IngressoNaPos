@@ -17,6 +17,11 @@ public class UsuarioSessao
 
     private Usuario usuario;
 
+    public Long getUsuarioId()
+    {
+        return usuario.getUsuarioID();
+    }
+
     public Usuario getUsuario()
     {
         return usuario;

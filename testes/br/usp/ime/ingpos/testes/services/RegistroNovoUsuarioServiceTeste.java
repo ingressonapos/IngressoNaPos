@@ -3,6 +3,7 @@ package br.usp.ime.ingpos.testes.services;
 import org.junit.Test;
 
 import br.usp.ime.ingpos.modelo.RegistroNovoUsuario;
+import br.usp.ime.ingpos.modelo.dao.CandidatoDAO;
 import br.usp.ime.ingpos.modelo.dao.PerfilDao;
 import br.usp.ime.ingpos.modelo.dao.RegistroNovoUsuarioDao;
 import br.usp.ime.ingpos.modelo.dao.UsuarioDao;
@@ -36,6 +37,7 @@ public class RegistroNovoUsuarioServiceTeste
             RegistroNovoUsuarioService registroNovoUsuarioService = new RegistroNovoUsuarioService(
                 new RegistroNovoUsuarioDao( getSessionCreator() ),
                 new PerfilDao( getSessionCreator() ),
+                new CandidatoDAO( getSessionCreator()),
                 new UsuarioService( new UsuarioDao( getSessionCreator() ), new UsuarioSessao() ),
                 new EmailService( EmailServiceTeste.construirSessionParaTeste() ),
                 null );
@@ -67,6 +69,7 @@ public class RegistroNovoUsuarioServiceTeste
             final RegistroNovoUsuarioService registroNovoUsuarioService = new RegistroNovoUsuarioService(
                 new RegistroNovoUsuarioDao( getSessionCreator() ),
                 new PerfilDao( getSessionCreator() ),
+                new CandidatoDAO( getSessionCreator()),
                 new UsuarioService( new UsuarioDao( getSessionCreator() ), new UsuarioSessao() ),
                 new EmailService( EmailServiceTeste.construirSessionParaTeste() ),
                 null );

@@ -2,6 +2,9 @@ package br.usp.ime.ingpos.services;
 
 import java.util.Random;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.usp.ime.ingpos.modelo.Email;

@@ -116,15 +116,14 @@ public class Curriculo
     }
 
     /**
-     * Adiciona uma formação academica ao curriculo. Se ja existe uma formação
-     * academica igual à informada, substitui a mesma no conjunto.
+     * Adiciona uma formação academica ao curriculo. Se ja existe uma
+     * formação academica igual à informada, substitui a mesma no conjunto.
      * 
      * @param formacaoAcademica
      */
     public void adicionaFormacaoAcademica(
         FormacaoAcademica formacaoAcademica )
     {
-        this.formacoesAcademicas.remove( formacaoAcademica );
         this.formacoesAcademicas.add( formacaoAcademica );
     }
 

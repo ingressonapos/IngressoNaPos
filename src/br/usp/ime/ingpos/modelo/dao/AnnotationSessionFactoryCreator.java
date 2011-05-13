@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.ioc.ApplicationScoped;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.ComponentFactory;
 import br.usp.ime.ingpos.modelo.Bolsa;
+import br.usp.ime.ingpos.modelo.Candidato;
 import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
 import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.Endereco;
@@ -49,6 +50,7 @@ public class AnnotationSessionFactoryCreator
         cfg.addAnnotatedClass( RegistroNovoUsuario.class );
         cfg.addAnnotatedClass( CartaDeRecomendacao.class );
         cfg.addAnnotatedClass( ProcessoSeletivo.class );
+        cfg.addAnnotatedClass( Candidato.class );
 
         factory = cfg.buildSessionFactory();
 
