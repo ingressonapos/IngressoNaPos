@@ -1,5 +1,6 @@
 package br.usp.ime.ingpos.web.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.util.StringUtils;
@@ -11,6 +12,7 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.Validations;
+import br.usp.ime.ingpos.modelo.AreaDeInteresse;
 import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.Endereco;
@@ -218,5 +220,49 @@ public class CadastroController
     {
         cartaDeRecomendacaoService.reenviarRecomendacao( cartaDeRecomendacao );
         result.forwardTo( CadastroController.class ).solicitarRecomendacao();
+    }
+    
+    @Get
+    @Path("/cadastro/dadosVaga")
+    public void dadosVaga() {
+	    List<AreaDeInteresse> areasDeInteresse = new ArrayList<AreaDeInteresse>();
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "banco_de_dados", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "bioinformatica", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "combinatoria", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "combinatoria_grafos", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "computacao_grafica", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "computacao_paralela", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "computacao_musical", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "criptografia", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "engenharia_software", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "inteligencia_artificial", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "linguagens_programacao", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "logica_computacional", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "otimizacao_combinatoria", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "otimizacao_continua", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "sistemas_distribuidos", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "sistemas_tutores_inteligentes", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "teoria_automatos", false));
+	    areasDeInteresse.add(new AreaDeInteresse(
+	    "visao_computacional", false));
+	
+	    result.include("areasDeInteresse", areasDeInteresse);
     }
 }
