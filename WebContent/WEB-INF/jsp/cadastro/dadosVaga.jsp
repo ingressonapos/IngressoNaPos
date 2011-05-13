@@ -40,14 +40,14 @@ function habilitaTexto(num){
 			<legend><b><fmt:message key="cadastro_vaga_curso"/></b></legend>
 			<div class="row">
 				<div class="label"><fmt:message key="cadastro_vaga_escolha_tipo_pos"/></div>
-				<span class="formw"><input type="radio" name="curriculo.iniciacaoCientifica"/><fmt:message key="mestrado"/></span>
-				<span class="formw"><input type="radio" name="curriculo.iniciacaoCientifica"/><fmt:message key="doutorado"/></span>
-				<span class="formw"><input type="radio" name="curriculo.iniciacaoCientifica"/><fmt:message key="doutorado_direto"/></span><br>
+				<span class="formw"><input type="radio" name="tipoPos" value="mestrado"/><fmt:message key="mestrado"/></span>
+				<span class="formw"><input type="radio" name="tipoPos" value="doutorado"/><fmt:message key="doutorado"/></span>
+				<span class="formw"><input type="radio" name="tipoPos" value="doutorado_direto"/><fmt:message key="doutorado_direto"/></span><br>
 			</div>
 			<p>
 				<div class="row">
 				<div class="label"><fmt:message key="cadastro_vaga_outras_inscricoes"/></div>
-				<span class="formw"><input type="text" name="curriculo.iniciacaoCientifica.nomeInstituicao" maxlength=200/></span><br>
+				<textarea rows="5" cols="70" name="inscricao.outrosProcessosSeletivos"></textarea>
 			</div>
 			<p>
 			<div class="row">
