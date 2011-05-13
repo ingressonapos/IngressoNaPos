@@ -59,12 +59,14 @@ $.ajaxSetup ({
 </center>
 
 <div id="form" class="form_cadastro">
-
+	
+	
+	<!-- FORMAÇÃO ACADÊMICA -->
 	<form action="<c:url value='/curriculo/adicionaFormacaoAcademica'/>"
 		method="post">
 
 		<input type="hidden" name="formacaoAcademica.formacaoAcademicaId"
-			value="${formacaoAcademica.formacaoAcademicaId}" maxlength=100 />
+			value="${formacaoAcademica.formacaoAcademicaId}" maxlength=100 />		
 
 		<fieldset>
 			<legend>
@@ -145,9 +147,9 @@ $.ajaxSetup ({
 				</button>
 			</div>
 		</fieldset>
-		
+		</form>
 		<div class="column" style="width: 100%" >
-			<div class="portlet" style="height: 300px;  width: 100%">
+			<div class="portlet">
 				<div class="portlet-header"> 
 					<fmt:message key="cadastro_curriculo_titulo_formacoes_cadastradas">
 					      <fmt:param value="${fn:length(formacoesAcademicas)}"/>					      
@@ -183,18 +185,116 @@ $.ajaxSetup ({
 								<td> <fmt:formatDate value="${formacao.ingressoData}" pattern="MM/yyyy"/> </td>
 								<td> <fmt:formatDate value="${formacao.terminoData}" pattern="MM/yyyy"/> </td>	
 								<td> 
-									<p>	
+								
 										<a href="<c:url value='/curriculo/editarFormacaoAcademica/${formacao.formacaoAcademicaId}'/>"> 
-											<fmt:message key="cadastro_curriculo_lnk_editar_formacao" /> 
+											<img src="<c:url value='/images/editar.png'/>" alt='<fmt:message key="editar"/>' title="<fmt:message key="editar"/>"/> 
 										</a>
-									</p>
 								<td>
 								<td> 
-									<p>	
-										<a href="<c:url value='/curriculo/removerFormacaoAcademica/${formacao.formacaoAcademicaId}'/>"> 
-											<fmt:message key="cadastro_curriculo_lnk_remover_formacao" /> 
+										<a href="<c:url value='/curriculo/removerFormacaoAcademica/${formacao.formacaoAcademicaId}'/>"> 											
+											<img src="<c:url value='/images/excluir.gif'/>" alt='<fmt:message key="excluir"/>' title="<fmt:message key="excluir"/>"/> 
 										</a>
-									</p>
+								<td>							
+							</tr>			
+						</c:forEach>					
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class=clear></div>
+	</div>
+	<div id="formIniciacao" class="form_cadastro">
+
+	<!-- INICIAÇÃO CIENTÍFICA -->
+	<form action="<c:url value='/curriculo/adicionaIniciacaoCientifica'/>"
+		method="post">
+
+		<input type="hidden" name="iniciacaoCientifica.iniciacaoCientificaId"
+			value="${iniciacaoCientifica.iniciacaoCientificaId}" maxlength=100 />
+					
+		<fieldset>
+			<legend>
+				<b><fmt:message key="cadastro_curriculo_titulo_iniciacao_cientifica" />
+				</b>
+			</legend>
+			
+			<div class="row">
+				<div class="label">
+					<fmt:message key="cadastro_curriculo_instituicao" />
+				</div>
+				<span class="formw"><input type="text"
+					name="iniciacaoCientifica.nomeInstituicao"
+					value="${iniciacaoCientifica.nomeInstituicao}" maxlength=100 />
+				</span>
+			</div>
+			
+			<div class="row">
+				<div class="label">
+					<fmt:message key="cadastro_curriculo_nome_orientador" />
+				</div>
+				<span class="formw"><input type="text"
+					name="iniciacaoCientifica.nomeOrientador" value="${iniciacaoCientifica.nomeOrientador}" />
+				</span>
+			</div>
+		
+			
+			<div class="row">
+				<div class="label">
+					<fmt:message key="cadastro_curriculo_tema_projeto" />
+				</div>
+				<span class="formw"><input type="text"
+					name="iniciacaoCientifica.temaProjeto"
+					value="${iniciacaoCientifica.temaProjeto}" maxlength=100 />
+				</span>
+			</div>
+
+
+			<div class="row">
+				<button type="submit" value="<fmt:message key='salvar'/>">
+					<fmt:message key='salvar' />
+				</button>
+			</div>
+		</fieldset>
+		
+		<div class="column" style="width: 100%" >
+			<div class="portlet">
+				<div class="portlet-header"> 
+					<fmt:message key="cadastro_curriculo_titulo_formacoes_cadastradas">
+					      <fmt:param value="${fn:length(iniciacoesCientificas)}"/>					      
+					</fmt:message>					  
+				</div>
+				
+				<div class="tabelaDiv">
+					<table class="tabela" cellpadding="5px" cellspacing="0">
+						<tr> 
+							<th> <b><fmt:message key="cadastro_curriculo_tabela_titulo_instituicao" /></b> </th>
+							<th> <b><fmt:message key="cadastro_curriculo_tabela_nome_orientador" /></b> </th>
+							<th> <b><fmt:message key="cadastro_curriculo_tabela_tema_projeto" /></b> </th>		
+						</tr>
+						
+						<c:forEach  var="iniciacao" items="${iniciacoesCientificas}" varStatus="rowCounter">
+							<!-- Uma linha de cada cor -->
+							<c:choose>
+								<c:when test="${rowCounter.count % 2 == 0}">
+									<c:set var="rowStyle" scope="page" value="odd"/>
+								</c:when>
+								<c:otherwise>
+									<c:set var="rowStyle" scope="page" value="even"/>
+								</c:otherwise>
+					        </c:choose>
+						 	<tr class="${rowStyle}"> 
+						 		<td>${iniciacao.nomeOrientador}</td>
+								<td>${iniciacao.nomeInstituicao}</td>
+								<td>${iniciacao.temaProjeto}</td>	
+								<td>  
+										<a href="<c:url value='/curriculo/editarIniciacaoCientifica/${iniciacao.iniciacaoCientificaId}'/>"> 
+											<img src="<c:url value='/images/editar.png'/>" alt='<fmt:message key="editar"/>' title="<fmt:message key="editar"/>"/> 
+										</a>								
+								<td>
+								<td> 
+										<a href="<c:url value='/curriculo/removerIniciacaoCientifica/${iniciacao.iniciacaoCientificaId}'/>"> 
+											<img src="<c:url value='/images/excluir.gif'/>" alt='<fmt:message key="excluir"/>' title="<fmt:message key="excluir"/>"/>
+										</a>
 								<td>							
 							</tr>			
 						</c:forEach>					
@@ -203,108 +303,6 @@ $.ajaxSetup ({
 			</div>
 		</div>	
 	</form>
-
-
-	<fieldset>
-		<legend>
-			<b><fmt:message
-					key="cadastro_curriculo_titulo_iniciacao_cientifica" />
-			</b>
-		</legend>
-
-		<div class="row">
-			<div class="label">
-				<fmt:message key="cadastro_curriculo_realizou_iniciacao" />
-			</div>
-			<span class="formw"><fmt:message key="sim" /><input
-				type="radio" name="curriculo.iniciacaoCientifica" />
-			</span> <span class="formw"><fmt:message key="nao" /><input
-				type="radio" name="curriculo.iniciacaoCientifica" />
-			</span>
-		</div>
-
-		<div class="row">
-			<div class="label">
-				<fmt:message key="cadastro_curriculo_instituicao" />
-			</div>
-			<span class="formw"><input type="text"
-				name="curriculo.iniciacaoCientifica.nomeInstituicao" maxlength=100 />
-			</span>
-		</div>
-
-		<div class="row">
-			<div class="label">
-				<fmt:message key="cadastro_curriculo_tema_projeto" />
-			</div>
-			<span class="formw"><input type="text"
-				name="curriculo.iniciacaoCientifica.temaProjeto" maxlength=100 />
-			</span>
-		</div>
-
-		<div class="row">
-			<div class="label">
-				<fmt:message key="cadastro_curriculo_nome_orientador" />
-			</div>
-			<span class="formw"><input type="text"
-				name="curriculo.iniciacaoCientifica.nomeOrientador" maxlength=50 />
-			</span>
-		</div>
-
-	</fieldset>
-
-	<fieldset>
-		<legend>
-			<b><fmt:message key="cadastro_curriculo_titulo_outras_atividades" />
-			</b>
-		</legend>
-
-		<div class="row">
-			<div class="label">
-				<fmt:message key="cadastro_curriculo_descricao" />
-			</div>
-			<span class="formw"><input type="text"
-				name="curriculo.formacaoAcademica.tipoBolsa" />
-			</span>
-		</div>
-
-		<div class="row">
-			<div class="label">
-				<fmt:message key="cadastro_curriculo_instituicao" />
-			</div>
-			<span class="formw"><input type="text"
-				name="curriculo.formacaoAcademica.nomeInstituicao" maxlength=100 />
-			</span>
-		</div>
-
-		<div class="row">
-			<div class="label">
-				<fmt:message key="cadastro_curriculo_data_inicio" />
-			</div>
-			<span class="formw"><input type="text" class="data"
-				name="curriculo.bolsas.ingressoData" maxlength=100 />
-			</span>
-
-		</div>
-
-		<div class="row">
-			<div class="label">
-				<fmt:message key="cadastro_curriculo_data_termino" />
-			</div>
-			<span class="formw"><input type="text" class=data
-				name="curriculo.bolsas.terminoData" maxlength=50 />
-			</span>
-		</div>
-
-		<div class="row">
-			<div class="label">
-				<fmt:message key="cadastro_curriculo_titulo_obtido" />
-			</div>
-			<span class="formw"><input type="text"
-				name="curriculo.bolsa.complemento" maxlength=50 />
-			</span>
-		</div>
-
-	</fieldset>
 
 	<fieldset>
 		<legend>
@@ -366,31 +364,6 @@ $.ajaxSetup ({
 			</div>
 			<span class="formw"><input type="text"
 				name="curriculo.posComp.arquivoPosComp" maxlength=2 />
-			</span>
-		</div>
-
-	</fieldset>
-
-	<fieldset>
-		<legend>
-			<b><fmt:message
-					key="cadastro_curriculo_titulo_cartas_recomendacao" />
-			</b>
-		</legend>
-
-		<div class="row">
-			<div class="label">
-				<fmt:message key="cadastro_curriculo_nome_professor" />
-			</div>
-			<span class="formw"><input type="text" name="" maxlength=50 />
-			</span>
-		</div>
-
-		<div class="row">
-			<div class="label">
-				<fmt:message key="cadastro_curriculo_instituicao" />
-			</div>
-			<span class="formw"><input type="text" name="" maxlength=100 />
 			</span>
 		</div>
 

@@ -140,4 +140,11 @@ public class Curriculo
 
     }
 
+    public void removeIniciacaoCientifica(
+        IniciacaoCientifica iniciacaoCientifica )
+    {
+        this.iniciacoesCientificas.remove( iniciacaoCientifica );
+        
+    }
+
 }

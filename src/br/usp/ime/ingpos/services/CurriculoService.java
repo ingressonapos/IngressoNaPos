@@ -1,5 +1,7 @@
 package br.usp.ime.ingpos.services;
 
+import javax.print.attribute.standard.Finishings;
+
 import org.springframework.beans.BeanUtils;
 
 import br.com.caelum.vraptor.ioc.Component;
@@ -12,6 +14,7 @@ import br.usp.ime.ingpos.modelo.Usuario;
 import br.usp.ime.ingpos.modelo.dao.CandidatoDAO;
 import br.usp.ime.ingpos.modelo.dao.CurriculoDAO;
 import br.usp.ime.ingpos.modelo.dao.FormacaoAcademicaDAO;
+import br.usp.ime.ingpos.modelo.dao.IniciacaoCientificaDAO;
 import br.usp.ime.ingpos.modelo.dao.UsuarioDao;
 import br.usp.ime.ingpos.web.controllers.UsuarioSessao;
 
@@ -21,6 +24,7 @@ public class CurriculoService
 {
     private CurriculoDAO curriculoDAO;
     private FormacaoAcademicaDAO formacaoAcademicaDAO;
+    private IniciacaoCientificaDAO iniciacaoCientificaDAO;
     private UsuarioSessao usuarioSessao;
     private UsuarioDao usuarioDao;
     private CandidatoDAO candidatoDao;
@@ -29,6 +33,7 @@ public class CurriculoService
         final CurriculoDAO curriculoDAO,
         final CandidatoDAO candidatoDao,
         final FormacaoAcademicaDAO formacaoAcademicaDAO,
+        final IniciacaoCientificaDAO iniciacaoCientificaDAO,
         final UsuarioSessao usuarioSessao,
         final UsuarioDao usuarioDao )
     {
@@ -36,6 +41,7 @@ public class CurriculoService
         this.candidatoDao = candidatoDao;
         this.usuarioSessao = usuarioSessao;
         this.formacaoAcademicaDAO = formacaoAcademicaDAO;
+        this.iniciacaoCientificaDAO = iniciacaoCientificaDAO;
         this.usuarioDao = usuarioDao;
     }
 
@@ -82,25 +88,6 @@ public class CurriculoService
 
     }
 
-    public void removerFormacaoAcademica(
-        Usuario usuario,
-        FormacaoAcademica formacaoAcademica )
-    {
-
-    }
-
-    public void adicionaIniciacaoCientifica(
-        Usuario usuario,
-        IniciacaoCientifica iniciacaoCientifica )
-    {
-        if( usuario.getCandidato().getCurriculo() == null )
-            usuario.getCandidato().setCurriculo( new Curriculo() );
-        usuario.getCandidato().getCurriculo().adicionaIniciacaoCientifica( iniciacaoCientifica );
-        usuarioDao.saveOrUpdate( usuario );
-
-        usuarioSessao.setUsuario( usuario );
-    }
-
     public FormacaoAcademica getFormacaoAcademicaParaEdicao(
         final Long formacaoAcademicaId )
     {
@@ -126,5 +113,57 @@ public class CurriculoService
 
         candidatoDao.saveOrUpdate( candidato );
         formacaoAcademicaDAO.delete( formacaoPersistente );
+    }
+
+    public IniciacaoCientifica getIniciacaoCientificaParaEdicao(
+        final Long iniciacaoCientificaId )
+    {
+        final IniciacaoCientifica iniciacaoCientifica;
+
+        // Nova Iniciacao
+        if( iniciacaoCientificaId == null ) {
+            iniciacaoCientifica = new IniciacaoCientifica();
+        } else {
+            iniciacaoCientifica = iniciacaoCientificaDAO.procurarIniciacaoCientificaById( iniciacaoCientificaId );
+        }
+        return iniciacaoCientifica;
+    }
+
+    public void removerIniciacaoCientifica(
+        final Long iniciacaoCientificaId )
+    {
+        final IniciacaoCientifica iniciacaoCientificaPersistente = this.getIniciacaoCientificaParaEdicao( iniciacaoCientificaId );
+        final Usuario usuario = usuarioDao.findById( usuarioSessao.getUsuario().getUsuarioID() );
+        final Candidato candidato = usuario.getCandidato();
+
+        candidato.getCurriculo().removeIniciacaoCientifica( iniciacaoCientificaPersistente );
+
+        candidatoDao.saveOrUpdate( candidato );
+        iniciacaoCientificaDAO.delete( iniciacaoCientificaPersistente );
+        
+    }
+
+    public void adicionaIniciacaoCientifica(
+        IniciacaoCientifica iniciacaoCientifica )
+    {
+        if( iniciacaoCientifica.getIniciacaoCientificaId() == null ) {
+            final Usuario usuario = usuarioDao.findById( usuarioSessao.getUsuario().getUsuarioID() );
+            Candidato candidato = usuario.getCandidato();
+            Curriculo curriculo = candidato.getCurriculo();
+
+            if( curriculo == null ) {
+                curriculo = new Curriculo();
+                candidato.setCurriculo( curriculo );
+            }
+
+            curriculo.adicionaIniciacaoCientifica( iniciacaoCientifica );
+            candidatoDao.saveOrUpdate( candidato );
+        } else {
+            IniciacaoCientifica iniciacaoPersistente = this.getIniciacaoCientificaParaEdicao( iniciacaoCientifica.getIniciacaoCientificaId() );
+            BeanUtils.copyProperties( iniciacaoCientifica, iniciacaoPersistente, new String[] {
+                "iniciacaoCientificaId"
+            } );
+            iniciacaoCientificaDAO.saveOrUpdate( iniciacaoPersistente);
+        }
     }
 }
