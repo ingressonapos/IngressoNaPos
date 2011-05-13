@@ -12,15 +12,21 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.Validations;
+import br.com.caelum.vraptor.view.Results;
 import br.usp.ime.ingpos.modelo.AreaDeInteresse;
 import br.usp.ime.ingpos.modelo.CartaDeRecomendacao;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.Endereco;
+import br.usp.ime.ingpos.modelo.Inscricao;
+import br.usp.ime.ingpos.modelo.ProcessoSeletivo;
 import br.usp.ime.ingpos.modelo.TipoCedulaDeIdentidade;
 import br.usp.ime.ingpos.modelo.TipoEstadoCivil;
 import br.usp.ime.ingpos.modelo.TipoPais;
+import br.usp.ime.ingpos.modelo.TipoProcessoSeletivo;
 import br.usp.ime.ingpos.services.CartaDeRecomendacaoService;
 import br.usp.ime.ingpos.services.CurriculoService;
+import br.usp.ime.ingpos.services.InscricaoService;
+import br.usp.ime.ingpos.services.ProcessoSeletivoService;
 import br.usp.ime.ingpos.services.UsuarioService;
 import br.usp.ime.ingpos.web.interceptors.Transactional;
 
@@ -39,6 +45,8 @@ public class CadastroController
     private final CartaDeRecomendacaoService cartaDeRecomendacaoService;
     private final Validator validador;
     private final CurriculoService curriculoService;
+    private final ProcessoSeletivoService processoSeletivoService;
+    private final InscricaoService inscricaoService;
     private DadosPessoais dadosPessoais;
 
     public CadastroController(
@@ -47,6 +55,8 @@ public class CadastroController
         final UsuarioSessao usuarioSessao,
         final UsuarioService usuarioService,
         final CartaDeRecomendacaoService cartaDeRecomendacaoService,
+        final ProcessoSeletivoService processoSeletivoService,
+        final InscricaoService inscricaoService,
         final CurriculoService curriculoService )
     {
         this.result = result;
@@ -55,6 +65,8 @@ public class CadastroController
         this.usuarioService = usuarioService;
         this.cartaDeRecomendacaoService = cartaDeRecomendacaoService;
         this.curriculoService = curriculoService;
+        this.processoSeletivoService = processoSeletivoService;
+        this.inscricaoService = inscricaoService;
     }
 
     private void configurarResultDadosPessoais()
@@ -252,8 +264,53 @@ public class CadastroController
 	    "visao_computacional", false));
 	    
 	    List<String> professores = new ArrayList<String>();
-	    
-	
+	    professores.add("alair_pereira_do_lago");
+	    professores.add("alan_mitchell_durham");
+	    professores.add("alfredo_goldman_vel_lejbman");
+	    professores.add("ana_cristina_vieira_de_melo");
+	    professores.add("andre_fujita");
+
 	    result.include("areasDeInteresse", areasDeInteresse);
+	    result.include("professores", professores);
+    }
+    
+    @Post
+    @Path("/cadastro/dadosVaga")
+    @Transactional
+    public void dadosVaga(final Inscricao inscricao, final TipoProcessoSeletivo tipoPos, final List<String> listaAreasMaiorAfinidade, final List<String> listaAreasMenorAfinidade, final Boolean outraMaiorAfinidade, final Boolean outraMenorAfinidade) {
+    	List<AreaDeInteresse> areasDeInteresse = new ArrayList<AreaDeInteresse>();
+
+    	ProcessoSeletivo processoSeletivo = new ProcessoSeletivo();
+    	processoSeletivo.setTipoProcessoSeletivo(tipoPos);
+    	
+    	processoSeletivoService.atualizarProcessoSeletivo(processoSeletivo);
+    	
+    	inscricao.setProcessoSeletivo(processoSeletivo);
+    	
+    	for (int i = 0; i < listaAreasMaiorAfinidade.size(); i++)
+    	{
+    		if(listaAreasMaiorAfinidade.get(i) == null)
+    			break;
+    		
+    		areasDeInteresse.add(new AreaDeInteresse(listaAreasMaiorAfinidade.get(i), true));
+    	}
+    	
+    	inscricao.setAreasDeInteresseMaiorAfinidade(areasDeInteresse);
+    	
+    	areasDeInteresse = new ArrayList<AreaDeInteresse>();
+    	
+    	for (int i = 0; i < listaAreasMenorAfinidade.size(); i++)
+    	{
+    		if(listaAreasMenorAfinidade.get(i) == null)
+    			break;
+    		
+    		areasDeInteresse.add(new AreaDeInteresse(listaAreasMaiorAfinidade.get(i), true));
+    	}
+    	
+    	inscricao.setAreasDeInteresseMenorAfinidade(areasDeInteresse);
+    	
+    	inscricaoService.atualizarProcessoSeletivo(inscricao);
+    	
+    	result.use(Results.logic()).redirectTo(IndexController.class).index();
     }
 }
