@@ -6,6 +6,10 @@ h1,h2,h3,hr,ul,ins {
 	text-decoration: none;
 }
 
+img{
+	border: none;
+}
+
 html {
 	overflow-y: scroll;
 }
@@ -46,7 +50,7 @@ h3 {
 }
 
 .tabelaDiv {
-	height: 300px;
+	max-height: 140px;
 	overflow: auto;
 }
 

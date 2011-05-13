@@ -309,7 +309,7 @@ h1 {
 .column {
 	width: 250px;
 	float: left;
-	padding-bottom: 100px;
+	/*padding-bottom: 100px;*/
 }
 
 .portlet {

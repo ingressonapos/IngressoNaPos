@@ -12,6 +12,7 @@ import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.Validations;
 import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.FormacaoAcademica;
+import br.usp.ime.ingpos.modelo.IniciacaoCientifica;
 import br.usp.ime.ingpos.modelo.TipoDeFormacao;
 import br.usp.ime.ingpos.services.CartaDeRecomendacaoService;
 import br.usp.ime.ingpos.services.CurriculoService;
@@ -44,9 +45,12 @@ public class CurriculoController
         if( curriculo != null ) {
             final List<FormacaoAcademica> formacoesAcademicas = new ArrayList<FormacaoAcademica>();
             formacoesAcademicas.addAll( curriculo.getFormacoesAcademicas() );
+            final List<IniciacaoCientifica> iniciacoesCientificas = new ArrayList<IniciacaoCientifica>();
+            iniciacoesCientificas.addAll( curriculo.getIniciacoesCientificas());
 
             result.include( "curriculo", curriculo );
             result.include( "formacoesAcademicas", formacoesAcademicas );
+            result.include( "iniciacoesCientificas" , iniciacoesCientificas);
         }
     }
 
@@ -111,4 +115,47 @@ public class CurriculoController
         result.forwardTo( getClass() ).dadosCurriculo();
     }
 
+    @Get
+    @Path( "/curriculo/editarIniciacaoCientifica/{IniciacaoCientifica.iniciacaoCientificaId}" )
+    public void editarIniciacaoCientifica(
+        IniciacaoCientifica iniciacaoCientifica )
+    {
+        result.include(
+            "iniciacaoCientifica",
+            curriculoService.getIniciacaoCientificaParaEdicao( iniciacaoCientifica.getIniciacaocientificaId() ) );
+
+        result.forwardTo( getClass() ).dadosCurriculo();
+    }
+
+    @Get
+    @Path( "/curriculo/removerIniciacaoCientifica/{IniciacaoCientifica.iniciacaoCientificaId}" )
+    @Transactional
+    public void removerIniciacaoCientifia(
+        IniciacaoCientifica iniciacaoCientifica )
+    {
+        curriculoService.removerIniciacaoCientifica( iniciacaoCientifica.getIniciacaocientificaId() );
+        result.forwardTo( getClass() ).dadosCurriculo();
+    }
+
+    @Post
+    @Path( "/curriculo/adicionaIniciacaoCientifica" )
+    @Transactional
+    public void adicionaIniciacaoCientifica(
+        final IniciacaoCientifica iniciacaoCientifica )
+    {
+        // validador.checking( new Validations() {
+        // {
+        // that( formacaoAcademica.getTipoDeFormacao() != null,
+        // "cadastro_curriculo_tipo_formacao",
+        // "cadastro_curriculo_tipo_formacao_erro_vazio" );
+        //
+        // // TODO: incluir outras validacoes
+        // }
+        // } );
+
+        validador.onErrorForwardTo( getClass() ).dadosCurriculo();
+
+        curriculoService.adicionaIniciacaoCientifica( iniciacaoCientifica );
+        result.forwardTo( getClass() ).dadosCurriculo();
+    }
 }

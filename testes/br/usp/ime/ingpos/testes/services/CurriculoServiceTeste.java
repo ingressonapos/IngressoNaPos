@@ -14,6 +14,7 @@ import br.usp.ime.ingpos.modelo.Usuario;
 import br.usp.ime.ingpos.modelo.dao.CandidatoDAO;
 import br.usp.ime.ingpos.modelo.dao.CurriculoDAO;
 import br.usp.ime.ingpos.modelo.dao.FormacaoAcademicaDAO;
+import br.usp.ime.ingpos.modelo.dao.IniciacaoCientificaDAO;
 import br.usp.ime.ingpos.modelo.dao.UsuarioDao;
 import br.usp.ime.ingpos.services.CurriculoService;
 import br.usp.ime.ingpos.testes.BancoDeDadosTestCase;
@@ -31,7 +32,8 @@ public class CurriculoServiceTeste
     private CandidatoDAO candidatoDAO;
     private CurriculoService curriculoService;
     private FormacaoAcademicaDAO formacaoAcademicaDAO;
-
+    private IniciacaoCientificaDAO iniciacaoCientificaDAO;
+    
     public CurriculoServiceTeste(
         String name )
     {
@@ -48,12 +50,14 @@ public class CurriculoServiceTeste
         usuarioSessao = new UsuarioSessao();
         usuarioSessao.setUsuario( usuario );
         formacaoAcademicaDAO = new FormacaoAcademicaDAO( getSessionCreator() );
+        iniciacaoCientificaDAO = new IniciacaoCientificaDAO( getSessionCreator() );
         curriculoDAO = new CurriculoDAO( getSessionCreator() );
         candidatoDAO = new CandidatoDAO( getSessionCreator() );
         curriculoService = new CurriculoService(
             curriculoDAO,
             candidatoDAO,
             formacaoAcademicaDAO,
+            iniciacaoCientificaDAO,
             usuarioSessao,
             usuarioDao );
     };
@@ -151,15 +155,15 @@ public class CurriculoServiceTeste
     public void testeRemoveFormacaoAcademica()
     {
         FormacaoAcademica formacaoAcademica = instanciaFormacao();
-        curriculoService.removerFormacaoAcademica( usuario, formacaoAcademica );
-
+        curriculoService.removerFormacaoAcademica( formacaoAcademica.getFormacaoAcademicaId() );
+        assertTrue( false );
     }
 
     @Test
     public void testeSalvaIniciacaoCientifica()
     {
         IniciacaoCientifica iniciacaoCientifica = instanciaIniciacao();
-        curriculoService.adicionaIniciacaoCientifica( usuario, iniciacaoCientifica );
+        curriculoService.adicionaIniciacaoCientifica( iniciacaoCientifica );
 
         assertTrue( usuario.getCandidato().getCurriculo().getIniciacoesCientificas().contains(
             iniciacaoCientifica ) );
