@@ -269,6 +269,8 @@ public class CadastroController
 	    professores.add("alfredo_goldman_vel_lejbman");
 	    professores.add("ana_cristina_vieira_de_melo");
 	    professores.add("andre_fujita");
+	    professores.add("daniel_macedo_batista");
+	    professores.add("fabio_kon");
 
 	    result.include("areasDeInteresse", areasDeInteresse);
 	    result.include("professores", professores);
