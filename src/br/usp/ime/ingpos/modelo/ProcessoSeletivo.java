@@ -3,7 +3,10 @@ package br.usp.ime.ingpos.modelo;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
@@ -26,8 +29,12 @@ public class ProcessoSeletivo
 
     @Column
     private String descricao;
-
+    
     @Column
+    @Enumerated( EnumType.STRING )
+    private TipoProcessoSeletivo tipoProcessoSeletivo;
+
+	@Column
     @Temporal( TemporalType.TIMESTAMP )
     private Date dataDeAbertura;
 
@@ -82,5 +89,12 @@ public class ProcessoSeletivo
     {
         this.dataLimiteDeInscricao = dataLimiteDeInscricao;
     }
+    
+    public TipoProcessoSeletivo getTipoProcessoSeletivo() {
+		return tipoProcessoSeletivo;
+	}
 
+	public void setTipoProcessoSeletivo(TipoProcessoSeletivo tipoProcessoSeletivo) {
+		this.tipoProcessoSeletivo = tipoProcessoSeletivo;
+	}
 }

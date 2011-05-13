@@ -9,6 +9,7 @@ import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.util.hibernate.SessionCreator;
 import br.usp.ime.ingpos.modelo.ProcessoSeletivo;
+import br.usp.ime.ingpos.modelo.TipoProcessoSeletivo;
 
 @RequestScoped
 @Component

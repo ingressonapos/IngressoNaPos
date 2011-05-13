@@ -40,30 +40,24 @@ function habilitaTexto(num){
 			<legend><b><fmt:message key="cadastro_vaga_curso"/></b></legend>
 			<div class="row">
 				<div class="label"><fmt:message key="cadastro_vaga_escolha_tipo_pos"/></div>
-				<span class="formw"><input type="radio" name="curriculo.iniciacaoCientifica"/><fmt:message key="mestrado"/></span>
-				<span class="formw"><input type="radio" name="curriculo.iniciacaoCientifica"/><fmt:message key="doutorado"/></span>
-				<span class="formw"><input type="radio" name="curriculo.iniciacaoCientifica"/><fmt:message key="doutorado_direto"/></span><br>
+				<span class="formw"><input type="radio" name="tipoPos" value="MESTRADO"/><fmt:message key="mestrado"/></span>
+				<span class="formw"><input type="radio" name="tipoPos" value="DOUTORADO"/><fmt:message key="doutorado"/></span>
+				<span class="formw"><input type="radio" name="tipoPos" value="DOUTORADO"/><fmt:message key="doutorado_direto"/></span><br>
 			</div>
 			<p>
 				<div class="row">
 				<div class="label"><fmt:message key="cadastro_vaga_outras_inscricoes"/></div>
-				<span class="formw"><input type="text" name="curriculo.iniciacaoCientifica.nomeInstituicao" maxlength=200/></span><br>
+				<textarea rows="5" cols="70" name="inscricao.outrosProcessosSeletivos"></textarea>
 			</div>
 			<p>
 			<div class="row">
 				<div class="label"> <fmt:message key="cadastro_vaga_relacao_professores" />
 				</div>
 				<span class="formw">
-					<select name="dadosPessoais.estadoCivil" id="selectMultiple">
-						<c:forEach var="tipo" items="${tiposEstadoCivil}"  >						
-							<c:choose> 
-								<c:when test="${tipo == dadosPessoais.estadoCivil}" > 
-							    	<option value="${tipo}" selected="${tipo}" >  <fmt:message key="cadastro_dados_pessoais_${tipo.msgKey}" />  </option>
-							  	</c:when> 
-							  	<c:otherwise> 
-							    	<option value="${tipo}"  >  <fmt:message key="cadastro_dados_pessoais_${tipo.msgKey}" />  </option> 
-							  	</c:otherwise> 
-							</c:choose>											
+					<select name="inscricao.orientadorDesejado" id="selectMultiple">
+						<option value="nao" selected><fmt:message key="nao" /></option>
+						<c:forEach var="professor" items="${professores}"  >						 
+							<option value="${professor}"><fmt:message key="${professor}" /></option>									
 						</c:forEach>
 					</select>
 				</span><br>
@@ -71,9 +65,9 @@ function habilitaTexto(num){
 				<p>
 				<div class="row">
 					<div class="label"><fmt:message key="cadastro_vaga_dedicacao_integral"/></div>
-					<span class="formw"><input type="radio" name="curriculo.iniciacaoCientifica"/><fmt:message key="sim"/></span>
-					<span class="formw"><input type="radio" name="curriculo.iniciacaoCientifica"/><fmt:message key="cadastro_vaga_sim_bolsa"/></span>
-					<span class="formw"><input type="radio" name="curriculo.iniciacaoCientifica"/><fmt:message key="nao"/></span><br>
+					<span class="formw"><input type="radio" name="inscricao.dedicacaoExclusiva" value="sim"/><fmt:message key="sim"/></span>
+					<span class="formw"><input type="radio" name="inscricao.dedicacaoExclusiva" value="sim_bolsa"/><fmt:message key="cadastro_vaga_sim_bolsa"/></span>
+					<span class="formw"><input type="radio" name="inscricao.dedicacaoExclusiva" value="nao"/><fmt:message key="nao"/></span><br>
 				</div>
 				
 			 </fieldset>
@@ -87,16 +81,16 @@ function habilitaTexto(num){
 				 	<div class="label"><fmt:message key="cadastro_vaga_interesse_muita_afinidade"/></div>
 				 	<br>
 				 	<c:forEach  var="area" items="${areasDeInteresse}" varStatus="rowCounter">
-						<input type="checkbox" name="${area.descricao}" value="${area.selecionada}" 
+						<input type="checkbox" name="listaAreasMaiorAfinidade" value="${area.descricao}" 
 							id="<c:out value="${area.descricao}"/>1" onclick="alteraCheckbox('<c:out value="${area.descricao}"/>', 1)">
 						<fmt:message key="${area.descricao}"/><br />
 					</c:forEach>
 					
-					<input type="checkbox" name="nao_sei_ainda_maior_afinidade" value="true">
+					<input type="checkbox" name="listaAreasMaiorAfinidade" value="nao_sei_ainda">
 						<fmt:message key="cadastro_vaga_nao_sei"/><br />
-					<input type="checkbox" name="outra_maior_afinidade" value="true" onclick="habilitaTexto(1)">
+					<input type="checkbox" name="outraMaiorAfinidade" value="true" onclick="habilitaTexto(1)">
 						<fmt:message key="cadastro_vaga_outra_qual"/>
-						<input type="text" name="outra_maior_afinidade_nome" id="outra1" disabled style="width: 60%">
+						<input type="text" name="listaAreasMaiorAfinidade" id="outra1" disabled style="width: 60%">
 						<br />
 				</div>
 				<p>
@@ -104,16 +98,16 @@ function habilitaTexto(num){
 				 	<div class="label"><fmt:message key="cadastro_vaga_interesse_menor_afinidade"/></div>
 					<br>
 					<c:forEach  var="area" items="${areasDeInteresse}" varStatus="rowCounter">
-						<input type="checkbox" name="${area.descricao}" value="${area.selecionada}" 
+						<input type="checkbox" name="listaAreasMenorAfinidade" value="${area.descricao}" 
 							id="<c:out value="${area.descricao}"/>2" onclick="alteraCheckbox('<c:out value="${area.descricao}"/>', 2)">
 						<fmt:message key="${area.descricao}"/><br />
 					</c:forEach>
 					
-					<input type="checkbox" name="nao_sei_ainda_menor_afinidade" value="true">
+					<input type="checkbox" name="listaAreasMenorAfinidade" value="true">
 						<fmt:message key="cadastro_vaga_nao_sei"/><br />
-					<input type="checkbox" name="outra_menor_afinidade" value="true" onclick="habilitaTexto(2)">
+					<input type="checkbox" name="outraMenorAfinidade" value="true" onclick="habilitaTexto(2)">
 						<fmt:message key="cadastro_vaga_outra_qual"/>
-						<input type="text" name="outra_menor_afinidade_nome" id="outra2" disabled style="width: 60%">
+						<input type="text" name="listaAreasMaiorAfinidade" id="outra2" disabled style="width: 60%">
 						<br />
 					<br />
 				</div>
