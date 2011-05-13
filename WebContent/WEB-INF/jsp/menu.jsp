@@ -12,6 +12,8 @@
 <ul class="sub">
 <li><a href="<c:url value='/cadastro/dadosPessoais'/>" target="_self"> <fmt:message key="index_lnk_cadastro_dados_pessoais" /></a></li>
 <li><a href="<c:url value='/curriculo/dadosCurriculo'/>" target="_self"> <fmt:message key="index_lnk_cadastro_curriculo" /></a></li>
+<li><a href="<c:url value='/cadastro/solicitarRecomendacao'/>" target="_self"> <fmt:message key="index_lnk_cadastro_recomendacao" /></a></li>
+<li><a href="<c:url value='/cadastro/dadosVaga'/>" target="_self"> <fmt:message key="index_lnk_cadastro_vaga" /></a></li>
 </ul>
 </li>
 <li class="top"><a href="<c:url value='/logout'/>" target="_self" class="top_link"><span> <fmt:message key="login_logout" /></span></a>
