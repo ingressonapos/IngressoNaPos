@@ -66,7 +66,7 @@ $.ajaxSetup ({
 		method="post">
 
 		<input type="hidden" name="formacaoAcademica.formacaoAcademicaId"
-			value="${formacaoAcademica.formacaoAcademicaId}" maxlength=100 />
+			value="${formacaoAcademica.formacaoAcademicaId}" maxlength=100 />		
 
 		<fieldset>
 			<legend>
@@ -209,9 +209,9 @@ $.ajaxSetup ({
 	<form action="<c:url value='/curriculo/adicionaIniciacaoCientifica'/>"
 		method="post">
 
-		<input type="hidden" name="iniciacaoCientifica.iniciacaocientificaId"
-			value="${iniciacaoCientifica.iniciacaocientificaId}" maxlength=100 />
-
+		<input type="hidden" name="iniciacaoCientifica.iniciacaoCientificaId"
+			value="${iniciacaoCientifica.iniciacaoCientificaId}" maxlength=100 />
+					
 		<fieldset>
 			<legend>
 				<b><fmt:message key="cadastro_curriculo_titulo_iniciacao_cientifica" />
@@ -286,13 +286,13 @@ $.ajaxSetup ({
 						 		<td>${iniciacao.nomeOrientador}</td>
 								<td>${iniciacao.nomeInstituicao}</td>
 								<td>${iniciacao.temaProjeto}</td>	
-								<td> 
-										<a href="<c:url value='/curriculo/editarFormacaoAcademica/${iniciacao.iniciacaocientificaId}'/>"> 
+								<td>  
+										<a href="<c:url value='/curriculo/editarIniciacaoCientifica/${iniciacao.iniciacaoCientificaId}'/>"> 
 											<img src="<c:url value='/images/editar.png'/>" alt='<fmt:message key="editar"/>' title="<fmt:message key="editar"/>"/> 
-										</a>
+										</a>								
 								<td>
 								<td> 
-										<a href="<c:url value='/curriculo/removerFormacaoAcademica/${iniciacao.iniciacaocientificaId}'/>"> 
+										<a href="<c:url value='/curriculo/removerIniciacaoCientifica/${iniciacao.iniciacaoCientificaId}'/>"> 
 											<img src="<c:url value='/images/excluir.gif'/>" alt='<fmt:message key="excluir"/>' title="<fmt:message key="excluir"/>"/>
 										</a>
 								<td>							

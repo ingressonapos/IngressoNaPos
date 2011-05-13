@@ -116,23 +116,23 @@ public class CurriculoService
     }
 
     public IniciacaoCientifica getIniciacaoCientificaParaEdicao(
-        final Long iniciacaocientificaId )
+        final Long iniciacaoCientificaId )
     {
         final IniciacaoCientifica iniciacaoCientifica;
 
         // Nova Iniciacao
-        if( iniciacaocientificaId == null ) {
+        if( iniciacaoCientificaId == null ) {
             iniciacaoCientifica = new IniciacaoCientifica();
         } else {
-            iniciacaoCientifica = iniciacaoCientificaDAO.procurarIniciacaoCientificaById( iniciacaocientificaId );
+            iniciacaoCientifica = iniciacaoCientificaDAO.procurarIniciacaoCientificaById( iniciacaoCientificaId );
         }
         return iniciacaoCientifica;
     }
 
     public void removerIniciacaoCientifica(
-        final Long iniciacaocientificaId )
+        final Long iniciacaoCientificaId )
     {
-        final IniciacaoCientifica iniciacaoCientificaPersistente = this.getIniciacaoCientificaParaEdicao( iniciacaocientificaId );
+        final IniciacaoCientifica iniciacaoCientificaPersistente = this.getIniciacaoCientificaParaEdicao( iniciacaoCientificaId );
         final Usuario usuario = usuarioDao.findById( usuarioSessao.getUsuario().getUsuarioID() );
         final Candidato candidato = usuario.getCandidato();
 
@@ -146,7 +146,7 @@ public class CurriculoService
     public void adicionaIniciacaoCientifica(
         IniciacaoCientifica iniciacaoCientifica )
     {
-        if( iniciacaoCientifica.getIniciacaocientificaId() == null ) {
+        if( iniciacaoCientifica.getIniciacaoCientificaId() == null ) {
             final Usuario usuario = usuarioDao.findById( usuarioSessao.getUsuario().getUsuarioID() );
             Candidato candidato = usuario.getCandidato();
             Curriculo curriculo = candidato.getCurriculo();
@@ -159,7 +159,7 @@ public class CurriculoService
             curriculo.adicionaIniciacaoCientifica( iniciacaoCientifica );
             candidatoDao.saveOrUpdate( candidato );
         } else {
-            IniciacaoCientifica iniciacaoPersistente = this.getIniciacaoCientificaParaEdicao( iniciacaoCientifica.getIniciacaocientificaId() );
+            IniciacaoCientifica iniciacaoPersistente = this.getIniciacaoCientificaParaEdicao( iniciacaoCientifica.getIniciacaoCientificaId() );
             BeanUtils.copyProperties( iniciacaoCientifica, iniciacaoPersistente, new String[] {
                 "iniciacaoCientificaId"
             } );

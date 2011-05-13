@@ -18,7 +18,7 @@ public class IniciacaoCientifica
 
     @Id
     @GeneratedValue
-    private Long iniciacaocientificaId;
+    private Long iniciacaoCientificaId;
 
     @Column( length = 50 )
     private String nomeOrientador;
@@ -37,9 +37,15 @@ public class IniciacaoCientifica
     {
     }
 
-    public Long getIniciacaocientificaId()
+    public Long getIniciacaoCientificaId()
     {
-        return iniciacaocientificaId;
+        return iniciacaoCientificaId;
+    }
+
+    public void setIniciacaoCientificaId(
+        Long iniciacaoCientificaId )
+    {
+        this.iniciacaoCientificaId = iniciacaoCientificaId;
     }
 
     public String getNomeOrientador()

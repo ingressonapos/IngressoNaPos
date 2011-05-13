@@ -44,9 +44,9 @@ public class IniciacaoCientificaDAO
     }
 
     public IniciacaoCientifica procurarIniciacaoCientificaById(
-        Long iniciacaocientificaId )
+        Long iniciacaoCientificaId )
     {
-        List<IniciacaoCientifica> iniciacoesCientificas = findByCriteria( Restrictions.eq( "iniciacaocientificaId", iniciacaocientificaId ) );
+        List<IniciacaoCientifica> iniciacoesCientificas = findByCriteria( Restrictions.eq( "iniciacaoCientificaId", iniciacaoCientificaId ) );
         if( iniciacoesCientificas.isEmpty() ) {
             return null;
         } else {

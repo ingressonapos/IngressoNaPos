@@ -116,24 +116,24 @@ public class CurriculoController
     }
 
     @Get
-    @Path( "/curriculo/editarIniciacaoCientifica/{IniciacaoCientifica.iniciacaoCientificaId}" )
+    @Path( "/curriculo/editarIniciacaoCientifica/{iniciacaoCientifica.iniciacaoCientificaId}" )
     public void editarIniciacaoCientifica(
         IniciacaoCientifica iniciacaoCientifica )
     {
         result.include(
             "iniciacaoCientifica",
-            curriculoService.getIniciacaoCientificaParaEdicao( iniciacaoCientifica.getIniciacaocientificaId() ) );
+            curriculoService.getIniciacaoCientificaParaEdicao( iniciacaoCientifica.getIniciacaoCientificaId() ) );
 
         result.forwardTo( getClass() ).dadosCurriculo();
     }
 
     @Get
-    @Path( "/curriculo/removerIniciacaoCientifica/{IniciacaoCientifica.iniciacaoCientificaId}" )
+    @Path( "/curriculo/removerIniciacaoCientifica/{iniciacaoCientifica.iniciacaoCientificaId}" )
     @Transactional
     public void removerIniciacaoCientifia(
         IniciacaoCientifica iniciacaoCientifica )
     {
-        curriculoService.removerIniciacaoCientifica( iniciacaoCientifica.getIniciacaocientificaId() );
+        curriculoService.removerIniciacaoCientifica( iniciacaoCientifica.getIniciacaoCientificaId() );
         result.forwardTo( getClass() ).dadosCurriculo();
     }
 
