@@ -34,7 +34,7 @@ $(function() {
 
 	$(".portlet-header .ui-icon").click(function() {
 		$(this).toggleClass("ui-icon-minusthick").toggleClass("ui-icon-plusthick");
-		$(this).parents(".portlet:first").find(".portlet-content").toggle();
+		$(this).parents(".portlet:first").find(".tabelaDiv").toggle();
 	});
 
 	/*$(".column").disableSelection();*/
@@ -58,7 +58,7 @@ $.ajaxSetup ({
 	</h1>
 </center>
 
-<div id="form" class="form_cadastro">
+<div id="formFormacao" class="form_cadastro">
 	
 	
 	<!-- FORMAÇÃO ACADÊMICA -->
@@ -157,7 +157,7 @@ $.ajaxSetup ({
 				</div>
 				
 				<div class="tabelaDiv">
-					<table class="tabela" cellpadding="5px" cellspacing="0">
+					<table class="tabela" cellpadding="5px" cellspacing="0" id="tableFormacao">
 						<tr>
 							<th> <b><fmt:message key="cadastro_curriculo_tabela_titulo_tipo_de_formacao" /></b> </th> 
 							<th> <b><fmt:message key="cadastro_curriculo_tabela_titulo_instituicao" /></b> </th>
@@ -186,12 +186,12 @@ $.ajaxSetup ({
 								<td> <fmt:formatDate value="${formacao.terminoData}" pattern="MM/yyyy"/> </td>	
 								<td> 
 								
-										<a href="<c:url value='/curriculo/editarFormacaoAcademica/${formacao.formacaoAcademicaId}'/>"> 
+										<a href="<c:url value='/curriculo/editarFormacaoAcademica/${formacao.formacaoAcademicaId}#formFormacao'/>"> 
 											<img src="<c:url value='/images/editar.png'/>" alt='<fmt:message key="editar"/>' title="<fmt:message key="editar"/>"/> 
 										</a>
 								<td>
 								<td> 
-										<a href="<c:url value='/curriculo/removerFormacaoAcademica/${formacao.formacaoAcademicaId}'/>"> 											
+										<a href="<c:url value='/curriculo/removerFormacaoAcademica/${formacao.formacaoAcademicaId}#tableFormacao'/>"> 											
 											<img src="<c:url value='/images/excluir.gif'/>" alt='<fmt:message key="excluir"/>' title="<fmt:message key="excluir"/>"/> 
 										</a>
 								<td>							
@@ -265,7 +265,7 @@ $.ajaxSetup ({
 				</div>
 				
 				<div class="tabelaDiv">
-					<table class="tabela" cellpadding="5px" cellspacing="0">
+					<table class="tabela" cellpadding="5px" cellspacing="0" id="tableIniciacao">
 						<tr> 
 							<th> <b><fmt:message key="cadastro_curriculo_tabela_titulo_instituicao" /></b> </th>
 							<th> <b><fmt:message key="cadastro_curriculo_tabela_nome_orientador" /></b> </th>
@@ -287,12 +287,12 @@ $.ajaxSetup ({
 								<td>${iniciacao.nomeInstituicao}</td>
 								<td>${iniciacao.temaProjeto}</td>	
 								<td>  
-										<a href="<c:url value='/curriculo/editarIniciacaoCientifica/${iniciacao.iniciacaoCientificaId}'/>"> 
+										<a href="<c:url value='/curriculo/editarIniciacaoCientifica/${iniciacao.iniciacaoCientificaId}#formIniciacao'/>"> 
 											<img src="<c:url value='/images/editar.png'/>" alt='<fmt:message key="editar"/>' title="<fmt:message key="editar"/>"/> 
 										</a>								
 								<td>
 								<td> 
-										<a href="<c:url value='/curriculo/removerIniciacaoCientifica/${iniciacao.iniciacaoCientificaId}'/>"> 
+										<a href="<c:url value='/curriculo/removerIniciacaoCientifica/${iniciacao.iniciacaoCientificaId}#tableIniciacao'/>"> 
 											<img src="<c:url value='/images/excluir.gif'/>" alt='<fmt:message key="excluir"/>' title="<fmt:message key="excluir"/>"/>
 										</a>
 								<td>							
