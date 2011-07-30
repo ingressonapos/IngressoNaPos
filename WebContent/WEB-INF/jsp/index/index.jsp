@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home</title>
+<title> <fmt:message key="system_title" />  </title>
 <link href="<c:url value='/'/>/css/layout.css" rel="stylesheet"
 	type="text/css" />
 <link href="<c:url value='/'/>/css/jquery-ui.css" rel="stylesheet"
@@ -39,6 +39,8 @@ Index
 
 <div><%@ include file="../rodape.jsp"%></div>
 </div>
+
+
 
 </center>
 

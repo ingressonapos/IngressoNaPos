@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.ime.usp.ingpos.seguranca.Criptografia;
+import br.usp.ime.ingpos.seguranca.Criptografia;
 
 public class TestaCriptografia
 {

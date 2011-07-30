@@ -1,15 +1,21 @@
 package br.usp.ime.ingpos.testes;
 
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+import org.hibernate.Transaction;
 import org.junit.After;
 import org.junit.Before;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import br.com.caelum.vraptor.util.hibernate.SessionCreator;
+import br.usp.ime.ingpos.modelo.dao.AnnotationSessionFactoryCreator;
 
 public abstract class IngPosTestCase
     extends
         junit.framework.TestCase
 {
+    private AnnotationSessionFactoryCreator criadorDeFabricaDeSessoes;
+    private SessionCreator sessionCreator;
 
     public IngPosTestCase(
         final String name )
@@ -17,14 +23,21 @@ public abstract class IngPosTestCase
         super( name );
     }
 
+    Transaction transaction;
+
     @Before
     protected void setUp()
         throws Exception
     {
         super.setUp();
-        // SchemaExport ddlExport = new SchemaExport(
-        // HibernateUtil.getConfiguration() );
-        // ddlExport.create( false, true );
+
+        criadorDeFabricaDeSessoes = new AnnotationSessionFactoryCreator();
+        criadorDeFabricaDeSessoes.create();
+
+        sessionCreator = new SessionCreator( criadorDeFabricaDeSessoes.getInstance() );
+        sessionCreator.create();
+
+        transaction = sessionCreator.getInstance().beginTransaction();
     }
 
     @After
@@ -32,9 +45,14 @@ public abstract class IngPosTestCase
         throws Exception
     {
         super.tearDown();
-        // SchemaExport ddlExport = new SchemaExport(
-        // HibernateUtil.getConfiguration() );
-        // ddlExport.drop( false, true );
+
+        sessionCreator.getInstance().getTransaction().commit();
+        criadorDeFabricaDeSessoes.destroy();
+    }
+
+    public final SessionCreator getSessionCreator()
+    {
+        return sessionCreator;
     }
 
     public final Test getRuntimeSuite()
