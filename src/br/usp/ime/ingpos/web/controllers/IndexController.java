@@ -1,4 +1,4 @@
-package web.controllers;
+package br.usp.ime.ingpos.web.controllers;
 
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;

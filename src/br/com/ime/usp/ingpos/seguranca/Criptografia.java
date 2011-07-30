@@ -1,4 +1,4 @@
-package seguranca;
+package br.com.ime.usp.ingpos.seguranca;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -3,6 +3,7 @@
     <wb-module deploy-name="Ingresso-na-Pos">
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/testes"/>
         <property name="context-root" value="Ingresso-na-Pos"/>
         <property name="java-output-path" value="/Ingresso-na-Pos/build/classes"/>
     </wb-module>

@@ -1,4 +1,4 @@
-package modelo;
+package br.usp.ime.ingpos.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

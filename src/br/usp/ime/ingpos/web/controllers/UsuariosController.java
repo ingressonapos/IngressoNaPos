@@ -1,4 +1,4 @@
-package web.controllers;
+package br.usp.ime.ingpos.web.controllers;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package modelo;
+package br.usp.ime.ingpos.modelo;
 
 import java.io.Serializable;
 
