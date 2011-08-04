@@ -20,7 +20,7 @@ public class CadastroController {
 	@Get
 	@Path("cadastro/registro")
 	public void registro(){
-		
+		// TODO Criar a permissão para acessar sem login
 	}
 	
 
