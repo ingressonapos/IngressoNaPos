@@ -1,6 +1,7 @@
 package br.usp.ime.ingpos.modelo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,10 +31,10 @@ public class DadosPessoais {
 	private String cpf;
 	@Column
 	private String nacionalidade;
-	@OneToOne
+	@Column
 	private CedulaDeIdentidade cedulaDeIdentidade;
 	@ManyToMany
-	private Endereco endereco;
+	private List<Endereco> endereco;
 	@Column
 	private Date dataDeNascimento;
 	public String getNomeCompleto() {
@@ -78,10 +79,10 @@ public class DadosPessoais {
 	public void setCedulaDeIdentidade(CedulaDeIdentidade cedulaDeIdentidade) {
 		this.cedulaDeIdentidade = cedulaDeIdentidade;
 	}
-	public Endereco getEndereco() {
+	public List<Endereco> getEndereco() {
 		return endereco;
 	}
-	public void setEndereco(Endereco endereco) {
+	public void setEndereco(List<Endereco> endereco) {
 		this.endereco = endereco;
 	}
 	public Date getDataDeNascimento() {

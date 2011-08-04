@@ -14,6 +14,7 @@ public class BolsaObtidaAnteriormente {
 	private String tipoBolsa;
 	@Column(length=50)
 	private String nomeInstituicao; //Instituicao que concedeu a bolsa
+	@Column
 	private int duracao;
 	@Column(length=50)
 	private String nomeOrientador;

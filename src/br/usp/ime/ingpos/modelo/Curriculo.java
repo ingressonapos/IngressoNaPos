@@ -3,6 +3,7 @@ package br.usp.ime.ingpos.modelo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 
@@ -13,7 +14,9 @@ public class Curriculo {
 	@Id
 	@GeneratedValue
 	private Long curriculoID;
+	@OneToOne
 	private FormacaoAcademica formacaoAcad;
+	@OneToOne
 	private BolsaObtidaAnteriormente bolsaAnt;
 	
 	

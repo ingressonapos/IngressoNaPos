@@ -9,10 +9,12 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import br.com.caelum.vraptor.ioc.ApplicationScoped;
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.ComponentFactory;
+import br.usp.ime.ingpos.modelo.BolsaObtidaAnteriormente;
 import br.usp.ime.ingpos.modelo.CEP;
 import br.usp.ime.ingpos.modelo.Curriculo;
 import br.usp.ime.ingpos.modelo.DadosPessoais;
 import br.usp.ime.ingpos.modelo.Endereco;
+import br.usp.ime.ingpos.modelo.FormacaoAcademica;
 import br.usp.ime.ingpos.modelo.Perfil;
 import br.usp.ime.ingpos.modelo.Telefone;
 import br.usp.ime.ingpos.modelo.Usuario;
@@ -40,6 +42,8 @@ public class AnnotationSessionFactoryCreator
         cfg.addAnnotatedClass( Usuario.class );
         cfg.addAnnotatedClass( Curriculo.class );
         cfg.addAnnotatedClass( DadosPessoais.class );
+        cfg.addAnnotatedClass( BolsaObtidaAnteriormente.class );
+        cfg.addAnnotatedClass( FormacaoAcademica.class );
 
 
         factory = cfg.buildSessionFactory();
