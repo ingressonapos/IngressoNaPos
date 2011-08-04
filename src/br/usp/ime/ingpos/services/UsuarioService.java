@@ -5,10 +5,11 @@ import br.com.caelum.vraptor.ioc.RequestScoped;
 import br.com.caelum.vraptor.ioc.SessionScoped;
 import br.usp.ime.ingpos.modelo.Usuario;
 import br.usp.ime.ingpos.modelo.dao.UsuarioDao;
+import br.usp.ime.ingpos.seguranca.Criptografia;
 import br.usp.ime.ingpos.web.controllers.UsuarioSessao;
 
 /**
- * Serviço que é responsavel por efetuar lógica de negocios para usuário. Possui
+ * Serviï¿½o que ï¿½ responsavel por efetuar lï¿½gica de negocios para usuï¿½rio. Possui
  * o escopo de sessao
  */
 @RequestScoped
@@ -26,14 +27,22 @@ public class UsuarioService
         this.usuarioSessao = usuarioSessao;
     }
 
+    public void salvar(
+        Usuario usuario )
+    {
+        String senha = Criptografia.md5( usuario.getSenha() );
+
+        // TODO: Implementar logica para salvar o usuario utilizando a senha
+        // criptografada
+    }
+
     public boolean autenticar(
         final String userName,
-        final String password )
+        String senha )
     {
-        // TODO: Implementar encriptação de senha
-        // a senha deve ser salva criptografada no banco de dados
+        senha = Criptografia.md5( senha );
 
-        final Usuario usuario = usuarioDAO.findByLoginAndPassword( userName, password );
+        final Usuario usuario = usuarioDAO.findByLoginAndPassword( userName, senha );
 
         final boolean success;
         if( usuario == null ) {

@@ -42,6 +42,13 @@ body {
 	color: #9F14AC;
 }
 
+#headnote h3{
+	font-size: 14px;
+	font-weight: 100;
+	margin-top: -5px;
+	color: #9F14AC;
+}
+
 /* a nice little line */
 hr {
 	background: transparent url(../img/divider.png) no-repeat;

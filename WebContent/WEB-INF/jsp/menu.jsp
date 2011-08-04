@@ -1,2 +1,4 @@
 <%@ include file="cabecalho.jsp"%>
-menu
+<c:if test="${usuarioSessao.usuario != null}">
+					Olá <b>${usuarioSessao.usuario.nome}</b>
+</c:if>

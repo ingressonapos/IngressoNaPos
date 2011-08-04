@@ -1,5 +1,7 @@
 package br.usp.ime.ingpos.modelo;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -10,8 +12,11 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "Endereco")
-public class Endereco {
+public class Endereco 
+implements
+Serializable
+{
+	private static final long serialVersionUID = 5653550355165213879L;
 
 	@Id
 	@GeneratedValue
@@ -33,6 +38,15 @@ public class Endereco {
 
 	@Embedded
 	private Telefone telefones;
+
+	
+	public Long getEnderecoID() {
+		return enderecoID;
+	}
+
+	public void setEnderecoID(Long enderecoID) {
+		this.enderecoID = enderecoID;
+	}
 
 	public String getLogadouro() {
 		return logadouro;
