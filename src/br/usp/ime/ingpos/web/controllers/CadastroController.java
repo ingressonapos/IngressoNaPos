@@ -16,5 +16,12 @@ public class CadastroController {
 	public void dadosUsuario() {
 		
 	}
+	
+	@Get
+	@Path("cadastro/registro")
+	public void registro(){
+		
+	}
+	
 
 }
