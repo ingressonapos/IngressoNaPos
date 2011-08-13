@@ -164,6 +164,7 @@
 						
 						<div>
 							<input type="submit" value="Enviar">
+							<a href="<c:url value='/'/>"><button><fmt:message key="voltar"/></button></a>
 						</div>
 					
 					</form>
