@@ -29,7 +29,7 @@ public class RegistroNovoUsuarioDao
 
         if( registroNovoUsuarioList.size() > 1 ) {
             throw new IllegalStateException(
-                "Existem dois ou mais registros de novo usu·rio com mesma chave de ativacao: "
+                "Existem dois ou mais registros de novo usuÔøΩrio com mesma chave de ativacao: "
                     + chaveAtivacao );
         }
 
@@ -49,7 +49,7 @@ public class RegistroNovoUsuarioDao
 
         if( registroNovoUsuarioList.size() > 1 ) {
             throw new IllegalStateException(
-                "Existem dois ou mais registros de novo usu·rio mesmo cpf: " + cpf + " ou email: "
+                "Existem dois ou mais registros de novo usu√°rio mesmo cpf: " + cpf + " ou email: "
                     + email );
         }
 
